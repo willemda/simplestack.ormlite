@@ -2,9 +2,10 @@ using System.Data;
 using Northwind.Common.DataModel;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
-    [TestFixture][Ignore("Long running tests")]
+	[TestFixture]
+	[Ignore("Long running tests")]
 	public class OrmLiteNorthwindTests
 		: OrmLiteTestBase
 	{
@@ -30,13 +31,13 @@ namespace ServiceStack.OrmLite.MySql.Tests
 			);
 		}
 
-        private static void LoadNorthwindData(IDbConnection db)
+		private static void LoadNorthwindData(IDbConnection db)
 		{
 			NorthwindData.Categories.ForEach(x => db.Insert(x));
 			NorthwindData.Customers.ForEach(x => db.Insert(x));
 			NorthwindData.Employees.ForEach(x => db.Insert(x));
 			NorthwindData.Shippers.ForEach(x => db.Insert(x));
-		    NorthwindData.Suppliers.ForEach(x => db.Insert(x));
+			NorthwindData.Suppliers.ForEach(x => db.Insert(x));
 			NorthwindData.Orders.ForEach(x => db.Insert(x));
 			NorthwindData.Products.ForEach(x => db.Insert(x));
 			NorthwindData.OrderDetails.ForEach(x => db.Insert(x));

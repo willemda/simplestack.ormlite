@@ -1,11 +1,10 @@
 using System;
 using NUnit.Framework;
-using ServiceStack.Common.Extensions;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Logging;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Logging;
+using SimpleStack.Text;
 
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class ModelWithFieldsOfDifferentAndNullableTypes
 	{

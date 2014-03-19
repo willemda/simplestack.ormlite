@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceStack.OrmLite.MySql.DataAnnotations
+namespace SimpleStack.OrmLite.MySql.DataAnnotations
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class TextAttribute : Attribute

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.Tests.Expression
+namespace SimpleStack.OrmLite.Tests.Expression
 {
     public class ExpressionsTestBase : OrmLiteTestBase
     {

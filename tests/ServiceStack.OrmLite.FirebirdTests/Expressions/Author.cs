@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.FirebirdTests.Expressions
+namespace SimpleStack.OrmLite.FirebirdTests.Expressions
 {
 	public class Author
 	{

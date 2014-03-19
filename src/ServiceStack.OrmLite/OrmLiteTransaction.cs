@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public class OrmLiteTransaction : IDbTransaction
     {

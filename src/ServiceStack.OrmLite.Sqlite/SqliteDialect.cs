@@ -1,6 +1,6 @@
-using ServiceStack.OrmLite.Sqlite;
+using SimpleStack.OrmLite.Sqlite;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class SqliteDialect
     {

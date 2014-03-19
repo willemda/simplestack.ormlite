@@ -1,4 +1,4 @@
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class ModelWithIdOnly
 	{

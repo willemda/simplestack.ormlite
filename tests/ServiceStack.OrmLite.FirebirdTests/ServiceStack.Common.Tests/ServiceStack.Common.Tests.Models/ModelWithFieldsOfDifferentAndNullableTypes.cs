@@ -1,10 +1,10 @@
 ﻿using System;
-using ServiceStack.Logging;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Logging;
+using SimpleStack.DataAnnotations;
 using NUnit.Framework;
-using ServiceStack.Text;
+using SimpleStack.Text;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	[Alias("ModelWFDNT")]
 	public class ModelWithFieldsOfDifferentAndNullableTypes

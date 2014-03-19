@@ -1,6 +1,6 @@
 using System;
 
-namespace ServiceStack.OrmLite.Firebird.DbSchema
+namespace SimpleStack.OrmLite.Firebird.DbSchema
 {
 	public interface IParameter
 	{

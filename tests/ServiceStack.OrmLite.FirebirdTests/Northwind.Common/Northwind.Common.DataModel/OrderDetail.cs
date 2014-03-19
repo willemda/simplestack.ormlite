@@ -1,6 +1,6 @@
 using System;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace Northwind.Common.DataModel{

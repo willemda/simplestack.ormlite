@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using ServiceStack.Common;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.OrmLite;
+using SimpleStack.Common;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.OrmLite;
 
 namespace Database.Records
 {

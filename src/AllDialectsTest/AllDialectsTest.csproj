@@ -29,17 +29,17 @@
     <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleStack.Common">
+      <HintPath>..\..\lib\SimpleStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleStack.Interfaces">
+      <HintPath>..\..\lib\SimpleStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleStack.Text">
+      <HintPath>..\..\lib\SimpleStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="ServiceStack.Common">
-      <HintPath>..\..\lib\ServiceStack.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\..\lib\ServiceStack.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\lib\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,9 +69,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj">
+    <ProjectReference Include="..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
-      <Name>ServiceStack.OrmLite</Name>
+      <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

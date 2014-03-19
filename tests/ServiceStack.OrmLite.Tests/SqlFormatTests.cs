@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class SqlFormatTests

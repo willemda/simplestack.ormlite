@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq.Expressions;
 
-namespace ServiceStack.OrmLite.Oracle
+namespace SimpleStack.OrmLite.Oracle
 {
 	public class OracleSqlExpressionVisitor<T>:SqlExpressionVisitor<T>
 	{

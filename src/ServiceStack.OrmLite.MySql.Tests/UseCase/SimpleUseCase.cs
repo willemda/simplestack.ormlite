@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.MySql.Tests.UseCase
+namespace SimpleStack.OrmLite.MySql.Tests.UseCase
 {
 	[TestFixture]
 	public class SimpleUseCase
@@ -20,7 +20,7 @@ namespace ServiceStack.OrmLite.MySql.Tests.UseCase
 		{
 			public long Id { get; set; }
 
-			[ServiceStack.DataAnnotations.Index]
+			[SimpleStack.DataAnnotations.Index]
 			public string Name { get; set; }
 
 			public DateTime CreatedDate { get; set; }

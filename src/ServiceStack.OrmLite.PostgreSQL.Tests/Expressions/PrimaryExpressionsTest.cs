@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests.Expressions
+namespace SimpleStack.OrmLite.PostgreSQL.Tests.Expressions
 {
     public class PrimaryExpressionsTest : ExpressionsTestBase
     {

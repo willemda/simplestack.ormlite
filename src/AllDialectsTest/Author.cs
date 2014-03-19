@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite;
 
 namespace AllDialectsTest
 {

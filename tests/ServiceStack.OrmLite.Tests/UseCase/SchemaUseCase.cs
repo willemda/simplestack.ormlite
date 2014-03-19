@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.Tests.UseCase
+namespace SimpleStack.OrmLite.Tests.UseCase
 {
     [TestFixture]
     public class SchemaUseCase

@@ -1,9 +1,9 @@
 using System;
 using Northwind.Common.DataModel;
 using NUnit.Framework;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite.Firebird;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
     [TestFixture]
     [Ignore]

@@ -1,6 +1,6 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.FirebirdTests.Expressions
+namespace SimpleStack.OrmLite.FirebirdTests.Expressions
 {
     public class TestType
     {

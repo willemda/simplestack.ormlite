@@ -1,4 +1,4 @@
-﻿namespace ServiceStack.OrmLite.Tests
+﻿namespace SimpleStack.OrmLite.Tests
 {
     #region using
 

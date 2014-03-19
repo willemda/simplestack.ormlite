@@ -8,7 +8,7 @@ using System.Data.Metadata.Edm;
 using System.Reflection;
 using System.Data.EntityClient;
 using System.Data.Linq;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
 namespace SqlMapper
 {

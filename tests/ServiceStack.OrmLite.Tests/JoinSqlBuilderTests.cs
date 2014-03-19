@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using System;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture ()]
 	public class JoinSqlBuilderTests

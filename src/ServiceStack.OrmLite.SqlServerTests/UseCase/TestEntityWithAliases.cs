@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.SqlServerTests.UseCase
+namespace SimpleStack.OrmLite.SqlServerTests.UseCase
 {
     public class TestEntityWithAliases
     {

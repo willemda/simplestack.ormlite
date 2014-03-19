@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using ServiceStack.Common;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.Text;
+using SimpleStack.Common;
+using SimpleStack.OrmLite.Tests.Shared;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class OrmLiteSelectTests

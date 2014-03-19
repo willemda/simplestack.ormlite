@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Tests;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Tests;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests
+namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
     [TestFixture]
     public class OrmLiteExecuteProcedureTests : OrmLiteTestBase
@@ -15,7 +15,7 @@ namespace ServiceStack.OrmLite.PostgreSQL.Tests
             ) RETURNS BOOLEAN AS
             $BODY$
             BEGIN
-                IF v_string_values[1] <> 'ServiceStack' THEN
+                IF v_string_values[1] <> 'SimpleStack' THEN
                     RAISE EXCEPTION 'Unexpected value in string array[1] %', v_string_values[1];
                 END IF;
                 IF v_string_values[2] <> 'Thoughtfully Architected' THEN
@@ -39,7 +39,7 @@ namespace ServiceStack.OrmLite.PostgreSQL.Tests
         private const string Drop = "DROP FUNCTION f_service_stack(CHARACTER VARYING[], INTEGER[]);";
 
         [Alias("f_service_stack")]
-        public class ServiceStackFunction
+        public class SimpleStackFunction
         {
             public string[] StringValues { get; set; }
             public int[] IntegerValues { get; set; }
@@ -52,9 +52,9 @@ namespace ServiceStack.OrmLite.PostgreSQL.Tests
             {
                 db.ExecuteSql(Create);
 
-                db.ExecuteProcedure(new ServiceStackFunction
+                db.ExecuteProcedure(new SimpleStackFunction
                                         {
-                                            StringValues = new[] { "ServiceStack", "Thoughtfully Architected" },
+                                            StringValues = new[] { "SimpleStack", "Thoughtfully Architected" },
                                             IntegerValues = new[] { 1, 2, 3 }
                                         });
                 db.ExecuteSql(Drop);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq.Expressions;
 
-namespace ServiceStack.OrmLite.Sqlite
+namespace SimpleStack.OrmLite.Sqlite
 {
     /// <summary>
     /// Description of SqliteExpressionVisitor.

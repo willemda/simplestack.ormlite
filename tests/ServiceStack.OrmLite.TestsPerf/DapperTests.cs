@@ -5,12 +5,12 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.SqlServer;
-using ServiceStack.Text;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.SqlServer;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.TestsPerf
+namespace SimpleStack.OrmLite.TestsPerf
 {
     [TestFixture]
     public class DapperTests

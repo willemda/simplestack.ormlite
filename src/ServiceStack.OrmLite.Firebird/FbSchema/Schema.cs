@@ -3,10 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Firebird.DbSchema;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Firebird.DbSchema;
 
-namespace ServiceStack.OrmLite.Firebird
+namespace SimpleStack.OrmLite.Firebird
 {
 	public class Schema : ISchema<Table, Column, Procedure, Parameter>
 	{

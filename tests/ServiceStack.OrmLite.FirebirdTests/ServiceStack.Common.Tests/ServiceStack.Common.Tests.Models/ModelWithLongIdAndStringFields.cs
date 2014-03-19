@@ -1,7 +1,7 @@
 ﻿using System;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	[Alias("ModelWLISF")]
 	public class ModelWithLongIdAndStringFields

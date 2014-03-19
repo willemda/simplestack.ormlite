@@ -1,10 +1,10 @@
 using System;
 using System.Data;
 using Northwind.Perf;
-using ServiceStack.Common;
-using ServiceStack.OrmLite.TestsPerf.Model;
+using SimpleStack.Common;
+using SimpleStack.OrmLite.TestsPerf.Model;
 
-namespace ServiceStack.OrmLite.TestsPerf.Scenarios.OrmLite
+namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 {
 	public class InsertSampleOrderLineScenario
 		: DatabaseScenarioBase

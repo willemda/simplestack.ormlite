@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using ServiceStack.Common.Utils;
+using SimpleStack.Common.Utils;
 using System.Text;
 using FirebirdSql.Data.FirebirdClient;
-using ServiceStack.Common;
+using SimpleStack.Common;
 
-namespace ServiceStack.OrmLite.Firebird
+namespace SimpleStack.OrmLite.Firebird
 {
     public class FirebirdOrmLiteDialectProvider : OrmLiteDialectProviderBase<FirebirdOrmLiteDialectProvider>
 	{

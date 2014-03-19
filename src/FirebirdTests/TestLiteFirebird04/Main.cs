@@ -4,12 +4,12 @@ using System.Linq.Expressions;
 using System.Data;
 using System.Collections.Generic;
 
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
 
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.Firebird;
 
 using Database.Records;
 
@@ -23,7 +23,7 @@ namespace TestLiteFirebird04
 			
 			OrmLiteConfig.DialectProvider = new FirebirdOrmLiteDialectProvider();
 			
-			ServiceStack.OrmLite.SqlExpressionVisitor<Company> sql= 
+			SimpleStack.OrmLite.SqlExpressionVisitor<Company> sql= 
 				new  FirebirdSqlExpressionVisitor<Company>();
 			
 			List<Object> names = new List<Object>();

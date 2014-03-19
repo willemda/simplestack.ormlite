@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	[Alias("ModelWComplexT")]
 	public class ModelWithComplexTypes

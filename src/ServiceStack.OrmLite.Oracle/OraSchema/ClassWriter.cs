@@ -1,7 +1,7 @@
 using System;
-using ServiceStack.OrmLite.Oracle.DbSchema;
+using SimpleStack.OrmLite.Oracle.DbSchema;
 
-namespace ServiceStack.OrmLite.Oracle
+namespace SimpleStack.OrmLite.Oracle
 {
 	public class ClassWriter : PocoCreator<Table, Column, Procedure, Parameter>
 	{

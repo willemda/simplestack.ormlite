@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public interface IModelFactory<T>
 	{

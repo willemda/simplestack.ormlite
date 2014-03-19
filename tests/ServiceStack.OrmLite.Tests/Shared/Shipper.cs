@@ -1,7 +1,7 @@
 using System;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DesignPatterns.Model;
 
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class Shipper
 		: IHasIntId

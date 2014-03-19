@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.OrmLite.MySql.DataAnnotations;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.OrmLite.MySql.DataAnnotations;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
     [TestFixture]
     public class StringColumnTests

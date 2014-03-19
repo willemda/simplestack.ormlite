@@ -3,10 +3,10 @@ using System.Data;
 using System.Diagnostics;
 using Northwind.Common.DataModel;
 using NUnit.Framework;
-using ServiceStack.DataAccess;
-using ServiceStack.OrmLite.Sqlite;
+using SimpleStack.DataAccess;
+using SimpleStack.OrmLite.Sqlite;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[Ignore("Perf test")]
 	[TestFixture]
@@ -41,7 +41,7 @@ namespace ServiceStack.OrmLite.Tests
 			persistenceProvider.StoreAll(NorthwindData.Customers);
 			persistenceProvider.StoreAll(NorthwindData.Employees);
 			persistenceProvider.StoreAll(NorthwindData.Shippers);
-            persistenceProvider.StoreAll(NorthwindData.Suppliers);
+			persistenceProvider.StoreAll(NorthwindData.Suppliers);
 			persistenceProvider.StoreAll(NorthwindData.Orders);
 			persistenceProvider.StoreAll(NorthwindData.Products);
 			persistenceProvider.StoreAll(NorthwindData.OrderDetails);

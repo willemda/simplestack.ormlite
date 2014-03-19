@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Tests;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Tests;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests
+namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
     [TestFixture]
     public class CreatePostgreSQLTablesTests : OrmLiteTestBase

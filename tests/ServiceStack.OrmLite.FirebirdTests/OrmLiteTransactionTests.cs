@@ -1,9 +1,9 @@
 using System;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common.Tests.Models;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common.Tests.Models;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
 	public class OrmLiteTransactionTests 

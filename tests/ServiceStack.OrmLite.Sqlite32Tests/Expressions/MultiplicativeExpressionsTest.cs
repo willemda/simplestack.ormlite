@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.Tests.Expressions
+namespace SimpleStack.OrmLite.Tests.Expressions
 {
     public class MultiplicativeExpressionsTest : ExpressionsTestBase
     {

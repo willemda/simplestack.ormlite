@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 	public class SqlInValues
 	{

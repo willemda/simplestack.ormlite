@@ -3,10 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Oracle.DbSchema;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Oracle.DbSchema;
 
-namespace ServiceStack.OrmLite.Oracle
+namespace SimpleStack.OrmLite.Oracle
 {
 	public class Schema : ISchema<Table, Column, Procedure, Parameter>
 	{

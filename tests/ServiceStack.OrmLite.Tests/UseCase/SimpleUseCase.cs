@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.Tests.UseCase
+namespace SimpleStack.OrmLite.Tests.UseCase
 {
 	[TestFixture]
 	public class SimpleUseCase

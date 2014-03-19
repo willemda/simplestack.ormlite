@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SQLite;
 
-namespace ServiceStack.OrmLite.Sqlite
+namespace SimpleStack.OrmLite.Sqlite
 {
     public class SqliteOrmLiteDialectProvider : SqliteOrmLiteDialectProviderBase
     {

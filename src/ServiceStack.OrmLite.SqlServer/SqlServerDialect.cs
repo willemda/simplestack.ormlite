@@ -1,6 +1,6 @@
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.OrmLite.SqlServer;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class SqlServerDialect
     {

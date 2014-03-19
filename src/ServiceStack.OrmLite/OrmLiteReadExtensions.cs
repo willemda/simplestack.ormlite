@@ -1,12 +1,12 @@
 //
-// ServiceStack.OrmLite: Light-weight POCO ORM for .NET and Mono
+// SimpleStack.OrmLite: Light-weight POCO ORM for .NET and Mono
 //
 // Authors:
 //   Demis Bellot (demis.bellot@gmail.com)
 //
 // Copyright 2010 Liquidbit Ltd.
 //
-// Licensed under the same terms of ServiceStack: new BSD license.
+// Licensed under the same terms of SimpleStack: new BSD license.
 //
 
 using System;
@@ -15,11 +15,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Text;
-using ServiceStack.Logging;
-using ServiceStack.Text;
+using SimpleStack.Logging;
+using SimpleStack.Text;
 using System.Linq;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 	public delegate string GetQuotedValueDelegate(object value, Type fieldType);
 	public delegate object ConvertDbValueDelegate(object value, Type type);

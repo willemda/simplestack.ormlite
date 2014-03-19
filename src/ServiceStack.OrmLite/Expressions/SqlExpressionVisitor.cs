@@ -6,9 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
-using ServiceStack.Text;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public abstract class SqlExpressionVisitor<T>
     {

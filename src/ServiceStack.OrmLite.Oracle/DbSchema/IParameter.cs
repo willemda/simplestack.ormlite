@@ -1,6 +1,6 @@
 using System;
 
-namespace ServiceStack.OrmLite.Oracle.DbSchema
+namespace SimpleStack.OrmLite.Oracle.DbSchema
 {
 	public interface IParameter
 	{

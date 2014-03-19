@@ -2,13 +2,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using NUnit.Framework;
-using ServiceStack.Common;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.Text;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Common;
+using SimpleStack.Common.Tests.Models;
+using SimpleStack.Text;
+using SimpleStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
 	public class OrmLiteGetScalarTests:OrmLiteTestBase

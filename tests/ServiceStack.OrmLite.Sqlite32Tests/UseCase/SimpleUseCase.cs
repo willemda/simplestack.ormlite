@@ -4,11 +4,11 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.OrmLite.Sqlite;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Common.Utils;
+using SimpleStack.OrmLite.Sqlite;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.Tests.UseCase
+namespace SimpleStack.OrmLite.Tests.UseCase
 {
 	[TestFixture]
 	public class SimpleUseCase

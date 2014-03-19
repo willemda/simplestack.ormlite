@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace ServiceStack.OrmLite.Firebird
+namespace SimpleStack.OrmLite.Firebird
 {
 	public class FirebirdSqlExpressionVisitor<T>:SqlExpressionVisitor<T>
 	{

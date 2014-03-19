@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     [TestFixture]
     public class ExpressionVisitorTests : OrmLiteTestBase

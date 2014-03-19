@@ -2,28 +2,28 @@ using System;
 using System.Configuration;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.Logging;
-using ServiceStack.Logging.Support.Logging;
+using SimpleStack.Logging;
+using SimpleStack.Logging.Support.Logging;
+using SimpleStack.OrmLite.Tests.Shared;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
 	[TestFixture]
 	public class OrmLiteComplexTypesTests : OrmLiteTestBase
 	{
-        [TestFixtureSetUp]
-        public void TestFixtureSetUp()
-        {
-            LogManager.LogFactory = new ConsoleLogFactory();
+		[TestFixtureSetUp]
+		public void TestFixtureSetUp()
+		{
+			LogManager.LogFactory = new ConsoleLogFactory();
 
-            OrmLiteConfig.DialectProvider = MySqlDialectProvider.Instance;
-            ConnectionString = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
-        }
+			OrmLiteConfig.DialectProvider = MySqlDialectProvider.Instance;
+			ConnectionString = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
+		}
 
 		[Test]
 		public void Can_insert_into_ModelWithComplexTypes_table()
 		{
-            using (var db = OpenDbConnection())
+			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithComplexTypes>(true);
 
@@ -36,7 +36,7 @@ namespace ServiceStack.OrmLite.MySql.Tests
 		[Test]
 		public void Can_insert_and_select_from_ModelWithComplexTypes_table()
 		{
-            using (var db = OpenDbConnection())
+			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithComplexTypes>(true);
 
@@ -55,7 +55,7 @@ namespace ServiceStack.OrmLite.MySql.Tests
 		[Test]
 		public void Can_insert_and_select_from_OrderLineData()
 		{
-            using (var db = OpenDbConnection())
+			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<SampleOrderLine>(true);
 

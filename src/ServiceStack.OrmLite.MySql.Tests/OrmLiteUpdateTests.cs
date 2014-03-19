@@ -1,33 +1,33 @@
-using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
+//using NUnit.Framework;
+//using SimpleStack.Common.Tests.Models;
 
-namespace ServiceStack.OrmLite.MySql.Tests
-{
-	[TestFixture]
-	public class OrmLiteUpdateTests
-		: OrmLiteTestBase
-	{
+//namespace SimpleStack.OrmLite.MySql.Tests
+//{
+//	[TestFixture]
+//	public class OrmLiteUpdateTests
+//		: OrmLiteTestBase
+//	{
 
-		[Test]
-		public void Can_update_ModelWithFieldsOfDifferentTypes_table()
-		{
-			using (var db = OpenDbConnection())
-			{
-				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
+//		[Test]
+//		public void Can_update_ModelWithFieldsOfDifferentTypes_table()
+//		{
+//			using (var db = OpenDbConnection())
+//			{
+//				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var row = ModelWithFieldsOfDifferentTypes.Create(1);
+//				var row = ModelWithFieldsOfDifferentTypes.Create(1);
 
-				db.Insert(row);
+//				db.Insert(row);
 
-				row.Name = "UpdatedName";
+//				row.Name = "UpdatedName";
 
-				db.Update(row);
+//				db.Update(row);
 
-				var dbRow = db.GetById<ModelWithFieldsOfDifferentTypes>(1);
+//				var dbRow = db.GetById<ModelWithFieldsOfDifferentTypes>(1);
 
-				ModelWithFieldsOfDifferentTypes.AssertIsEqual(dbRow, row);
-			}
-		}
+//				ModelWithFieldsOfDifferentTypes.AssertIsEqual(dbRow, row);
+//			}
+//		}
 
-	}
-}
+//	}
+//}

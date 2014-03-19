@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using ServiceStack.OrmLite.Sqlite;
-using ServiceStack.Text;
+using SimpleStack.OrmLite.Sqlite;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     [TestFixture]
     public class ExpressionTests

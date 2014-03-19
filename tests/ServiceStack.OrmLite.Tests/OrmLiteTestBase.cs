@@ -2,12 +2,12 @@ using System;
 using System.Data;
 using System.IO;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAccess;
-using ServiceStack.Logging;
-using ServiceStack.Logging.Support.Logging;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAccess;
+using SimpleStack.Logging;
+using SimpleStack.Logging.Support.Logging;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     public class Config
     {
@@ -19,7 +19,7 @@ namespace ServiceStack.OrmLite.Tests
         //public static string SqlServerBuildDb = "Data Source=localhost;Initial Catalog=TestDb;Integrated Security=SSPI;Connect Timeout=120;MultipleActiveResultSets=True";
 
         public static IOrmLiteDialectProvider DefaultProvider = SqlServerDialect.Provider;
-        public static string DefaultConnection = SqlServerBuildDb;
+	    public static string DefaultConnection = SqlServerBuildDb;
 
         public static string GetDefaultConnection()
         {

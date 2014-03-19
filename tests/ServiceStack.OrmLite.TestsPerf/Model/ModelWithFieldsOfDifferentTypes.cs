@@ -1,10 +1,10 @@
 using System;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Logging;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Logging;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.TestsPerf.Model
+namespace SimpleStack.OrmLite.TestsPerf.Model
 {
 	public class ModelWithFieldsOfDifferentTypesPerf
 	{

@@ -3,9 +3,10 @@ using System.IO;
 using Northwind.Common.DataModel;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
-	[TestFixture][Ignore("Long running tests")]
+	[TestFixture]
+	[Ignore("Long running tests")]
 	public class OrmLiteNorthwindTests
 		: OrmLiteTestBase
 	{
@@ -31,13 +32,13 @@ namespace ServiceStack.OrmLite.Tests
 			);
 		}
 
-        private static void LoadNorthwindData(IDbConnection db)
+		private static void LoadNorthwindData(IDbConnection db)
 		{
 			NorthwindData.Categories.ForEach(x => db.Insert(x));
 			NorthwindData.Customers.ForEach(x => db.Insert(x));
 			NorthwindData.Employees.ForEach(x => db.Insert(x));
 			NorthwindData.Shippers.ForEach(x => db.Insert(x));
-            NorthwindData.Suppliers.ForEach(x => db.Insert(x));
+			NorthwindData.Suppliers.ForEach(x => db.Insert(x));
 			NorthwindData.Orders.ForEach(x => db.Insert(x));
 			NorthwindData.Products.ForEach(x => db.Insert(x));
 			NorthwindData.OrderDetails.ForEach(x => db.Insert(x));
@@ -52,7 +53,7 @@ namespace ServiceStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                CreateNorthwindTables(db);
+				CreateNorthwindTables(db);
 			}
 		}
 
@@ -61,10 +62,10 @@ namespace ServiceStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                CreateNorthwindTables(db);
+				CreateNorthwindTables(db);
 
 				NorthwindData.LoadData(false);
-                LoadNorthwindData(db);
+				LoadNorthwindData(db);
 			}
 		}
 
@@ -73,10 +74,10 @@ namespace ServiceStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                CreateNorthwindTables(db);
+				CreateNorthwindTables(db);
 
 				NorthwindData.LoadData(true);
-                LoadNorthwindData(db);
+				LoadNorthwindData(db);
 			}
 		}
 

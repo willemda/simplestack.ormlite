@@ -40,14 +40,14 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>..\..\lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Common">
-      <HintPath>..\..\lib\ServiceStack.Common.dll</HintPath>
+    <Reference Include="SimpleStack.Common">
+      <HintPath>..\..\lib\SimpleStack.Common.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\..\lib\ServiceStack.Interfaces.dll</HintPath>
+    <Reference Include="SimpleStack.Interfaces">
+      <HintPath>..\..\lib\SimpleStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\lib\ServiceStack.Text.dll</HintPath>
+    <Reference Include="SimpleStack.Text">
+      <HintPath>..\..\lib\SimpleStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -76,13 +76,13 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.OrmLite.Sqlite\ServiceStack.OrmLite.Sqlite.csproj">
+    <ProjectReference Include="..\ServiceStack.OrmLite.Sqlite\SimpleStack.OrmLite.Sqlite.csproj">
       <Project>{CF68A37D-D071-469D-AE04-68594CB95382}</Project>
-      <Name>ServiceStack.OrmLite.Sqlite</Name>
+      <Name>SimpleStack.OrmLite.Sqlite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj">
+    <ProjectReference Include="..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
-      <Name>ServiceStack.OrmLite</Name>
+      <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

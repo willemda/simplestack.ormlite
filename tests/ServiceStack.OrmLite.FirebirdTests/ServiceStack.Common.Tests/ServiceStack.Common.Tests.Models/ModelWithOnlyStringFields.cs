@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	public class ModelWithOnlyStringFields
 	{

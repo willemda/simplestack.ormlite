@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.Common;
-using ServiceStack.Common.Utils;
-using ServiceStack.Text;
+using SimpleStack.Common;
+using SimpleStack.Common.Utils;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests.UseCase
+namespace SimpleStack.OrmLite.Tests.UseCase
 {
     [Ignore("Robots Shard Use Case")]
     [TestFixture]

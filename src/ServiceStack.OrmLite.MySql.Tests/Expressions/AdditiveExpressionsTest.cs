@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.MySql.Tests.Expressions
+namespace SimpleStack.OrmLite.MySql.Tests.Expressions
 {
     public class AdditiveExpressionsTest : ExpressionsTestBase
     {

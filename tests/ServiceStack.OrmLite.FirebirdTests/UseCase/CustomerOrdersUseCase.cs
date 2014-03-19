@@ -4,12 +4,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.OrmLite.Firebird;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Common.Utils;
+using SimpleStack.OrmLite.Firebird;
+using SimpleStack.DataAnnotations;
 
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
     public enum PhoneType
     {
@@ -158,7 +158,7 @@ namespace ServiceStack.OrmLite.FirebirdTests
             {
                 FirstName = "Orm",
                 LastName = "Lite",
-                Email = "ormlite@servicestack.net",
+                Email = "ormlite@SimpleStack.net",
                 PhoneNumbers =
                     {
                         { PhoneType.Home, "555-1234" },

@@ -4,13 +4,13 @@ using System.Data;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
+using SimpleStack.DesignPatterns.Model;
 
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.Firebird;
 using Database.Records;
 
 namespace Database.Records

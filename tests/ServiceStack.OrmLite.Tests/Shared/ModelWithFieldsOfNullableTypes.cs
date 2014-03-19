@@ -1,11 +1,10 @@
 using System;
 using NUnit.Framework;
-using ServiceStack.Common.Extensions;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.Logging;
-using ServiceStack.Text;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.Logging;
+using SimpleStack.Text;
 
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class ModelWithFieldsOfNullableTypes
 		: IHasIntId

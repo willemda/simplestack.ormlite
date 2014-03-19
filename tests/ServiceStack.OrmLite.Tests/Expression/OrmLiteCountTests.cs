@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq.Expressions;
 using NUnit.Framework;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DesignPatterns.Model;
 
-namespace ServiceStack.OrmLite.Tests.Expression
+namespace SimpleStack.OrmLite.Tests.Expression
 {
     [TestFixture]
     public class OrmLiteCountTests : OrmLiteTestBase

@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using ServiceStack.Common;
-using ServiceStack.Common.Tests.Models;
+using SimpleStack.Common;
+using SimpleStack.OrmLite.Tests.Shared;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class OrmLiteCreateTableWithIndexesTests 

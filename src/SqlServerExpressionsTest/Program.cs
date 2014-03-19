@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Data;
 
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
 using System.Reflection;
 
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.SqlServer;
 
 
 namespace SqlServerExpressionsTest

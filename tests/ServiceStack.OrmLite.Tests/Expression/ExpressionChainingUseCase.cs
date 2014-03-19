@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-namespace ServiceStack.OrmLite.Tests.Expression
+namespace SimpleStack.OrmLite.Tests.Expression
 {
     [TestFixture]
     public class ExpressionChainingUseCase: OrmLiteTestBase

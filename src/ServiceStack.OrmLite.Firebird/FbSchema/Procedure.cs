@@ -1,8 +1,8 @@
 using System;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Firebird.DbSchema;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Firebird.DbSchema;
 
-namespace ServiceStack.OrmLite.Firebird
+namespace SimpleStack.OrmLite.Firebird
 {
 	public class Procedure : IProcedure
 	{

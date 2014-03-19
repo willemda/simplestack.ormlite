@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.OrmLite.Firebird;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Common.Utils;
+using SimpleStack.OrmLite.Firebird;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
 	public class SimpleUseCase

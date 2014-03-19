@@ -1,8 +1,8 @@
 using System;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Oracle.DbSchema;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Oracle.DbSchema;
 
-namespace ServiceStack.OrmLite.Oracle
+namespace SimpleStack.OrmLite.Oracle
 {
 	public class Column : IColumn
 	{

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public class OrmLiteSPStatement
     {

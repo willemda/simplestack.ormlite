@@ -1,6 +1,6 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.SqlServerTests.Expressions
+namespace SimpleStack.OrmLite.SqlServerTests.Expressions
 {
     public class TestType
     {

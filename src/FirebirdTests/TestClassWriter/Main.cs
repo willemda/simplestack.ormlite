@@ -4,8 +4,8 @@ using System.CodeDom.Compiler;
 using Microsoft.CSharp;
 using System.Collections.Generic;
 using System.Data;
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.Firebird;
 
 namespace TestClassWriter
 {
@@ -47,9 +47,9 @@ namespace TestClassWriter
 					new string[]{
 						"System.dll",
 						"System.ComponentModel.DataAnnotations.dll",
-						Path.Combine( Directory.GetCurrentDirectory(), "ServiceStack.OrmLite.dll"),
-						Path.Combine( Directory.GetCurrentDirectory(), "ServiceStack.Common.dll"),
-						Path.Combine( Directory.GetCurrentDirectory(),"ServiceStack.Interfaces.dll")
+						Path.Combine( Directory.GetCurrentDirectory(), "SimpleStack.OrmLite.dll"),
+						Path.Combine( Directory.GetCurrentDirectory(), "SimpleStack.Common.dll"),
+						Path.Combine( Directory.GetCurrentDirectory(),"SimpleStack.Interfaces.dll")
 				});
 				cp.OutputAssembly= Path.Combine(cw.OutputDirectory, cw.SpaceName+".dll");
 				

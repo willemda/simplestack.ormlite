@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,6 +29,15 @@
     <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleStack.Common">
+      <HintPath>..\..\lib\SimpleStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleStack.Interfaces">
+      <HintPath>..\..\lib\SimpleStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleStack.Text">
+      <HintPath>..\..\lib\SimpleStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -40,15 +49,6 @@
     <Reference Include="Npgsql">
       <HintPath>..\..\lib\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Common">
-      <HintPath>..\..\lib\ServiceStack.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\..\lib\ServiceStack.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\lib\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -57,13 +57,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj">
+    <ProjectReference Include="..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
-      <Name>ServiceStack.OrmLite</Name>
+      <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.csproj">
+    <ProjectReference Include="..\ServiceStack.OrmLite.PostgreSQL\SimpleStack.OrmLite.PostgreSQL.csproj">
       <Project>{3220F088-BDD0-6979-AC0C-8C541C2E7DE5}</Project>
-      <Name>ServiceStack.OrmLite.PostgreSQL</Name>
+      <Name>SimpleStack.OrmLite.PostgreSQL</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

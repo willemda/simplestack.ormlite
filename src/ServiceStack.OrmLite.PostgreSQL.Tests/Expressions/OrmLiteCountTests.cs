@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq.Expressions;
 using NUnit.Framework;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.OrmLite.Tests;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.OrmLite.Tests;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests.Expressions
+namespace SimpleStack.OrmLite.PostgreSQL.Tests.Expressions
 {
     [TestFixture]
     public class OrmLiteCountTests : OrmLiteTestBase

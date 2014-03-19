@@ -4,12 +4,12 @@ using System.Linq.Expressions;
 using System.Data;
 using System.Collections.Generic;
 
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
 
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Oracle;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.Oracle;
 
 using Database.Records;
 
@@ -23,7 +23,7 @@ namespace TestLiteOracle04
 
             OrmLiteConfig.DialectProvider = new OracleOrmLiteDialectProvider();
 			
-			ServiceStack.OrmLite.SqlExpressionVisitor<Company> sql=
+			SimpleStack.OrmLite.SqlExpressionVisitor<Company> sql=
                 new OracleSqlExpressionVisitor<Company>();
 			
 			List<Object> names = new List<Object>();

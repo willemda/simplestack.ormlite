@@ -4,12 +4,12 @@ using System;
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.OrmLite.SqlServer;
 
 #endregion
 
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
     internal class DateTimeOffsetTests : OrmLiteTestBase
     {

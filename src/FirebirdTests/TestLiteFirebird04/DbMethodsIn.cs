@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 	public static class DbMethods
 	{

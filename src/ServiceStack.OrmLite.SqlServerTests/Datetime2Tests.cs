@@ -4,10 +4,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.SqlServer;
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
 	public class Datetime2Tests : SqlServerTests.OrmLiteTestBase
 	{

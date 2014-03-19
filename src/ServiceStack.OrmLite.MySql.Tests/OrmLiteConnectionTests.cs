@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
 	[TestFixture]
 	public class OrmLiteConnectionTests 

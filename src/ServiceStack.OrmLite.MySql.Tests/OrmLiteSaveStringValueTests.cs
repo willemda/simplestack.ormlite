@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
     public class OrmLiteSaveStringValueTests : OrmLiteTestBase
     {

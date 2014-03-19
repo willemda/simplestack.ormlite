@@ -1,6 +1,6 @@
-using ServiceStack.OrmLite.MySql;
+using SimpleStack.OrmLite.MySql;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class MySqlDialect
     {

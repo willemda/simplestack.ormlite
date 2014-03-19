@@ -1,9 +1,9 @@
 ﻿using System;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DesignPatterns.Model;
 using System.ComponentModel.DataAnnotations;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	public class SampleOrderLine : IHasStringId, IHasId<string>
 	{

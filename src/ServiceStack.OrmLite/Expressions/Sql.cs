@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 	public static class Sql
 	{

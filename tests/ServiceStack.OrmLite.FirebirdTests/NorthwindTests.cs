@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite.Firebird;
 using Northwind.Common.DataModel;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
     [TestFixture]
     class NorthwindTests : OrmLiteTestBase

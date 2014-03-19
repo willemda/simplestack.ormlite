@@ -1,6 +1,4 @@
-using System;
-
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class ModelWithFieldsOfDifferentTypesFactory
 		: ModelFactoryBase<ModelWithFieldsOfDifferentTypes>

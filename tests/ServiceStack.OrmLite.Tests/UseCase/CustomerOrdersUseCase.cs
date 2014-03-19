@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Logging;
-using ServiceStack.Logging.Support.Logging;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Logging;
+using SimpleStack.Logging.Support.Logging;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests.UseCase
+namespace SimpleStack.OrmLite.Tests.UseCase
 {
     public enum PhoneType
     {
@@ -163,7 +163,7 @@ namespace ServiceStack.OrmLite.Tests.UseCase
                 var customer = new Customer {
                     FirstName = "Orm",
                     LastName = "Lite",
-                    Email = "ormlite@servicestack.net",
+                    Email = "ormlite@SimpleStack.net",
                     PhoneNumbers =
                     {
                         { PhoneType.Home, "555-1234" },

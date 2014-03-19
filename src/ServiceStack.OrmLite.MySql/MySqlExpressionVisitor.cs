@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 
 
-namespace ServiceStack.OrmLite.MySql
+namespace SimpleStack.OrmLite.MySql
 {
 	/// <summary>
 	/// Description of MySqlExpressionVisitor.

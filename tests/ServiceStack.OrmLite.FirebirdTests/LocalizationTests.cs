@@ -2,11 +2,11 @@ using System;
 using System.Globalization;
 using System.Threading;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Firebird;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Firebird;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
 	public class LocalizationTests

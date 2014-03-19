@@ -2,10 +2,10 @@ using System;
 using System.Globalization;
 using System.Threading;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
 	[TestFixture]
 	public class LocalizationTests

@@ -2,11 +2,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.OrmLite.Firebird;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
 	public class ShippersExample

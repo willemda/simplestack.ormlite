@@ -1,20 +1,20 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ServiceStack.OrmLite.Sqlite32")]
+[assembly: AssemblyTitle("SimpleStack.OrmLite.Sqlite32")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
 #if NET35
-[assembly: AssemblyProduct("ServiceStack.OrmLite.Sqlite32 .NET 3.5")]
+[assembly: AssemblyProduct("SimpleStack.OrmLite.Sqlite32 .NET 3.5")]
 #elif NET40
-[assembly: AssemblyProduct("ServiceStack.OrmLite.Sqlite32 .NET 4.0")]
+[assembly: AssemblyProduct("SimpleStack.OrmLite.Sqlite32 .NET 4.0")]
 #endif
-[assembly: AssemblyCopyright("Copyright © ServiceStack 2013")]
+[assembly: AssemblyCopyright("Copyright © SimpleStack 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.MySql.Tests.UseCase
+namespace SimpleStack.OrmLite.MySql.Tests.UseCase
 {
     public enum PhoneType
     {
@@ -154,7 +154,7 @@ namespace ServiceStack.OrmLite.MySql.Tests.UseCase
             {
                 FirstName = "Orm",
                 LastName = "Lite",
-                Email = "ormlite@servicestack.net",
+                Email = "ormlite@SimpleStack.net",
                 PhoneNumbers =
                     {
                         { PhoneType.Home, "555-1234" },

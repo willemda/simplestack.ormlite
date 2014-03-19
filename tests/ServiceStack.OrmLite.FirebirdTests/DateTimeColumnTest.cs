@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
     [TestFixture]
     public class DateTimeColumnTest
@@ -64,7 +64,7 @@ namespace ServiceStack.OrmLite.FirebirdTests
         }
 
         /// <summary>
-        /// Provided by RyogoNA in issue #38 https://github.com/ServiceStack/ServiceStack.OrmLite/issues/38#issuecomment-4625178
+        /// Provided by RyogoNA in issue #38 https://github.com/SimpleStack/SimpleStack.OrmLite/issues/38#issuecomment-4625178
         /// </summary>
         [Alias("Analyzes")]
         public class Analyze : IHasId<int>

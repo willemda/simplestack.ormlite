@@ -1,5 +1,5 @@
-﻿using ServiceStack.DesignPatterns.Model;
-using ServiceStack.DataAnnotations;
+﻿using SimpleStack.DesignPatterns.Model;
+using SimpleStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 using System;
 

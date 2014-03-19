@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.OrmLite.SqlServer;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Common.Utils;
+using SimpleStack.OrmLite.SqlServer;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.SqlServerTests.UseCase
+namespace SimpleStack.OrmLite.SqlServerTests.UseCase
 {
     [TestFixture, NUnit.Framework.Ignore]
     public class SimpleUseCase

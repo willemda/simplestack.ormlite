@@ -4,12 +4,12 @@ using System.Data;
 using System.IO;
 using System.Configuration;
 using NUnit.Framework;
-using ServiceStack.Common.Utils;
-using ServiceStack.Logging;
-using ServiceStack.Logging.Support.Logging;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.Common.Utils;
+using SimpleStack.Logging;
+using SimpleStack.Logging.Support.Logging;
+using SimpleStack.OrmLite.Firebird;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	public class OrmLiteTestBase
 	{		

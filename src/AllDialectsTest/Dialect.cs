@@ -3,12 +3,12 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Data;
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
 using System.Reflection;
 using System.IO;
-using ServiceStack.OrmLite;
+using SimpleStack.OrmLite;
 
 namespace AllDialectsTest
 {

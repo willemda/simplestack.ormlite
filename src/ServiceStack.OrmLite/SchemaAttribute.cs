@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     /// <summary>
     /// Used to annotate an Entity with its DB schema

@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using System.Data;
 
-namespace ServiceStack.OrmLite.FirebirdTests.Expressions
+namespace SimpleStack.OrmLite.FirebirdTests.Expressions
 {
     public class ExpressionsTestBase : OrmLiteTestBase
     {

@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace ServiceStack.OrmLite.Oracle.DbSchema
+namespace SimpleStack.OrmLite.Oracle.DbSchema
 {
 	public abstract class PocoCreator<TTable, TColumn, TProcedure, TParameter>
 		where TTable : ITable, new()
@@ -19,9 +19,9 @@ namespace ServiceStack.OrmLite.Oracle.DbSchema
 			OutputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "src");
 			Usings ="using System;\n" +
 					"using System.ComponentModel.DataAnnotations;\n" +
-					"using ServiceStack.Common;\n" +
-					"using ServiceStack.DataAnnotations;\n" +
-					"using ServiceStack.DesignPatterns.Model;\n";
+					"using SimpleStack.Common;\n" +
+					"using SimpleStack.DataAnnotations;\n" +
+					"using SimpleStack.DesignPatterns.Model;\n";
 
 			SpaceName = "Database.Records";
 			MetadataClassName="Me";
@@ -205,7 +205,7 @@ namespace ServiceStack.OrmLite.Oracle.DbSchema
 		}
 		
 		private string partialTemplate=@"using System;
-using ServiceStack.ServiceHost;
+using SimpleStack.ServiceHost;
 
 namespace {0}
 {{
@@ -220,10 +220,10 @@ namespace {0}
 }}";
 		
 		private string serviceTemplate =@"using System;
-﻿using ServiceStack.CacheAccess;
-using ServiceStack.Common;
-using ServiceStack.ServiceHost;
-using ServiceStack.ServiceInterface;
+﻿using SimpleStack.CacheAccess;
+using SimpleStack.Common;
+using SimpleStack.ServiceHost;
+using SimpleStack.ServiceInterface;
 
 using {0};
 

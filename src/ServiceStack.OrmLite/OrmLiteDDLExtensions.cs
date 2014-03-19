@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Linq.Expressions;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 	public enum  OnFkOption{
 		Cascade,

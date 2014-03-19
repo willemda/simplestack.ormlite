@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class OrmLiteReadConnectionExtensions
     {

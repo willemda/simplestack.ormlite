@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
     public class TypeWithByteArrayFieldTests : OrmLiteTestBase
     {

@@ -1,6 +1,6 @@
-using ServiceStack.OrmLite.Oracle;
+using SimpleStack.OrmLite.Oracle;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class OracleDialect
     {

@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Tests;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Tests;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests
+namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
     [TestFixture]
     public class ForeignKeyAttributeTests : OrmLiteTestBase

@@ -1,11 +1,10 @@
 using System;
-using Northwind.Common.DataModel;
 using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 using System.Data;
+using SimpleStack.OrmLite.Tests.Shared;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class OrmLiteInsertTests
@@ -168,35 +167,34 @@ namespace ServiceStack.OrmLite.Tests
 		}
 
 
-		[Test]
-		public void Can_insert_table_with_blobs()
-		{
-			using (var db = OpenDbConnection())
-			{
-				db.CreateTable<OrderBlob>(true);
+	//	[Test]
+	//	public void Can_insert_table_with_blobs()
+	//	{
+	//		using (var db = OpenDbConnection())
+	//		{
+	//			db.CreateTable<OrderBlob>(true);
 
-				var row = OrderBlob.Create(1);
+	//			var row = OrderBlob.Create(1);
 
-				db.Insert(row);
+	//			db.Insert(row);
 
-				var rows = db.Select<OrderBlob>();
+	//			var rows = db.Select<OrderBlob>();
 
-				Assert.That(rows, Has.Count.EqualTo(1));
+	//			Assert.That(rows, Has.Count.EqualTo(1));
 
-				var newRow = rows[0];
+	//			var newRow = rows[0];
 
-				Assert.That(newRow.Id, Is.EqualTo(row.Id));
-				Assert.That(newRow.Customer.Id, Is.EqualTo(row.Customer.Id));
-				Assert.That(newRow.Employee.Id, Is.EqualTo(row.Employee.Id));
-				Assert.That(newRow.IntIds, Is.EquivalentTo(row.IntIds));
-				Assert.That(newRow.CharMap, Is.EquivalentTo(row.CharMap));
-				Assert.That(newRow.OrderDetails.Count, Is.EqualTo(row.OrderDetails.Count));
-				Assert.That(newRow.OrderDetails[0].ProductId, Is.EqualTo(row.OrderDetails[0].ProductId));
-				Assert.That(newRow.OrderDetails[1].ProductId, Is.EqualTo(row.OrderDetails[1].ProductId));
-				Assert.That(newRow.OrderDetails[2].ProductId, Is.EqualTo(row.OrderDetails[2].ProductId));
-			}
-		}
-
+	//			Assert.That(newRow.Id, Is.EqualTo(row.Id));
+	//			Assert.That(newRow.Customer.Id, Is.EqualTo(row.Customer.Id));
+	//			Assert.That(newRow.Employee.Id, Is.EqualTo(row.Employee.Id));
+	//			Assert.That(newRow.IntIds, Is.EquivalentTo(row.IntIds));
+	//			Assert.That(newRow.CharMap, Is.EquivalentTo(row.CharMap));
+	//			Assert.That(newRow.OrderDetails.Count, Is.EqualTo(row.OrderDetails.Count));
+	//			Assert.That(newRow.OrderDetails[0].ProductId, Is.EqualTo(row.OrderDetails[0].ProductId));
+	//			Assert.That(newRow.OrderDetails[1].ProductId, Is.EqualTo(row.OrderDetails[1].ProductId));
+	//			Assert.That(newRow.OrderDetails[2].ProductId, Is.EqualTo(row.OrderDetails[2].ProductId));
+	//		}
+	//	}
 	}
 
     class ModelWithIdAndName1

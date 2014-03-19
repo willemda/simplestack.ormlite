@@ -2,9 +2,9 @@
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     public class Person
     {

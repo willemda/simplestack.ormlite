@@ -1,7 +1,7 @@
 ﻿using System;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class ForeignKeyAttribute : ReferencesAttribute

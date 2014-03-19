@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using System.Threading;
-using ServiceStack.Text;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 #if !NO_EXPRESSIONS
 	/// <summary>

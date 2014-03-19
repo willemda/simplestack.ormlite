@@ -2,9 +2,9 @@ using System;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using ServiceStack.DataAccess;
+using SimpleStack.DataAccess;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     /// <summary>
     /// Wrapper IDbConnection class to manage db connection events

@@ -1,4 +1,4 @@
-namespace ServiceStack.OrmLite.PostgreSQL
+namespace SimpleStack.OrmLite.PostgreSQL
 {
 	public class PostgreSQLExpressionVisitor<T>:SqlExpressionVisitor<T>
 	{

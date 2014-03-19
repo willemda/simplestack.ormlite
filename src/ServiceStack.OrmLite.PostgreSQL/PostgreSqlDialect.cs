@@ -1,6 +1,6 @@
-using ServiceStack.OrmLite.PostgreSQL;
+using SimpleStack.OrmLite.PostgreSQL;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class PostgreSqlDialect
     {

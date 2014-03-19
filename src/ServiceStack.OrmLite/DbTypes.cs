@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
 	public class DbTypes<TDialect>
 		where TDialect : IOrmLiteDialectProvider

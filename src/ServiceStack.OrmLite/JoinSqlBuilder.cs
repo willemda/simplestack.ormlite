@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public class JoinSqlBuilder<TNewPoco, TBasePoco>
     {

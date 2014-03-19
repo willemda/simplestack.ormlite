@@ -5,9 +5,9 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using ServiceStack.Text.Common;
+using SimpleStack.Text.Common;
 
-namespace ServiceStack.OrmLite.Sqlite
+namespace SimpleStack.OrmLite.Sqlite
 {
     public abstract class SqliteOrmLiteDialectProviderBase : OrmLiteDialectProviderBase<SqliteOrmLiteDialectProviderBase>
     {

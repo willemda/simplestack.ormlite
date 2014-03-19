@@ -4,7 +4,7 @@ using System.Data;
 using System.Text;
 using Npgsql;
 
-namespace ServiceStack.OrmLite.PostgreSQL
+namespace SimpleStack.OrmLite.PostgreSQL
 {
     public class PostgreSQLDialectProvider : OrmLiteDialectProviderBase<PostgreSQLDialectProvider>
 	{

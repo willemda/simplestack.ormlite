@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.FirebirdTests.Expressions
+namespace SimpleStack.OrmLite.FirebirdTests.Expressions
 {
     public class AuthorUseCase : OrmLiteTestBase
     {

@@ -1,10 +1,10 @@
 ﻿using System;
-using ServiceStack.Logging;
+using SimpleStack.Logging;
 using NUnit.Framework;
-using ServiceStack.Text;
-using ServiceStack.DataAnnotations;
+using SimpleStack.Text;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	public class TaskQueue
 	{

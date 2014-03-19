@@ -3,10 +3,10 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Data;
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
-using ServiceStack.OrmLite;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
+using SimpleStack.OrmLite;
 
 namespace AllDialectsTest
 {
@@ -71,9 +71,9 @@ namespace AllDialectsTest
 			List<Dialect> l = new List<Dialect>();
 			Dialect d = new Dialect() {
 				Name = "Sqlite",
-				PathToAssembly = "../../../ServiceStack.OrmLite.Sqlite/bin/Debug",
-				AssemblyName = "ServiceStack.OrmLite.Sqlite.dll",
-				ClassName = "ServiceStack.OrmLite.Sqlite.SqliteOrmLiteDialectProvider",
+				PathToAssembly = "../../../SimpleStack.OrmLite.Sqlite/bin/Debug",
+				AssemblyName = "SimpleStack.OrmLite.Sqlite.dll",
+				ClassName = "SimpleStack.OrmLite.Sqlite.SqliteOrmLiteDialectProvider",
 				InstanceFieldName = "Instance",
 				ConnectionString = "~/db.sqlite".MapAbsolutePath()
 			};
@@ -81,9 +81,9 @@ namespace AllDialectsTest
 
 			d = new Dialect() {
 				Name = "SqlServer",
-				PathToAssembly = "../../../ServiceStack.OrmLite.SqlServer/bin/Debug",
-				AssemblyName = "ServiceStack.OrmLite.SqlServer.dll",
-				ClassName = "ServiceStack.OrmLite.SqlServer.SqlServerOrmLiteDialectProvider",
+				PathToAssembly = "../../../SimpleStack.OrmLite.SqlServer/bin/Debug",
+				AssemblyName = "SimpleStack.OrmLite.SqlServer.dll",
+				ClassName = "SimpleStack.OrmLite.SqlServer.SqlServerOrmLiteDialectProvider",
 				InstanceFieldName = "Instance",
                 ConnectionString = "~/test.mdf".MapAbsolutePath()
 			};
@@ -91,9 +91,9 @@ namespace AllDialectsTest
 
 			d = new Dialect() {
 				Name = "MySql",
-				PathToAssembly = "../../../ServiceStack.OrmLite.MySql/bin/Debug",
-				AssemblyName = "ServiceStack.OrmLite.MySql.dll",
-				ClassName = "ServiceStack.OrmLite.MySql.MySqlDialectProvider",
+				PathToAssembly = "../../../SimpleStack.OrmLite.MySql/bin/Debug",
+				AssemblyName = "SimpleStack.OrmLite.MySql.dll",
+				ClassName = "SimpleStack.OrmLite.MySql.MySqlDialectProvider",
 				InstanceFieldName = "Instance",
 				ConnectionString = "Server = 127.0.0.1; Database = ormlite; Uid = root; Pwd = password"
 			};
@@ -101,9 +101,9 @@ namespace AllDialectsTest
 
 			d = new Dialect() {
 				Name = "PostgreSQL",
-				PathToAssembly = "../../../ServiceStack.OrmLite.PostgreSQL/bin/Debug",
-				AssemblyName = "ServiceStack.OrmLite.PostgreSQL.dll",
-				ClassName = "ServiceStack.OrmLite.PostgreSQL.PostgreSQLDialectProvider",
+				PathToAssembly = "../../../SimpleStack.OrmLite.PostgreSQL/bin/Debug",
+				AssemblyName = "SimpleStack.OrmLite.PostgreSQL.dll",
+				ClassName = "SimpleStack.OrmLite.PostgreSQL.PostgreSQLDialectProvider",
 				InstanceFieldName = "Instance",
 				ConnectionString = "Server=localhost;Port=5432;User Id=postgres; Password=postgres; Database=ormlite"
 			};
@@ -111,9 +111,9 @@ namespace AllDialectsTest
 
 			d = new Dialect() {
 				Name = "FirebirdSql",
-				PathToAssembly = "../../../ServiceStack.OrmLite.Firebird/bin/Debug",
-				AssemblyName = "ServiceStack.OrmLite.Firebird.dll",
-				ClassName = "ServiceStack.OrmLite.Firebird.FirebirdOrmLiteDialectProvider",
+				PathToAssembly = "../../../SimpleStack.OrmLite.Firebird/bin/Debug",
+				AssemblyName = "SimpleStack.OrmLite.Firebird.dll",
+				ClassName = "SimpleStack.OrmLite.Firebird.FirebirdOrmLiteDialectProvider",
 				InstanceFieldName = "Instance",
 				ConnectionString = "User=SYSDBA;Password=masterkey;Database=employee.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;"
 			};
@@ -121,11 +121,11 @@ namespace AllDialectsTest
 
             d = new Dialect() {
                 Name = "Oracle",
-                PathToAssembly = "../../../ServiceStack.OrmLite.Oracle/bin/Debug",
-                AssemblyName = "ServiceStack.OrmLite.Oracle.dll",
-                ClassName = "ServiceStack.OrmLite.Oracle.OracleOrmLiteDialectProvider",
+                PathToAssembly = "../../../SimpleStack.OrmLite.Oracle/bin/Debug",
+                AssemblyName = "SimpleStack.OrmLite.Oracle.dll",
+                ClassName = "SimpleStack.OrmLite.Oracle.OracleOrmLiteDialectProvider",
                 InstanceFieldName = "Instance",
-                ConnectionString = "Data Source=localhost:1521/XE;User ID=servicestack_test;Password=servicestack_test;Unicode=True"
+                ConnectionString = "Data Source=localhost:1521/XE;User ID=SimpleStack_test;Password=SimpleStack_test;Unicode=True"
             };
             l.Add(d);
 

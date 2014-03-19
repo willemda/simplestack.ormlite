@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
     public class InsertParam_GetLastInsertId : OrmLiteTestBase
     {

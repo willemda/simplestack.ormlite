@@ -1,6 +1,6 @@
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite.Firebird;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class FirebirdDialect
     {

@@ -1,9 +1,9 @@
-[Join the ServiceStack Google+ group](https://plus.google.com/u/0/communities/112445368900682590445) or
-follow [@servicestack](http://twitter.com/servicestack) for updates.
+[Join the SimpleStack Google+ group](https://plus.google.com/u/0/communities/112445368900682590445) or
+follow [@SimpleStack](http://twitter.com/SimpleStack) for updates.
 
 # An Open Source Micro ORM for .NET
 
-_Note: the source code is provided as-is - no direct or commercial support is available for ServiceStack_
+_Note: the source code is provided as-is - no direct or commercial support is available for SimpleStack_
 
 # Introduction
 
@@ -16,32 +16,32 @@ OrmLite was designed with a focus on the core objectives:
   * Create/Drop DB Table schemas using nothing but POCO class definitions (IOTW a true code-first ORM)
   * Simplicity - typed, wrist friendly API for common data access patterns.
   * High performance - with support for indexes, text blobs, etc.
-    * Amongst the [fastest Micro ORMs](http://servicestack.net/benchmarks/) for .NET (just behind [Dapper](http://code.google.com/p/dapper-dot-net/)).
+    * Amongst the [fastest Micro ORMs](http://SimpleStack.net/benchmarks/) for .NET (just behind [Dapper](http://code.google.com/p/dapper-dot-net/)).
   * Expressive power and flexibility - with access to IDbCommand and raw SQL
   * Cross platform - supports multiple dbs (currently: Sql Server, Sqlite, MySql, PostgreSQL, Firebird) running on both .NET and Mono platforms.
 
 In OrmLite: **1 Class = 1 Table**. There should be no surprising or hidden behaviour.
-Any non-scalar properties (i.e. complex types) are text blobbed in a schema-less text field using [.NET's fastest Text Serializer](http://www.servicestack.net/mythz_blog/?p=176).
+Any non-scalar properties (i.e. complex types) are text blobbed in a schema-less text field using [.NET's fastest Text Serializer](http://www.SimpleStack.net/mythz_blog/?p=176).
 Effectively this allows you to create a table from any POCO type and it should persist as expected in a DB Table with columns for each of the classes 1st level public properties.
 
 # Download 
 
-[![Download on NuGet](http://www.servicestack.net/img/nuget-servicestack.ormlite.sqlserver.png)](http://nuget.org/List/Packages/ServiceStack.OrmLite.SqlServer)
+[![Download on NuGet](http://www.SimpleStack.net/img/nuget-SimpleStack.ormlite.sqlserver.png)](http://nuget.org/List/Packages/SimpleStack.OrmLite.SqlServer)
 
 ### 8 flavours of OrmLite is on NuGet: 
 
-  - [Sql Server](http://nuget.org/List/Packages/ServiceStack.OrmLite.SqlServer)
-  - [MySql](http://nuget.org/List/Packages/ServiceStack.OrmLite.MySql)
-  - [PostgreSQL](http://nuget.org/List/Packages/ServiceStack.OrmLite.PostgreSQL)
-  - [Oracle](http://nuget.org/packages/ServiceStack.OrmLite.Oracle)
-  - [Firebird](http://nuget.org/List/Packages/ServiceStack.OrmLite.Firebird) 
-  - [Sqlite32](http://nuget.org/List/Packages/ServiceStack.OrmLite.Sqlite32) - 32bit Mixed mode .NET only assembly 
-  - [Sqlite64](http://nuget.org/List/Packages/ServiceStack.OrmLite.Sqlite64) - 64bit Mixed mode .NET only assembly 
-  - [Sqlite.Mono](http://nuget.org/packages/ServiceStack.OrmLite.Sqlite.Mono) - 32bit unmanaged dll, compatible with .NET / Mono
+  - [Sql Server](http://nuget.org/List/Packages/SimpleStack.OrmLite.SqlServer)
+  - [MySql](http://nuget.org/List/Packages/SimpleStack.OrmLite.MySql)
+  - [PostgreSQL](http://nuget.org/List/Packages/SimpleStack.OrmLite.PostgreSQL)
+  - [Oracle](http://nuget.org/packages/SimpleStack.OrmLite.Oracle)
+  - [Firebird](http://nuget.org/List/Packages/SimpleStack.OrmLite.Firebird) 
+  - [Sqlite32](http://nuget.org/List/Packages/SimpleStack.OrmLite.Sqlite32) - 32bit Mixed mode .NET only assembly 
+  - [Sqlite64](http://nuget.org/List/Packages/SimpleStack.OrmLite.Sqlite64) - 64bit Mixed mode .NET only assembly 
+  - [Sqlite.Mono](http://nuget.org/packages/SimpleStack.OrmLite.Sqlite.Mono) - 32bit unmanaged dll, compatible with .NET / Mono
 
-OrmLite.SqlServer is also included in [ServiceStack](https://github.com/ServiceStack/ServiceStack/downloads).
+OrmLite.SqlServer is also included in [SimpleStack](https://github.com/SimpleStack/SimpleStack/downloads).
 
-_Note: the binary packages are provided as-is - there is no commercial support available for ServiceStack_
+_Note: the binary packages are provided as-is - there is no commercial support available for SimpleStack_
 
 ## Download published NuGet binaries without NuGet
 
@@ -52,7 +52,7 @@ extracting them from the published NuGet packages. The url to download a nuget p
     
  So to get the OrmLite MySQL provider in OSX/Linux (or using gnu tools for Windows) you can just do:
 
-    wget -O OrmLite.MySql.zip http://packages.nuget.org/api/v1/package/ServiceStack.OrmLite.MySql/3.9.60
+    wget -O OrmLite.MySql.zip http://packages.nuget.org/api/v1/package/SimpleStack.OrmLite.MySql/3.9.60
     unzip OrmLite.MySql.zip 'lib/*'
 
 which will download and extract the dlls into your local local `lib/` folder.
@@ -65,7 +65,7 @@ Please upgrade your client code to use non-deprecated methods as we will be remo
 
 ## T4 Template Support
 
-[Guru Kathiresan](https://github.com/gkathire) continues to enhance [OrmLite's T4 Template support](https://github.com/ServiceStack/ServiceStack.OrmLite/tree/master/src/T4) which are useful when you want to automatically generate POCO's and strong-typed wrappers for executing stored procedures. 
+[Guru Kathiresan](https://github.com/gkathire) continues to enhance [OrmLite's T4 Template support](https://github.com/SimpleStack/SimpleStack.OrmLite/tree/master/src/T4) which are useful when you want to automatically generate POCO's and strong-typed wrappers for executing stored procedures. 
 
 
 ## New Parameterized API's
@@ -107,7 +107,7 @@ List<int> results = db.SqlList<int>("EXEC GetTotalsForWeek @weekNo", new { weekN
 int result = db.SqlScalar<int>("SELECT 10");
 ```
 
-Some more examples can be found in [SqlServerProviderTests](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/SqlServerProviderTests.cs).
+Some more examples can be found in [SqlServerProviderTests](https://github.com/SimpleStack/SimpleStack.OrmLite/blob/master/tests/SimpleStack.OrmLite.Tests/SqlServerProviderTests.cs).
 
 ## New Simplified API
 We've streamlined our API, now all OrmLite extensions that used to be on `IDbCommand` now hang off `IDbConnection` 
@@ -156,7 +156,7 @@ public class TableWithAllCascadeOptions
 }
 ```
 
-The [ForeignKeyTests](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/ForeignKeyAttributeTests.cs)
+The [ForeignKeyTests](https://github.com/SimpleStack/SimpleStack.OrmLite/blob/master/tests/SimpleStack.OrmLite.Tests/ForeignKeyAttributeTests.cs)
 show the resulting behaviour with each of these configurations in more detail.
 
 > Note: Only supported on RDBMS's with foreign key/referential action support, e.g. 
@@ -233,7 +233,7 @@ foreach (var newRobot in newRobots)
 Using the [SQLite Manager](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/?src=search) Firefox extension
 we can peek at one of the created shards to see 100 Robots in each shard. This is the dump of `robots-shard0.sqlite`:
 
-![Data dump of Robot Shard #1](http://www.servicestack.net/files/robots-shard0.png)
+![Data dump of Robot Shard #1](http://www.SimpleStack.net/files/robots-shard0.png)
 
 As expected each shard has every 10th robot inside.
 
@@ -429,7 +429,7 @@ db.Delete(table: "Person", where: "Age = {0}".Params(27));
 ## Code-first Customer & Order example with complex types on POCO as text blobs
 
 Below is a complete stand-alone example. No other config or classes is required for it to run. It's also available as a 
-[stand-alone unit test](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/UseCase/CustomerOrdersUseCase.cs).
+[stand-alone unit test](https://github.com/SimpleStack/SimpleStack.OrmLite/blob/master/tests/SimpleStack.OrmLite.Tests/UseCase/CustomerOrdersUseCase.cs).
 
 ```csharp
     public enum PhoneType {
@@ -554,7 +554,7 @@ Below is a complete stand-alone example. No other config or classes is required 
     {
         FirstName = "Orm",
         LastName = "Lite",
-        Email = "ormlite@servicestack.net",
+        Email = "ormlite@SimpleStack.net",
         PhoneNumbers =
             {
                 { PhoneType.Home, "555-1234" },
@@ -618,18 +618,18 @@ Below is a complete stand-alone example. No other config or classes is required 
 
 Running this against a SQL Server database will yield the results below:
 
-[![SQL Server Management Studio results](http://www.servicestack.net/files/ormlite-example.png)](http://www.servicestack.net/files/ormlite-example.png)
+[![SQL Server Management Studio results](http://www.SimpleStack.net/files/ormlite-example.png)](http://www.SimpleStack.net/files/ormlite-example.png)
 
-Notice the POCO types are stored in the [very fast](http://www.servicestack.net/mythz_blog/?p=176) 
-and [Versatile](http://www.servicestack.net/mythz_blog/?p=314) 
-[JSV Format](https://github.com/ServiceStack/ServiceStack.Text/wiki/JSV-Format) which although hard to do - 
+Notice the POCO types are stored in the [very fast](http://www.SimpleStack.net/mythz_blog/?p=176) 
+and [Versatile](http://www.SimpleStack.net/mythz_blog/?p=314) 
+[JSV Format](https://github.com/SimpleStack/SimpleStack.Text/wiki/JSV-Format) which although hard to do - 
 is actually more compact, human and parser-friendly than JSON :)
 
 # API Overview
 
 The API is minimal, providing basic shortcuts for the primitive SQL statements:
 
-[![OrmLite API](http://www.servicestack.net/files/ormlite-api.png)](http://www.servicestack.net/files/ormlite-api.png)
+[![OrmLite API](http://www.SimpleStack.net/files/ormlite-api.png)](http://www.SimpleStack.net/files/ormlite-api.png)
 
 Nearly all extension methods hang off the implementation agnostic `IDbCommand`.
 
@@ -730,7 +730,7 @@ var tracks = db.Ids<Track>(new[]{ 1,2,3 });     //Alias: GetByIds
 # Limitations 
 
 For simplicity, and to be able to have the same POCO class persisted in db4o, memcached, redis or on the filesystem 
-(i.e. providers included in ServiceStack), each model must have a single primary key, by convention OrmLite expects it
+(i.e. providers included in SimpleStack), each model must have a single primary key, by convention OrmLite expects it
 to be `Id` although you use `[Alias("DbFieldName")]` attribute it map it to a column with a different name or use 
 the `[PrimaryKey]` attribute to tell OrmLite to use a different property for the primary key.
 
@@ -783,7 +783,7 @@ using (IDbConnection db = "/path/to/db.sqlite".OpenDbConnection())
 ```
 
 To get a better idea of the features of OrmLite lets walk through a complete example using sample tables from the Northwind database. 
-_ (Full source code for this example is [available here](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/ShippersExample.cs).) _
+_ (Full source code for this example is [available here](https://github.com/SimpleStack/SimpleStack.OrmLite/blob/master/tests/SimpleStack.OrmLite.Tests/ShippersExample.cs).) _
 
 So with no other configuration using only the classes below:
 
@@ -960,7 +960,7 @@ As [performance is the most important feature](https://github.com/mythz/ScalingD
 
 # Community Resources
 
-  - [Code Generation using ServiceStack.OrmLite and T4 Text templates](http://jokecamp.wordpress.com/2013/09/07/code-generation-using-servicestack-ormlite-and-t4-text-templates/) by [@jokecamp](https://twitter.com/jokecamp)
-  - [Simple ServiceStack OrmLite Example](http://www.curlette.com/?p=1068) by [@robrtc](https://twitter.com/robrtc)
+  - [Code Generation using SimpleStack.OrmLite and T4 Text templates](http://jokecamp.wordpress.com/2013/09/07/code-generation-using-SimpleStack-ormlite-and-t4-text-templates/) by [@jokecamp](https://twitter.com/jokecamp)
+  - [Simple SimpleStack OrmLite Example](http://www.curlette.com/?p=1068) by [@robrtc](https://twitter.com/robrtc)
   - [OrmLite Blobbing done with NHibernate and Serialized JSON](http://www.philliphaydon.com/2012/03/ormlite-blobbing-done-with-nhibernate-and-serialized-json/) by [@philliphaydon](https://twitter.com/philliphaydon)
-  - [Creating An ASP.NET MVC Blog With ServiceStack.OrmLite](http://www.eggheadcafe.com/tutorials/asp-net/285cbe96-9922-406a-b193-3a0b40e31c40/creating-an-aspnet-mvc-blog-with-servicestackormlite.aspx) by [@peterbromberg](https://twitter.com/peterbromberg)
+  - [Creating An ASP.NET MVC Blog With SimpleStack.OrmLite](http://www.eggheadcafe.com/tutorials/asp-net/285cbe96-9922-406a-b193-3a0b40e31c40/creating-an-aspnet-mvc-blog-with-SimpleStackormlite.aspx) by [@peterbromberg](https://twitter.com/peterbromberg)

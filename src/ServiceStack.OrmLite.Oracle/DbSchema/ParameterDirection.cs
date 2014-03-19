@@ -1,4 +1,4 @@
-namespace ServiceStack.OrmLite.Oracle.DbSchema
+namespace SimpleStack.OrmLite.Oracle.DbSchema
 {
 	public enum ParameterDirection
 	{

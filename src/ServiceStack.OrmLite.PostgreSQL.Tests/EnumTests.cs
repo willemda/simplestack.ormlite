@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using ServiceStack.OrmLite.Tests;
+using SimpleStack.OrmLite.Tests;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests
+namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
     public class EnumTests : OrmLiteTestBase
     {

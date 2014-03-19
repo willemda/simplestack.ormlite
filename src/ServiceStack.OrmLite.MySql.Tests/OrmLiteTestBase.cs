@@ -2,10 +2,10 @@ using System;
 using System.Configuration;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.Logging;
-using ServiceStack.Logging.Support.Logging;
+using SimpleStack.Logging;
+using SimpleStack.Logging.Support.Logging;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
 	public class OrmLiteTestBase
 	{

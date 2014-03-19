@@ -1,10 +1,10 @@
 using System;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.Text;
+using SimpleStack.OrmLite.Tests.Shared;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     [TestFixture]
     public class OrmLiteUpdateTests

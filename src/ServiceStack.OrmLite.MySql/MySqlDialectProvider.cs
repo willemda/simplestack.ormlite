@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using MySql.Data.MySqlClient;
-using ServiceStack.OrmLite.MySql.DataAnnotations;
-using ServiceStack.Text;
+using SimpleStack.OrmLite.MySql.DataAnnotations;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.MySql
+namespace SimpleStack.OrmLite.MySql
 {
     public class MySqlDialectProvider : OrmLiteDialectProviderBase<MySqlDialectProvider>
     {

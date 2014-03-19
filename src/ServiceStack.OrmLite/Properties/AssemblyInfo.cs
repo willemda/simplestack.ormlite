@@ -1,15 +1,15 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ServiceStack.OrmLite")]
+[assembly: AssemblyTitle("SimpleStack.OrmLite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ServiceStack")]
-[assembly: AssemblyProduct("ServiceStack.OrmLite")]
-[assembly: AssemblyCopyright("Copyright © ServiceStack 2013")]
+[assembly: AssemblyCompany("SimpleStack")]
+[assembly: AssemblyProduct("SimpleStack.OrmLite")]
+[assembly: AssemblyCopyright("Copyright © SimpleStack 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

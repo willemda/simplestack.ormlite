@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Tests.Shared;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class OrmLiteQueryTests

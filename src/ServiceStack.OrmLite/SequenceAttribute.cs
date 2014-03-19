@@ -1,6 +1,6 @@
 using System;
 
-namespace ServiceStack.DataAnnotations
+namespace SimpleStack.DataAnnotations
 {
 	[AttributeUsage( AttributeTargets.Property)]
 	/// <summary>

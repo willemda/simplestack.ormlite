@@ -1,4 +1,4 @@
-namespace ServiceStack.OrmLite.Firebird.DbSchema
+namespace SimpleStack.OrmLite.Firebird.DbSchema
 {
 	public enum ProcedureType
 	{

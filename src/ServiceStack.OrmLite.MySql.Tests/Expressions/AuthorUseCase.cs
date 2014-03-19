@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.MySql.Tests.Expressions
+namespace SimpleStack.OrmLite.MySql.Tests.Expressions
 {
     public class AuthorUseCase : OrmLiteTestBase
     {

@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests.Expressions
+namespace SimpleStack.OrmLite.PostgreSQL.Tests.Expressions
 {
 	public class Author
 	{

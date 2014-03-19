@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Data;
 
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common;
+using SimpleStack.Common.Utils;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common;
 using System.Reflection;
 
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Firebird;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.Firebird;
 
 
 namespace TestLiteFirebird00
@@ -93,7 +93,7 @@ namespace TestLiteFirebird00
 					Birthday= DateTime.Today.AddYears(20),
 					Active=true,
 					Earnings= 99.9m,
-					Comments="ServiceStack.Net ...",
+					Comments="SimpleStack.Net ...",
 					City="London",
 					Rate=10
 				});

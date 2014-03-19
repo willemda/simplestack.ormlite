@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.OrmLite.Tests;
+using SimpleStack.OrmLite.Tests;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests.Expressions
+namespace SimpleStack.OrmLite.PostgreSQL.Tests.Expressions
 {
     public class ExpressionsTestBase : OrmLiteTestBase
     {

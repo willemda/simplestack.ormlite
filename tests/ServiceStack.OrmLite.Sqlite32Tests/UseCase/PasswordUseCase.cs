@@ -1,4 +1,4 @@
-namespace ServiceStack.OrmLite.Tests.UseCase
+namespace SimpleStack.OrmLite.Tests.UseCase
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +7,9 @@ namespace ServiceStack.OrmLite.Tests.UseCase
 
     using NUnit.Framework;
 
-    using ServiceStack.Common.Utils;
-    using ServiceStack.DataAnnotations;
-    using ServiceStack.OrmLite.Sqlite;
+    using SimpleStack.Common.Utils;
+    using SimpleStack.DataAnnotations;
+    using SimpleStack.OrmLite.Sqlite;
 
     [TestFixture]
     public class PasswordUseCase {

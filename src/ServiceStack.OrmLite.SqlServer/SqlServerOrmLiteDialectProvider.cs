@@ -5,9 +5,9 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using ServiceStack.Text;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.SqlServer 
+namespace SimpleStack.OrmLite.SqlServer 
 {
     public class SqlServerOrmLiteDialectProvider : OrmLiteDialectProviderBase<SqlServerOrmLiteDialectProvider>
 	{

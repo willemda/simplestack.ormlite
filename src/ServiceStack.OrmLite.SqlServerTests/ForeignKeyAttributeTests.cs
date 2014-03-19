@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
     [TestFixture]
     public class ForeignKeyAttributeTests : OrmLiteTestBase

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>ServiceStack.OrmLite.Firebird</id>
+    <id>SimpleStack.OrmLite.Firebird</id>
     <title>OrmLite.FireBird - Fast, code-first, config-free Poco ORM</title>
     <version>3.9.60</version>
     <authors>Demis Bellot, Angel Colmenares</authors> 
@@ -10,19 +10,19 @@
         Light, simple and fast convention-based code-first POCO ORM for Firebird. 
 		Support for Creating and Dropping Table Schemas from POCOs, Complex Property types transparently stored in schemaless text blobs in Firebird.
     </description> 
-    <projectUrl>https://github.com/ServiceStack/ServiceStack.OrmLite</projectUrl>
-    <licenseUrl>https://github.com/ServiceStack/ServiceStack/blob/v3/LICENSE</licenseUrl>
-    <iconUrl>http://www.servicestack.net/logo-100x100.png</iconUrl>
+    <projectUrl>https://github.com/SimpleStack/SimpleStack.OrmLite</projectUrl>
+    <licenseUrl>https://github.com/SimpleStack/SimpleStack/blob/v3/LICENSE</licenseUrl>
+    <iconUrl>http://www.SimpleStack.net/logo-100x100.png</iconUrl>
     <tags>Firebird OrmLite POCO Code-First Orm Schema-less Blobs</tags>
     <language>en-US</language> 
-    <copyright>ServiceStack 2013 and contributors</copyright>
+    <copyright>SimpleStack 2013 and contributors</copyright>
     <dependencies>
-      <dependency id="ServiceStack.Common" version="[3,4)" />
+      <dependency id="SimpleStack.Common" version="[3,4)" />
     </dependencies> 
   </metadata> 
   <files>
     <file src="lib\**\*.*" target="lib" />
-    <file src="..\..\src\ServiceStack.OrmLite\**\*.cs" target="src\ServiceStack.OrmLite" />
-    <file src="..\..\src\ServiceStack.OrmLite.Firebird\**\*.cs" target="src\ServiceStack.OrmLite.Firebird" />
+    <file src="..\..\src\SimpleStack.OrmLite\**\*.cs" target="src\SimpleStack.OrmLite" />
+    <file src="..\..\src\SimpleStack.OrmLite.Firebird\**\*.cs" target="src\SimpleStack.OrmLite.Firebird" />
   </files>
 </package>

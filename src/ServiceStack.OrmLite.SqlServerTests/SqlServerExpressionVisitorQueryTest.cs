@@ -4,10 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ServiceStack.OrmLite.SqlServerTests.UseCase;
+using SimpleStack.OrmLite.SqlServerTests.UseCase;
 using System.Data;
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
     [TestFixture]
     public class SqlServerExpressionVisitorQueryTest : OrmLiteTestBase

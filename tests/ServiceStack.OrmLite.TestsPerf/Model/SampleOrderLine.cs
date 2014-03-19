@@ -1,7 +1,7 @@
 using System;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DesignPatterns.Model;
 
-namespace ServiceStack.OrmLite.TestsPerf.Model
+namespace SimpleStack.OrmLite.TestsPerf.Model
 {
 	public class SampleOrderLine
 		: IHasStringId

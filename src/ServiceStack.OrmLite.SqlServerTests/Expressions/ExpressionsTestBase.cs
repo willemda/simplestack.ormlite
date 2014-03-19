@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace ServiceStack.OrmLite.SqlServerTests.Expressions
+namespace SimpleStack.OrmLite.SqlServerTests.Expressions
 {
     public class ExpressionsTestBase : OrmLiteTestBase
     {

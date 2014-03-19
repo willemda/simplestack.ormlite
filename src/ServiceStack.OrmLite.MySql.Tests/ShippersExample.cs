@@ -2,10 +2,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
 
-namespace ServiceStack.OrmLite.MySql.Tests
+namespace SimpleStack.OrmLite.MySql.Tests
 {
 	[TestFixture]
 	public class ShippersExample

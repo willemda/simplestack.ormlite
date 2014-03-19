@@ -5,20 +5,20 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
-    [TestFixture]
+	[TestFixture]
 	//[Ignore("Long running tests")]
 	public class OrmLiteNorthwindTests
 		: OrmLiteTestBase
 	{
 		public static void CreateNorthwindTables(IDbConnection db)
 		{
-		
+
 			db.DropTable<EmployeeTerritory>();
 			db.DropTable<Territory>();
 			db.DropTable<Region>();
-			db.DropTable<CustomerDemographic>();			
+			db.DropTable<CustomerDemographic>();
 			db.DropTable<CustomerCustomerDemo>();
 			db.DropTable<OrderDetail>();
 			db.DropTable<Product>();
@@ -28,8 +28,8 @@ namespace ServiceStack.OrmLite.Tests
 			db.DropTable<Customer>();
 			db.DropTable<Category>();
 			db.DropTable<Employee>();
-			
- 
+
+
 			db.CreateTables
 			(
 				 true,
@@ -41,7 +41,7 @@ namespace ServiceStack.OrmLite.Tests
 				 typeof(Order),
 				 typeof(Product),
 				 typeof(OrderDetail),
-				 typeof(CustomerCustomerDemo),				 
+				 typeof(CustomerCustomerDemo),
 				 typeof(CustomerDemographic),
 				 typeof(Region),
 				 typeof(Territory),

@@ -4,10 +4,10 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using ServiceStack.Common;
-using ServiceStack.Text;
+using SimpleStack.Common;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     public static class WriteExtensions
     {

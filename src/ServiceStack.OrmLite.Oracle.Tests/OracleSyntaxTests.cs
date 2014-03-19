@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using System.Data;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.Oracle.Tests
+namespace SimpleStack.OrmLite.Oracle.Tests
 {
     [TestFixture]
     public class OracleSyntaxTests : OracleTestBase

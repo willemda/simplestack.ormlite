@@ -1,6 +1,6 @@
 using System;
 using System.Data;
-using ServiceStack.OrmLite;
+using SimpleStack.OrmLite;
 
 namespace Northwind.Perf
 {

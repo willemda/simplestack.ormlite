@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
+using SimpleStack.OrmLite.Tests.Shared;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     public class OrmLiteDropTableWithNamingStrategyTests
         : OrmLiteTestBase

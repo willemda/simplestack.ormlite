@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.Common;
-using ServiceStack.Text;
+using SimpleStack.Common;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     public class DummyTable
     {

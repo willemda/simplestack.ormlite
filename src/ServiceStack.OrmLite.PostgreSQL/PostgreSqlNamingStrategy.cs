@@ -1,7 +1,7 @@
 ﻿using System;
-using ServiceStack.Common;
+using SimpleStack.Common;
 
-namespace ServiceStack.OrmLite.PostgreSQL
+namespace SimpleStack.OrmLite.PostgreSQL
 {
     public class PostgreSqlNamingStrategy : INamingStrategy
     {

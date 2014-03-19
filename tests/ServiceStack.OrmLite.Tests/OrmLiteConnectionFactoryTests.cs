@@ -1,52 +1,52 @@
 using System.Collections.Generic;
 using Northwind.Common.DataModel;
 using NUnit.Framework;
-using ServiceStack.OrmLite.SqlServer;
-using ServiceStack.OrmLite.Sqlite;
-using ServiceStack.Text;
+using SimpleStack.OrmLite.SqlServer;
+using SimpleStack.OrmLite.Sqlite;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     [TestFixture]
     public class OrmLiteConnectionFactoryTests
     {
-        [Test]
-        public void AutoDispose_ConnectionFactory_disposes_connection()
-        {
-            OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
-            var factory = new OrmLiteConnectionFactory(":memory:", true);
+		 [Test]
+		 public void AutoDispose_ConnectionFactory_disposes_connection()
+		 {
+			 OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
+			 var factory = new OrmLiteConnectionFactory(":memory:", true);
 
-            using (var db = factory.OpenDbConnection())
-            {
-                db.CreateTable<Shipper>(false);
-                db.Insert(new Shipper { CompanyName = "I am shipper" });
-            }
+			 using (var db = factory.OpenDbConnection())
+			 {
+				 db.CreateTable<Shipper>(false);
+				 db.Insert(new Shipper { CompanyName = "I am shipper" });
+			 }
 
-            using (var db = factory.OpenDbConnection())
-            {
-                db.CreateTable<Shipper>(false);
-                Assert.That(db.Select<Shipper>(), Has.Count.EqualTo(0));
-            }
-        }
+			 using (var db = factory.OpenDbConnection())
+			 {
+				 db.CreateTable<Shipper>(false);
+				 Assert.That(db.Select<Shipper>(), Has.Count.EqualTo(0));
+			 }
+		 }
 
-        [Test]
-        public void NonAutoDispose_ConnectionFactory_reuses_connection()
-        {
-            OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
-            var factory = new OrmLiteConnectionFactory(":memory:", false);
+		 [Test]
+		 public void NonAutoDispose_ConnectionFactory_reuses_connection()
+		 {
+			 OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
+			 var factory = new OrmLiteConnectionFactory(":memory:", false);
 
-            using (var db = factory.OpenDbConnection())
-            {
-                db.CreateTable<Shipper>(false);
-                db.Insert(new Shipper { CompanyName = "I am shipper" });
-            }
+			 using (var db = factory.OpenDbConnection())
+			 {
+				 db.CreateTable<Shipper>(false);
+				 db.Insert(new Shipper { CompanyName = "I am shipper" });
+			 }
 
-            using (var db = factory.OpenDbConnection())
-            {
-                db.CreateTable<Shipper>(false);
-                Assert.That(db.Select<Shipper>(), Has.Count.EqualTo(1));
-            }
-        }
+			 using (var db = factory.OpenDbConnection())
+			 {
+				 db.CreateTable<Shipper>(false);
+				 Assert.That(db.Select<Shipper>(), Has.Count.EqualTo(1));
+			 }
+		 }
 
         public class Person
         {

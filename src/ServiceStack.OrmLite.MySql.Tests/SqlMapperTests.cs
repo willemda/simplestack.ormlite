@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.MySql;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.MySql;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
     [TestFixture]
     public class SqlMapperTests

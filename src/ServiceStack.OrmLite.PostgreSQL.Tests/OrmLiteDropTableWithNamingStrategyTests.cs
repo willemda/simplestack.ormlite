@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.OrmLite.Tests;
+using SimpleStack.OrmLite.Tests;
+using SimpleStack.OrmLite.Tests.Shared;
 
-namespace ServiceStack.OrmLite.PostgreSQL.Tests
+namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
     public class OrmLiteDropTableWithNamingStrategyTests
         : OrmLiteTestBase

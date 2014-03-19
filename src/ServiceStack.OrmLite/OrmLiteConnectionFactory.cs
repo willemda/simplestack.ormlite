@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     /// <summary>
     /// Allow for mocking and unit testing by providing non-disposing 

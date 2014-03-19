@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("ServiceStack.OrmLite.Firebird")]
+[assembly: AssemblyTitle("SimpleStack.OrmLite.Firebird")]
 [assembly: AssemblyDescription("POCO ORM for FirebirdSql")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]

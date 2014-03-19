@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.OrmLite.Sqlite;
+using SimpleStack.DataAnnotations;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.OrmLite.Sqlite;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class ShippersExample

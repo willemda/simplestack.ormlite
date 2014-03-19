@@ -1,7 +1,7 @@
 using System.Data;
 using System.Collections.Generic;
 
-namespace ServiceStack.OrmLite.Oracle.DbSchema
+namespace SimpleStack.OrmLite.Oracle.DbSchema
 {
 	public interface ISchema<TTable, TColumn, TProcedure, TParameter>
 		where TTable : ITable, new()

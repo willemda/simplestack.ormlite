@@ -1,11 +1,11 @@
 using System;
 using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.Sqlite;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Sqlite;
+using SimpleStack.OrmLite.Tests.Shared;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.Tests
+namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
 	public class OrmLiteTransactionTests 

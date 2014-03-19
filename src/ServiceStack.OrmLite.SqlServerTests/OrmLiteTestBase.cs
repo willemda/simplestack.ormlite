@@ -5,11 +5,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ServiceStack.Logging;
-using ServiceStack.Logging.Support.Logging;
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.Logging;
+using SimpleStack.Logging.Support.Logging;
+using SimpleStack.OrmLite.SqlServer;
 
-namespace ServiceStack.OrmLite.SqlServerTests
+namespace SimpleStack.OrmLite.SqlServerTests
 {
     public class OrmLiteTestBase
     {

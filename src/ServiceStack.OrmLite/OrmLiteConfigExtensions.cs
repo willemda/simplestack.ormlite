@@ -1,12 +1,12 @@
 //
-// ServiceStack.OrmLite: Light-weight POCO ORM for .NET and Mono
+// SimpleStack.OrmLite: Light-weight POCO ORM for .NET and Mono
 //
 // Authors:
 //   Demis Bellot (demis.bellot@gmail.com)
 //
 // Copyright 2010 Liquidbit Ltd.
 //
-// Licensed under the same terms of ServiceStack: new BSD license.
+// Licensed under the same terms of SimpleStack: new BSD license.
 //
 
 using System;
@@ -15,11 +15,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using ServiceStack.Common;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Text;
+using SimpleStack.Common;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite
+namespace SimpleStack.OrmLite
 {
     internal static class OrmLiteConfigExtensions
     {

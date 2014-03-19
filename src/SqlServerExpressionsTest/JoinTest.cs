@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ServiceStack.OrmLite;
+using SimpleStack.OrmLite;
 using System.IO;
 using System.Data;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Common.Utils;
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Common.Utils;
+using SimpleStack.OrmLite.SqlServer;
 
 namespace SqlServerExpressionsTest
 {

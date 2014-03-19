@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using Northwind.Common.DataModel;
 using NUnit.Framework;
-using ServiceStack.Common.Tests.Models;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Text;
+using SimpleStack.Common.Tests.Models;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.FirebirdTests
+namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
 	public class OrmLiteInsertTests

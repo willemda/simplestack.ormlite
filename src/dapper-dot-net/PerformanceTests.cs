@@ -4,8 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.SqlServer;
+using SimpleStack.OrmLite;
+using SimpleStack.OrmLite.SqlServer;
 using SqlMapper.Linq2Sql;
 using System.Data.Linq;
 using System.Diagnostics;
@@ -102,7 +102,7 @@ namespace SqlMapper
             tests.Add(id => massiveModel.Query("select * from Posts where Id = @0", massiveConnection, id).ToList(), "Dynamic Massive ORM Query");
         	
 
-			//ServiceStack.OrmLite Provider:
+			//SimpleStack.OrmLite Provider:
 			OrmLiteConfig.DialectProvider = SqlServerOrmLiteDialectProvider.Instance; //Using SQL Server
 			IDbConnection ormLiteConn = Program.GetOpenConnection();
 			tests.Add(id => ormLiteConn.Select<Post>("select * from Posts where Id = {0}", id), "OrmLite Query");

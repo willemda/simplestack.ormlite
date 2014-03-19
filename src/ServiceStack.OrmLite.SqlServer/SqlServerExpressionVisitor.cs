@@ -1,8 +1,8 @@
 using System;
 using System.Text;
-using ServiceStack.Text;
+using SimpleStack.Text;
 
-namespace ServiceStack.OrmLite.SqlServer
+namespace SimpleStack.OrmLite.SqlServer
 {
 	public class SqlServerExpressionVisitor<T> : SqlExpressionVisitor<T>
 	{

@@ -1,11 +1,11 @@
 ﻿using System;
-using ServiceStack.DesignPatterns.Model;
-using ServiceStack.Logging;
+using SimpleStack.DesignPatterns.Model;
+using SimpleStack.Logging;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
-using ServiceStack.Text;
+using SimpleStack.DataAnnotations;
+using SimpleStack.Text;
 
-namespace ServiceStack.Common.Tests.Models{
+namespace SimpleStack.Common.Tests.Models{
 	
 	[Alias("ModelWFNT")]
 	public class ModelWithFieldsOfNullableTypes : IHasIntId, IHasId<int>

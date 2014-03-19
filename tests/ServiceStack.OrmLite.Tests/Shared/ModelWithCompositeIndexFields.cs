@@ -1,6 +1,6 @@
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.Common.Tests.Models
+namespace SimpleStack.OrmLite.Tests.Shared
 {
 	[CompositeIndex(true, "Composite1", "Composite2")]
 	public class ModelWithCompositeIndexFields

@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data;
 using NUnit.Framework;
-using ServiceStack.DataAnnotations;
+using SimpleStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.SqlServerTests.UseCase
+namespace SimpleStack.OrmLite.SqlServerTests.UseCase
 {
     [TestFixture]
     public class NestedComplexTypeUseCase : OrmLiteTestBase
