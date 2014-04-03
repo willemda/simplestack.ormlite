@@ -51,11 +51,11 @@
     <Compile Include="DbMethodsIn.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
+    <ProjectReference Include="..\..\SimpleStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
       <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceStack.OrmLite.Firebird\SimpleStack.OrmLite.Firebird.csproj">
+    <ProjectReference Include="..\..\SimpleStack.OrmLite.Firebird\SimpleStack.OrmLite.Firebird.csproj">
       <Project>{317B64BA-D7A6-4A15-8719-821B38147C63}</Project>
       <Name>SimpleStack.OrmLite.Firebird</Name>
     </ProjectReference>

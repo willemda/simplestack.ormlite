@@ -50,11 +50,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\ServiceStack.OrmLite.Oracle\SimpleStack.OrmLite.Oracle.csproj">
+    <ProjectReference Include="..\..\SimpleStack.OrmLite.Oracle\SimpleStack.OrmLite.Oracle.csproj">
       <Project>{517B64BA-D7A6-4A15-8719-821B38147C61}</Project>
       <Name>SimpleStack.OrmLite.Oracle</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
+    <ProjectReference Include="..\..\SimpleStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
       <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>

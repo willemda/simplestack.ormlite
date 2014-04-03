@@ -57,11 +57,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
+    <ProjectReference Include="..\SimpleStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
       <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceStack.OrmLite.PostgreSQL\SimpleStack.OrmLite.PostgreSQL.csproj">
+    <ProjectReference Include="..\SimpleStack.OrmLite.PostgreSQL\SimpleStack.OrmLite.PostgreSQL.csproj">
       <Project>{3220F088-BDD0-6979-AC0C-8C541C2E7DE5}</Project>
       <Name>SimpleStack.OrmLite.PostgreSQL</Name>
     </ProjectReference>

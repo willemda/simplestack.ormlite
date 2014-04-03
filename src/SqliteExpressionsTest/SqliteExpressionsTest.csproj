@@ -76,11 +76,11 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.OrmLite.Sqlite\SimpleStack.OrmLite.Sqlite.csproj">
+    <ProjectReference Include="..\SimpleStack.OrmLite.Sqlite\SimpleStack.OrmLite.Sqlite.csproj">
       <Project>{CF68A37D-D071-469D-AE04-68594CB95382}</Project>
       <Name>SimpleStack.OrmLite.Sqlite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
+    <ProjectReference Include="..\SimpleStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
       <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>

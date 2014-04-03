@@ -70,11 +70,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.OrmLite.SqlServer\SimpleStack.OrmLite.SqlServer.csproj">
+    <ProjectReference Include="..\SimpleStack.OrmLite.SqlServer\SimpleStack.OrmLite.SqlServer.csproj">
       <Project>{1887DC99-9139-43E3-A7AA-6D74714B3A5D}</Project>
       <Name>SimpleStack.OrmLite.SqlServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceStack.OrmLite\SimpleStack.OrmLite.csproj">
+    <ProjectReference Include="..\SimpleStack.OrmLite\SimpleStack.OrmLite.csproj">
       <Project>{96179AC6-F6F1-40C3-9FDD-4F6582F54C5C}</Project>
       <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
