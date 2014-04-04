@@ -57,8 +57,7 @@ namespace SimpleStack.OrmLite.Tests
 				
 				r1 = db.GetScalar<Author, DateTime>( e => Sql.Max(e.Birthday), e=>e.City=="SinCity" );
 				Assert.That( default(DateTime), Is.EqualTo(r1));
-				
-				
+
 				var expectedNullableDate= authors.Max(e=>e.LastActivity);
 				DateTime? r2 = db.GetScalar<Author,DateTime?>(e=> Sql.Max(e.LastActivity));
 				Assert.That(expectedNullableDate, Is.EqualTo(r2));
@@ -199,42 +198,42 @@ namespace SimpleStack.OrmLite.Tests
 		}
 		
 	}
-	
-	
+
+
 	public class Author
 	{
-		public Author(){}
-		
+		public Author() { }
+
 		[AutoIncrement]
 		[Alias("AuthorID")]
-		public Int32 Id { get; set;}
-		
+		public Int32 Id { get; set; }
+
 		[Index(Unique = true)]
 		[StringLength(40)]
-		public string Name { get; set;}
-		
-		public DateTime Birthday { get; set;}
-		public DateTime? LastActivity  { get; set;}
-		public decimal Earnings { get; set;}  
-		public decimal? NEarnings { get; set;}  
-		
-		public bool Active { get; set; } 
-		
+		public string Name { get; set; }
+
+		public DateTime Birthday { get; set; }
+		public DateTime? LastActivity { get; set; }
+		public decimal Earnings { get; set; }
+		public decimal? NEarnings { get; set; }
+
+		public bool Active { get; set; }
+
 		[StringLength(80)]
 		[Alias("JobCity")]
-		public string City { get; set;}
-		
+		public string City { get; set; }
+
 		[StringLength(80)]
 		[Alias("Comment")]
-		public string Comments { get; set;}
-		
-		public short Rate{ get; set;}
-		public short? NRate{ get; set;}
-		public float FloatProperty { get; set;}
-		public float? NFloatProperty { get; set;}
-		public double DoubleProperty { get; set;}
-		public double? NDoubleProperty { get; set;}
-		
+		public string Comments { get; set; }
+
+		public short Rate { get; set; }
+		public short? NRate { get; set; }
+		public float FloatProperty { get; set; }
+		public float? NFloatProperty { get; set; }
+		public double DoubleProperty { get; set; }
+		public double? NDoubleProperty { get; set; }
+
 	}
 	
 	

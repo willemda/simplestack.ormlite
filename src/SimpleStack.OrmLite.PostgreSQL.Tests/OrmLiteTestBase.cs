@@ -20,21 +20,21 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			LogManager.LogFactory = new ConsoleLogFactory();
 
-		    OrmLiteConfig.DialectProvider =  PostgreSQLDialectProvider.Instance;
+			OrmLiteConfig.DialectProvider = PostgreSQLDialectProvider.Instance;
 			OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 			OrmLiteConfig.ClearCache();
-		    ConnectionString = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
+			ConnectionString = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
 		}
 
 		public void Log(string text)
 		{
 			Console.WriteLine(text);
 		}
-    
-        public IDbConnection OpenDbConnection(string connString = null)
-        {
-            connString = connString ?? ConnectionString;
-            return connString.OpenDbConnection();
-        }
-    }
+
+		public IDbConnection OpenDbConnection(string connString = null)
+		{
+			connString = connString ?? ConnectionString;
+			return connString.OpenDbConnection();
+		}
+	}
 }

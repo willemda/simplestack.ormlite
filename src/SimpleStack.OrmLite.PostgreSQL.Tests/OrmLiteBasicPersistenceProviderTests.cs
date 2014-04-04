@@ -9,12 +9,6 @@ namespace SimpleStack.OrmLite.Tests
 	public class OrmLiteBasicPersistenceProviderTests
 		: OrmLiteTestBase
 	{
-		[SetUp]
-		public void SetUp()
-		{
-			
-		}
-
 		[Test]
 		public void Can_GetById_from_basic_persistence_provider()
 		{

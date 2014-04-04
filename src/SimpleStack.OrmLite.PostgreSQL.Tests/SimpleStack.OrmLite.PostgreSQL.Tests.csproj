@@ -59,20 +59,6 @@
   <ItemGroup>
     <Compile Include="CreatePostgreSQLTablesTests.cs" />
     <Compile Include="EnumTests.cs" />
-    <Compile Include="Expressions\AdditiveExpressionsTest.cs" />
-    <Compile Include="Expressions\Author.cs" />
-    <Compile Include="Expressions\AuthorUseCase.cs" />
-    <Compile Include="Expressions\ConditionalExpressionTest.cs" />
-    <Compile Include="Expressions\EqualityExpressionsTest.cs" />
-    <Compile Include="Expressions\ExpressionsTestBase.cs" />
-    <Compile Include="Expressions\LogicalExpressionsTest.cs" />
-    <Compile Include="Expressions\MultiplicativeExpressionsTest.cs" />
-    <Compile Include="Expressions\OrmLiteCountTests.cs" />
-    <Compile Include="Expressions\PrimaryExpressionsTest.cs" />
-    <Compile Include="Expressions\RelationalExpressionsTest.cs" />
-    <Compile Include="Expressions\StringFunctionTests.cs" />
-    <Compile Include="Expressions\TestType.cs" />
-    <Compile Include="Expressions\UnaryExpressionsTest.cs" />
     <Compile Include="ForeignKeyAttributeTests.cs" />
     <Compile Include="NorthwindPerfTests.cs" />
     <Compile Include="OrmLiteBasicPersistenceProviderTests.cs" />
@@ -99,7 +85,7 @@
       <Name>Northwind.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\tests\SimpleStack.OrmLite.Tests\SimpleStack.OrmLite.Tests.csproj">
-      <Project>{9B64F4A7-C008-46A8-AD6F-99626DCFEFBD}</Project>
+      <Project>{9b64f4a7-c008-46a8-ad6f-99626dcfefbd}</Project>
       <Name>SimpleStack.OrmLite.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleStack.OrmLite.PostgreSQL\SimpleStack.OrmLite.PostgreSQL.csproj">

@@ -42,7 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -257,7 +257,7 @@
       <Name>SimpleStack.OrmLite</Name>
     </ProjectReference>
     <ProjectReference Include="..\Northwind.Common\Northwind.Common.csproj">
-      <Project>{495EBC3A-0F73-4D25-9641-D6ECA70D0026}</Project>
+      <Project>{495ebc3a-0f73-4d25-9641-d6eca70d0026}</Project>
       <Name>Northwind.Common</Name>
     </ProjectReference>
   </ItemGroup>
