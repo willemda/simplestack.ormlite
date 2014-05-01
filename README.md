@@ -1,9 +1,12 @@
-[Join the SimpleStack Google+ group](https://plus.google.com/u/0/communities/112445368900682590445) or
-follow [@SimpleStack](http://twitter.com/SimpleStack) for updates.
+follow [@SimpleStackProj](http://twitter.com/SimpleStackProj) for updates.
 
 # An Open Source Micro ORM for .NET
 
 _Note: the source code is provided as-is - no direct or commercial support is available for SimpleStack_
+
+**SimpleStack.OrmLite is a fork of ServiceStack.OrmLite V3.**
+
+**This documentation is still a work in progress**
 
 # Introduction
 

@@ -8,7 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{6CEB3EDE
 		..\build\build.tasks = ..\build\build.tasks
 		..\build\copy.bat = ..\build\copy.bat
 		..\NuGet\NuGetPack.cmd = ..\NuGet\NuGetPack.cmd
-		..\README.md = ..\README.md
 		..\NuGet\SimpleStack.OrmLite.Firebird\SimpleStack.ormlite.firebird.nuspec = ..\NuGet\SimpleStack.OrmLite.Firebird\SimpleStack.ormlite.firebird.nuspec
 		..\NuGet\SimpleStack.OrmLite.MySql\SimpleStack.ormlite.mysql.nuspec = ..\NuGet\SimpleStack.OrmLite.MySql\SimpleStack.ormlite.mysql.nuspec
 		..\NuGet\SimpleStack.OrmLite.Oracle\SimpleStack.ormlite.oracle.nuspec = ..\NuGet\SimpleStack.OrmLite.Oracle\SimpleStack.ormlite.oracle.nuspec
@@ -120,6 +119,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common", "..\tests\Northwind.Common\Northwind.Common.csproj", "{495EBC3A-0F73-4D25-9641-D6ECA70D0026}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Perf", "..\tests\Northwind.Perf\Northwind.Perf.csproj", "{373D954D-93F9-439D-937F-28709BB04B65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51F68380-3947-4D51-B047-40ED0694A620}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
