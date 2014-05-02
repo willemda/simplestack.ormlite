@@ -12,12 +12,13 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public static ModelWithOnlyStringFields Create(string id)
 		{
-			return new ModelWithOnlyStringFields {
-				Id = id,
-				Name = "Name",
-				AlbumId = "AlbumId",
-				AlbumName = "AlbumName",
-			};
+			return new ModelWithOnlyStringFields
+				       {
+					       Id = id,
+					       Name = "Name",
+					       AlbumId = "AlbumId",
+					       AlbumName = "AlbumName",
+				       };
 		}
 	}
 }

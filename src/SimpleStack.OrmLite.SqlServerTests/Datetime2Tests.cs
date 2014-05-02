@@ -19,7 +19,8 @@ namespace SimpleStack.OrmLite.SqlServerTests
 			//change to datetime2 - check for higher range and precision
 			(SqlServerOrmLiteDialectProvider.Instance as SqlServerOrmLiteDialectProvider).UseDatetime2(true);
 
-			using(var conn = dbFactory.OpenDbConnection()) {
+			using (var conn = dbFactory.OpenDbConnection())
+			{
 				var test_object_ValidForDatetime2 = Table_for_datetime2_tests.get_test_object_ValidForDatetime2();
 				var test_object_ValidForNormalDatetime = Table_for_datetime2_tests.get_test_object_ValidForNormalDatetime();
 
@@ -27,7 +28,7 @@ namespace SimpleStack.OrmLite.SqlServerTests
 
 				//normal insert
 				conn.Insert(test_object_ValidForDatetime2);
-				var insertedId = (int)conn.GetLastInsertId();
+				var insertedId = (int) conn.GetLastInsertId();
 
 				//read back, and verify precision
 				var fromDb = conn.GetById<Table_for_datetime2_tests>(insertedId);
@@ -44,6 +45,7 @@ namespace SimpleStack.OrmLite.SqlServerTests
 				conn.InsertParam(test_object_ValidForDatetime2);
 			}
 		}
+
 		[Test]
 		public void datetime_tests__check_default_behaviour()
 		{
@@ -52,7 +54,8 @@ namespace SimpleStack.OrmLite.SqlServerTests
 			//default behaviour: normal datetime can't hold DateTime values of year 1.
 			(SqlServerOrmLiteDialectProvider.Instance as SqlServerOrmLiteDialectProvider).UseDatetime2(false);
 
-			using(var conn = dbFactory.OpenDbConnection()) {
+			using (var conn = dbFactory.OpenDbConnection())
+			{
 				var test_object_ValidForDatetime2 = Table_for_datetime2_tests.get_test_object_ValidForDatetime2();
 				var test_object_ValidForNormalDatetime = Table_for_datetime2_tests.get_test_object_ValidForNormalDatetime();
 
@@ -66,18 +69,17 @@ namespace SimpleStack.OrmLite.SqlServerTests
 				var fromDb = conn.GetById<Table_for_datetime2_tests>(insertedId);
 				Assert.AreNotEqual(test_object_ValidForNormalDatetime.ToVerifyPrecision, fromDb.ToVerifyPrecision);
 
-				var thrown = Assert.Throws<SqlException>(() => {
-					conn.Insert(test_object_ValidForDatetime2);
-				});
-				Assert.That(thrown.Message.Contains("The conversion of a varchar data type to a datetime data type resulted in an out-of-range value."));
+				var thrown = Assert.Throws<SqlException>(() => { conn.Insert(test_object_ValidForDatetime2); });
+				Assert.That(
+					thrown.Message.Contains(
+						"The conversion of a varchar data type to a datetime data type resulted in an out-of-range value."));
 
-				
+
 				//check InsertParam
 				conn.InsertParam(test_object_ValidForNormalDatetime);
 				//InsertParam fails differently:
-				var insertParamException = Assert.Throws<System.Data.SqlTypes.SqlTypeException>(() => {
-					conn.InsertParam(test_object_ValidForDatetime2);
-				});
+				var insertParamException =
+					Assert.Throws<System.Data.SqlTypes.SqlTypeException>(() => { conn.InsertParam(test_object_ValidForDatetime2); });
 				Assert.That(insertParamException.Message.Contains("SqlDateTime overflow"));
 			}
 		}
@@ -86,6 +88,7 @@ namespace SimpleStack.OrmLite.SqlServerTests
 		{
 			[AutoIncrement]
 			public int Id { get; set; }
+
 			public DateTime SomeDateTime { get; set; }
 			public DateTime? ToVerifyPrecision { get; set; }
 			public DateTime? NullableDateTimeLeaveItNull { get; set; }
@@ -93,12 +96,26 @@ namespace SimpleStack.OrmLite.SqlServerTests
 			/// <summary>
 			/// to check datetime(2)'s precision. A regular 'datetime' is not precise enough
 			/// </summary>
-			public static readonly DateTime regular_datetime_field_cant_hold_this_exact_moment = new DateTime(2013, 3, 17, 21, 29, 1, 678);
+			public static readonly DateTime regular_datetime_field_cant_hold_this_exact_moment = new DateTime(2013, 3, 17, 21, 29,
+			                                                                                                  1, 678);
 
-			public static Table_for_datetime2_tests get_test_object_ValidForDatetime2() { return new Table_for_datetime2_tests { SomeDateTime = new DateTime(1, 1, 1), ToVerifyPrecision = regular_datetime_field_cant_hold_this_exact_moment }; }
+			public static Table_for_datetime2_tests get_test_object_ValidForDatetime2()
+			{
+				return new Table_for_datetime2_tests
+					       {
+						       SomeDateTime = new DateTime(1, 1, 1),
+						       ToVerifyPrecision = regular_datetime_field_cant_hold_this_exact_moment
+					       };
+			}
 
-			public static Table_for_datetime2_tests get_test_object_ValidForNormalDatetime() { return new Table_for_datetime2_tests { SomeDateTime = new DateTime(2001, 1, 1), ToVerifyPrecision = regular_datetime_field_cant_hold_this_exact_moment }; }
-
+			public static Table_for_datetime2_tests get_test_object_ValidForNormalDatetime()
+			{
+				return new Table_for_datetime2_tests
+					       {
+						       SomeDateTime = new DateTime(2001, 1, 1),
+						       ToVerifyPrecision = regular_datetime_field_cant_hold_this_exact_moment
+					       };
+			}
 		}
 	}
 }

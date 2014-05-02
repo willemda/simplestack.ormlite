@@ -15,83 +15,77 @@ using System.Data;
 
 namespace SimpleStack.OrmLite
 {
-    public static class OrmLiteConfig
-    {
-        public const string IdField = "Id";
+	public static class OrmLiteConfig
+	{
+		public const string IdField = "Id";
 
-        private const int defaultCommandTimeout = 30;
-        private static int? commandTimeout;
-        [ThreadStatic]
-        public static int? TSCommandTimeout;
-        public static int CommandTimeout
-        {
-            get
-            {
-                if (TSCommandTimeout != null)
-                    return TSCommandTimeout.Value;
-                if (commandTimeout != null)
-                    return commandTimeout.Value;
-                return defaultCommandTimeout;
-            }
-            set
-            {
-                commandTimeout = value;
-            }
-        }
+		private const int defaultCommandTimeout = 30;
+		private static int? commandTimeout;
+		[ThreadStatic] public static int? TSCommandTimeout;
 
-        [ThreadStatic]
-        public static IOrmLiteDialectProvider TSDialectProvider;
-        [ThreadStatic]
-        public static IDbTransaction TSTransaction;
+		public static int CommandTimeout
+		{
+			get
+			{
+				if (TSCommandTimeout != null)
+					return TSCommandTimeout.Value;
+				if (commandTimeout != null)
+					return commandTimeout.Value;
+				return defaultCommandTimeout;
+			}
+			set { commandTimeout = value; }
+		}
 
-        private static IOrmLiteDialectProvider dialectProvider;
-        public static IOrmLiteDialectProvider DialectProvider
-        {
-            get
-            {
-                if (dialectProvider == null)
-                {
-                    throw new ArgumentNullException("DialectProvider",
-                        "You must set the singleton 'OrmLiteConfig.DialectProvider' to use the OrmLiteWriteExtensions");
-                }
-                return TSDialectProvider ?? dialectProvider;
-            }
-            set
-            {
-                dialectProvider = value;
-            }
-        }
+		[ThreadStatic] public static IOrmLiteDialectProvider TSDialectProvider;
+		[ThreadStatic] public static IDbTransaction TSTransaction;
 
-        public static IDbConnection ToDbConnection(this string dbConnectionStringOrFilePath)
-        {
-            return dbConnectionStringOrFilePath.ToDbConnection(DialectProvider);
-        }
+		private static IOrmLiteDialectProvider dialectProvider;
 
-        public static IDbConnection OpenDbConnection(this string dbConnectionStringOrFilePath)
-        {
-            var sqlConn = dbConnectionStringOrFilePath.ToDbConnection(DialectProvider);
-            sqlConn.Open();
-            return sqlConn;
-        }
+		public static IOrmLiteDialectProvider DialectProvider
+		{
+			get
+			{
+				if (dialectProvider == null)
+				{
+					throw new ArgumentNullException("DialectProvider",
+					                                "You must set the singleton 'OrmLiteConfig.DialectProvider' to use the OrmLiteWriteExtensions");
+				}
+				return TSDialectProvider ?? dialectProvider;
+			}
+			set { dialectProvider = value; }
+		}
 
-        public static IDbConnection OpenReadOnlyDbConnection(this string dbConnectionStringOrFilePath)
-        {
-            var options = new Dictionary<string, string> { { "Read Only", "True" } };
+		public static IDbConnection ToDbConnection(this string dbConnectionStringOrFilePath)
+		{
+			return dbConnectionStringOrFilePath.ToDbConnection(DialectProvider);
+		}
 
-            var dbConn = DialectProvider.CreateConnection(dbConnectionStringOrFilePath, options);
-            dbConn.Open();
-            return dbConn;
-        }
+		public static IDbConnection OpenDbConnection(this string dbConnectionStringOrFilePath)
+		{
+			var sqlConn = dbConnectionStringOrFilePath.ToDbConnection(DialectProvider);
+			sqlConn.Open();
+			return sqlConn;
+		}
 
-        public static void ClearCache()
-        {
-            OrmLiteConfigExtensions.ClearCache();
-        }
+		public static IDbConnection OpenReadOnlyDbConnection(this string dbConnectionStringOrFilePath)
+		{
+			var options = new Dictionary<string, string> {{"Read Only", "True"}};
 
-        public static IDbConnection ToDbConnection(this string dbConnectionStringOrFilePath, IOrmLiteDialectProvider dialectProvider)
-        {
-            var dbConn = dialectProvider.CreateConnection(dbConnectionStringOrFilePath, options: null);
-            return dbConn;
-        }
-    }
+			var dbConn = DialectProvider.CreateConnection(dbConnectionStringOrFilePath, options);
+			dbConn.Open();
+			return dbConn;
+		}
+
+		public static void ClearCache()
+		{
+			OrmLiteConfigExtensions.ClearCache();
+		}
+
+		public static IDbConnection ToDbConnection(this string dbConnectionStringOrFilePath,
+		                                           IOrmLiteDialectProvider dialectProvider)
+		{
+			var dbConn = dialectProvider.CreateConnection(dbConnectionStringOrFilePath, options: null);
+			return dbConn;
+		}
+	}
 }

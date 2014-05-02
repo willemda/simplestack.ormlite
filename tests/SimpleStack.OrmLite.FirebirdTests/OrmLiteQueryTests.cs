@@ -9,7 +9,6 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	public class OrmLiteQueryTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_GetById_int_from_ModelWithFieldsOfDifferentTypes_table()
 		{
@@ -17,7 +16,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -34,7 +33,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -43,7 +42,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(row.Id, Is.EqualTo("id-1"));
 			}
 		}
-		
+
 		[Test]
 		public void Can_select_with_filter_from_ModelWithOnlyStringFields_table()
 		{
@@ -51,7 +50,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -60,24 +59,24 @@ namespace SimpleStack.OrmLite.FirebirdTests
 
 				db.Insert(filterRow);
 
-				var rows = db.Where<ModelWithOnlyStringFields>(new { filterRow.AlbumName });
+				var rows = db.Where<ModelWithOnlyStringFields>(new {filterRow.AlbumName});
 				var dbRowIds = rows.ConvertAll(x => x.Id);
 				Assert.That(dbRowIds, Has.Count.EqualTo(1));
 				Assert.That(dbRowIds[0], Is.EqualTo(filterRow.Id));
 
-				rows = db.Where<ModelWithOnlyStringFields>(new { filterRow.AlbumName });
+				rows = db.Where<ModelWithOnlyStringFields>(new {filterRow.AlbumName});
 				dbRowIds = rows.ConvertAll(x => x.Id);
 				Assert.That(dbRowIds, Has.Count.EqualTo(1));
 				Assert.That(dbRowIds[0], Is.EqualTo(filterRow.Id));
 
-				var queryByExample = new ModelWithOnlyStringFields { AlbumName = filterRow.AlbumName };
+				var queryByExample = new ModelWithOnlyStringFields {AlbumName = filterRow.AlbumName};
 				rows = db.ByExampleWhere<ModelWithOnlyStringFields>(queryByExample, excludeNulls: true);
 				dbRowIds = rows.ConvertAll(x => x.Id);
 				Assert.That(dbRowIds, Has.Count.EqualTo(1));
 				Assert.That(dbRowIds[0], Is.EqualTo(filterRow.Id));
 
 				rows = db.Query<ModelWithOnlyStringFields>(
-					"SELECT * FROM ModelWithOnlyStringFields WHERE AlbumName = @AlbumName", new { filterRow.AlbumName });
+					"SELECT * FROM ModelWithOnlyStringFields WHERE AlbumName = @AlbumName", new {filterRow.AlbumName});
 				dbRowIds = rows.ConvertAll(x => x.Id);
 				Assert.That(dbRowIds, Has.Count.EqualTo(1));
 				Assert.That(dbRowIds[0], Is.EqualTo(filterRow.Id));
@@ -91,7 +90,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -101,7 +100,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.Insert(filterRow);
 
 				var dbRowIds = new List<string>();
-				var rows = db.EachWhere<ModelWithOnlyStringFields>(new { filterRow.AlbumName });
+				var rows = db.EachWhere<ModelWithOnlyStringFields>(new {filterRow.AlbumName});
 				foreach (var row in rows)
 				{
 					dbRowIds.Add(row.Id);
@@ -111,6 +110,5 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(dbRowIds[0], Is.EqualTo(filterRow.Id));
 			}
 		}
-
 	}
 }

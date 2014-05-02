@@ -5,27 +5,25 @@ using SimpleStack.OrmLite.Tests.Shared;
 
 namespace SimpleStack.OrmLite.Tests
 {
-
 	[TestFixture]
-	public class OrmLiteCreateTableWithNamigStrategyTests 
+	public class OrmLiteCreateTableWithNamigStrategyTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_create_TableWithNamigStrategy_table_prefix()
 		{
 			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
-			{
-				 TablePrefix ="tab_",
-				 ColumnPrefix = "col_",
-			};
-			
+				                                                       {
+					                                                       TablePrefix = "tab_",
+					                                                       ColumnPrefix = "col_",
+				                                                       };
+
 			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 		}
 
 		[Test]
@@ -37,8 +35,8 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 		}
 
 
@@ -51,126 +49,157 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 		}
 
 		[Test]
 		public void Can_get_data_from_TableWithNamigStrategy_with_GetById()
 		{
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
-			{
-				TablePrefix = "tab_",
-				ColumnPrefix = "col_",
-			};
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy =
+				OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
+					                                                       {
+						                                                       TablePrefix = "tab_",
+						                                                       ColumnPrefix = "col_",
+					                                                       };
 
 			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
-				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields() { Id= "999", AlbumId = "112", AlbumName="ElectroShip", Name = "MyNameIsBatman"};
+				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields()
+					                              {
+						                              Id = "999",
+						                              AlbumId = "112",
+						                              AlbumName = "ElectroShip",
+						                              Name = "MyNameIsBatman"
+					                              };
 
 				db.Save<ModelWithOnlyStringFields>(m);
-				var modelFromDb =  db.GetById<ModelWithOnlyStringFields>("999");
+				var modelFromDb = db.GetById<ModelWithOnlyStringFields>("999");
 
 				Assert.AreEqual(m.Name, modelFromDb.Name);
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 		}
 
 
 		[Test]
 		public void Can_get_data_from_TableWithNamigStrategy_with_query_by_example()
 		{
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
-			{
-				TablePrefix = "tab_",
-				ColumnPrefix = "col_",
-			};
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy =
+				OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
+					                                                       {
+						                                                       TablePrefix = "tab_",
+						                                                       ColumnPrefix = "col_",
+					                                                       };
 
 			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
-				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields() { Id = "998", AlbumId = "112", AlbumName = "ElectroShip", Name = "QueryByExample" };
+				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields()
+					                              {
+						                              Id = "998",
+						                              AlbumId = "112",
+						                              AlbumName = "ElectroShip",
+						                              Name = "QueryByExample"
+					                              };
 
 				db.Save<ModelWithOnlyStringFields>(m);
-				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new { Name = "QueryByExample" })[0];
+				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new {Name = "QueryByExample"})[0];
 
 				Assert.AreEqual(m.Name, modelFromDb.Name);
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 		}
-		
-		
+
+
 		[Test]
 		public void Can_get_data_from_TableWithNamigStrategy_AfterChangingNamingStrategy()
-		{			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
-			{
-				TablePrefix = "tab_",
-				ColumnPrefix = "col_",
-			};
+		{
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy =
+				OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
+					                                                       {
+						                                                       TablePrefix = "tab_",
+						                                                       ColumnPrefix = "col_",
+					                                                       };
 
 			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
-				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields() { Id = "998", AlbumId = "112", AlbumName = "ElectroShip", Name = "QueryByExample" };
+				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields()
+					                              {
+						                              Id = "998",
+						                              AlbumId = "112",
+						                              AlbumName = "ElectroShip",
+						                              Name = "QueryByExample"
+					                              };
 
 				db.Save<ModelWithOnlyStringFields>(m);
-				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new { Name = "QueryByExample" })[0];
+				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new {Name = "QueryByExample"})[0];
 
 				Assert.AreEqual(m.Name, modelFromDb.Name);
-				
-				modelFromDb =  db.GetById<ModelWithOnlyStringFields>("998");
+
+				modelFromDb = db.GetById<ModelWithOnlyStringFields>("998");
 				Assert.AreEqual(m.Name, modelFromDb.Name);
-				
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
-			
-			using (var db = OpenDbConnection())
-			{
-				db.CreateTable<ModelWithOnlyStringFields>(true);
-				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields() { Id = "998", AlbumId = "112", AlbumName = "ElectroShip", Name = "QueryByExample" };
 
-				db.Save<ModelWithOnlyStringFields>(m);
-				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new { Name = "QueryByExample" })[0];
-
-				Assert.AreEqual(m.Name, modelFromDb.Name);
-				
-				modelFromDb =  db.GetById<ModelWithOnlyStringFields>("998");
-				Assert.AreEqual(m.Name, modelFromDb.Name);	
-			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
-			{
-				TablePrefix = "tab_",
-				ColumnPrefix = "col_",
-			};
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 
 			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
-				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields() { Id = "998", AlbumId = "112", AlbumName = "ElectroShip", Name = "QueryByExample" };
+				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields()
+					                              {
+						                              Id = "998",
+						                              AlbumId = "112",
+						                              AlbumName = "ElectroShip",
+						                              Name = "QueryByExample"
+					                              };
 
 				db.Save<ModelWithOnlyStringFields>(m);
-				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new { Name = "QueryByExample" })[0];
+				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new {Name = "QueryByExample"})[0];
 
 				Assert.AreEqual(m.Name, modelFromDb.Name);
-				
-				modelFromDb =  db.GetById<ModelWithOnlyStringFields>("998");
+
+				modelFromDb = db.GetById<ModelWithOnlyStringFields>("998");
 				Assert.AreEqual(m.Name, modelFromDb.Name);
 			}
-			
-			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy= new OrmLiteNamingStrategyBase();
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy =
+				OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
+					                                                       {
+						                                                       TablePrefix = "tab_",
+						                                                       ColumnPrefix = "col_",
+					                                                       };
+
+			using (var db = OpenDbConnection())
+			{
+				db.CreateTable<ModelWithOnlyStringFields>(true);
+				ModelWithOnlyStringFields m = new ModelWithOnlyStringFields()
+					                              {
+						                              Id = "998",
+						                              AlbumId = "112",
+						                              AlbumName = "ElectroShip",
+						                              Name = "QueryByExample"
+					                              };
+
+				db.Save<ModelWithOnlyStringFields>(m);
+				var modelFromDb = db.Where<ModelWithOnlyStringFields>(new {Name = "QueryByExample"})[0];
+
+				Assert.AreEqual(m.Name, modelFromDb.Name);
+
+				modelFromDb = db.GetById<ModelWithOnlyStringFields>("998");
+				Assert.AreEqual(m.Name, modelFromDb.Name);
+			}
+
+			OrmLite.OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 		}
-
 	}
 
 	public class PrefixNamingStrategy : OrmLiteNamingStrategyBase
 	{
-
 		public string TablePrefix { get; set; }
 
 		public string ColumnPrefix { get; set; }
@@ -184,12 +213,10 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			return ColumnPrefix + name;
 		}
-
 	}
 
 	public class LowercaseNamingStrategy : OrmLiteNamingStrategyBase
 	{
-
 		public override string GetTableName(string name)
 		{
 			return name.ToLower();
@@ -199,12 +226,10 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			return name.ToLower();
 		}
-
 	}
 
 	public class UnderscoreSeparatedCompoundNamingStrategy : OrmLiteNamingStrategyBase
 	{
-
 		public override string GetTableName(string name)
 		{
 			return toUnderscoreSeparatedCompound(name);
@@ -216,9 +241,8 @@ namespace SimpleStack.OrmLite.Tests
 		}
 
 
-		string toUnderscoreSeparatedCompound(string name)
+		private string toUnderscoreSeparatedCompound(string name)
 		{
-
 			string r = char.ToLower(name[0]).ToString();
 
 			for (int i = 1; i < name.Length; i++)
@@ -236,7 +260,5 @@ namespace SimpleStack.OrmLite.Tests
 			}
 			return r;
 		}
-
 	}
-
 }

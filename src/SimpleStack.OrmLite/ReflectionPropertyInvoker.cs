@@ -28,12 +28,12 @@ namespace SimpleStack.OrmLite
 			var propertySetMethod = propertyInfo.GetSetMethod();
 			if (propertySetMethod == null) return;
 
-			propertySetMethod.Invoke(onInstance, new[] { convertedValue });
+			propertySetMethod.Invoke(onInstance, new[] {convertedValue});
 		}
 
 		public object GetPropertyValue(PropertyInfo propertyInfo, object fromInstance)
 		{
-			var value = propertyInfo.GetGetMethod().Invoke(fromInstance, new object[] { });
+			var value = propertyInfo.GetGetMethod().Invoke(fromInstance, new object[] {});
 			return value;
 		}
 	}

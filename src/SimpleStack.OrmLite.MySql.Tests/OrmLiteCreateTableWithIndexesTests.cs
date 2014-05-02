@@ -17,7 +17,7 @@
 //				db.CreateTable<ModelWithIndexFields>(true);
 
 //				var sql = OrmLiteConfig.DialectProvider.ToCreateIndexStatements( typeof (ModelWithIndexFields) ).Join();
-				
+
 //				Assert.IsTrue(sql.Contains("idx_modelwithindexfields_name"));
 //				Assert.IsTrue(sql.Contains("uidx_modelwithindexfields_uniquename"));
 //			}
@@ -54,3 +54,4 @@
 
 //	}
 //}
+

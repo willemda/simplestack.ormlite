@@ -35,4 +35,3 @@ namespace SimpleStack.OrmLite.Oracle.DbSchema
 		Type NetType { get; }
 	}
 }
-

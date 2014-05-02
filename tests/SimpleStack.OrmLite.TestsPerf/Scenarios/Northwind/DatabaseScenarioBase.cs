@@ -10,23 +10,22 @@ namespace Northwind.Perf
 		public string ConnectionString { get; set; }
 
 		protected int Iteration;
+
 		public bool IsFirstRun
 		{
-			get
-			{
-				return this.Iteration == 0;
-			}
+			get { return this.Iteration == 0; }
 		}
 
-        private IDbConnection db;
-        protected IDbConnection Db
+		private IDbConnection db;
+
+		protected IDbConnection Db
 		{
 			get
 			{
 				if (db == null)
 				{
-				    var connStr = ConnectionString;
-                    db = connStr.OpenDbConnection();
+					var connStr = ConnectionString;
+					db = connStr.OpenDbConnection();
 				}
 				return db;
 			}
@@ -38,7 +37,7 @@ namespace Northwind.Perf
 			this.Iteration++;
 		}
 
-        protected abstract void Run(IDbConnection db);
+		protected abstract void Run(IDbConnection db);
 
 		public void Dispose()
 		{

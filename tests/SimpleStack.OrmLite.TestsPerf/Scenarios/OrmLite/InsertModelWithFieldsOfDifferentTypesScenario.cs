@@ -22,7 +22,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 	public class SelectOneModelWithFieldsOfDifferentTypesPerfScenario
 		: DatabaseScenarioBase
 	{
-        protected override void Run(IDbConnection db)
+		protected override void Run(IDbConnection db)
 		{
 			if (this.IsFirstRun)
 			{
@@ -37,7 +37,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 	public class SelectManyModelWithFieldsOfDifferentTypesPerfScenario
 		: DatabaseScenarioBase
 	{
-        protected override void Run(IDbConnection db)
+		protected override void Run(IDbConnection db)
 		{
 			if (this.IsFirstRun)
 			{
@@ -48,5 +48,4 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 			var rows = db.Select<ModelWithFieldsOfDifferentTypesPerf>();
 		}
 	}
-
 }

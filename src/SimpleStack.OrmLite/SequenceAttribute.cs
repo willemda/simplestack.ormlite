@@ -2,7 +2,7 @@ using System;
 
 namespace SimpleStack.DataAnnotations
 {
-	[AttributeUsage( AttributeTargets.Property)]
+	[AttributeUsage(AttributeTargets.Property)]
 	/// <summary>
 	/// Sequence attribute.
 	/// Use in FirebirdSql. indicates name of generator for columns of type AutoIncrement

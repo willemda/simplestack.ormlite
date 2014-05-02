@@ -8,9 +8,9 @@ using SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite;
 
 namespace SimpleStack.OrmLite.TestsPerf
 {
-	class Program
+	internal class Program
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(Program));
+		private static readonly ILog Log = LogManager.GetLogger(typeof (Program));
 
 //		const long DefaultIterations = 1;
 
@@ -31,7 +31,7 @@ namespace SimpleStack.OrmLite.TestsPerf
 //			};
 //		}
 
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			try
 			{
@@ -92,7 +92,7 @@ namespace SimpleStack.OrmLite.TestsPerf
 //				// warmup
 //				uc.Run();
 //				GC.Collect();
-               	
+
 //				var avgMs = Measure(uc.Run, iterations);
 //				Console.WriteLine("{0}: Avg: {1}ms", uc.GetType().Name, avgMs);
 //			});

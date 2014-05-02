@@ -32,13 +32,13 @@ namespace AllDialectsTest
 				if (type == null)
 					throw new Exception(
 						string.Format("Can not load type '{0}' from assembly '{1}'",
-							ClassName, Path.Combine(PathToAssembly, AssemblyName)));
-				
+						              ClassName, Path.Combine(PathToAssembly, AssemblyName)));
+
 				var fi = type.GetField(InstanceFieldName);
 				if (fi == null)
 					throw new Exception(
 						string.Format("Can not get Field '{0}' from class '{1}'",
-							InstanceFieldName, ClassName));
+						              InstanceFieldName, ClassName));
 
 				var o = fi.GetValue(null);
 				var dialect = o as IOrmLiteDialectProvider;
@@ -46,8 +46,8 @@ namespace AllDialectsTest
 				if (dialect == null)
 					throw new Exception(
 						string.Format("Can not cast  from '{0}' to '{1}'",
-							o, typeof(IOrmLiteDialectProvider))
-					);
+						              o, typeof (IOrmLiteDialectProvider))
+						);
 
 
 				//Angel can you check if we need this now? DbTypes are now static per Dialiect provider so shouldn't conflict, i.e. DbTypes<TDialect>
@@ -80,7 +80,5 @@ namespace AllDialectsTest
 		//    var clone = new Dictionary<TKey, TValue>(original);
 		//    return clone;
 		//}
-
 	}
 }
-

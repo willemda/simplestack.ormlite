@@ -9,12 +9,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	public class OrmLiteComplexTypesTests
 		: OrmLiteTestBase
 	{
-
 		[Ignore("Endless recursion, need to fix")]
 		[Test]
 		public void Can_insert_into_ModelWithComplexTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithComplexTypes>(true);
 
@@ -28,7 +27,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_insert_and_select_from_ModelWithComplexTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithComplexTypes>(true);
 
@@ -47,11 +46,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_insert_and_select_from_OrderLineData()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<SampleOrderLine>(true);
 
-				var orderIds = new[] { 1, 2, 3, 4, 5 }.ToList();
+				var orderIds = new[] {1, 2, 3, 4, 5}.ToList();
 
 				orderIds.ForEach(x => db.Insert(
 					SampleOrderLine.Create(Guid.NewGuid(), x, 1)));
@@ -60,6 +59,5 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(rows, Has.Count.EqualTo(orderIds.Count));
 			}
 		}
-
 	}
 }

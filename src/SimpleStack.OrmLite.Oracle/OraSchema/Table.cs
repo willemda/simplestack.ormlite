@@ -10,11 +10,10 @@ namespace SimpleStack.OrmLite.Oracle
 		{
 		}
 
-        [Alias("TABLE_NAME")]
+		[Alias("TABLE_NAME")]
 		public string Name { get; set; }
 
-        [Alias("TABLE_SCHEMA")]
+		[Alias("TABLE_SCHEMA")]
 		public string Owner { get; set; }
 	}
 }
-

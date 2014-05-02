@@ -6,15 +6,15 @@ using SimpleStack.OrmLite.Tests.Shared;
 namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
-	public class SqliteOrmLiteConnectionTests 
+	public class SqliteOrmLiteConnectionTests
 		: OrmLiteTestBase
 	{
-        [SetUp]
-        public void SetUp()
-        {
-            OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
-            ConnectionString = "test.sqlite";
-        }
+		[SetUp]
+		public void SetUp()
+		{
+			OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
+			ConnectionString = "test.sqlite";
+		}
 
 		[Test]
 		public void Can_create_connection()
@@ -27,7 +27,7 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Can_create_ReadOnly_connection()
 		{
-			using (var db = ConnectionString.OpenReadOnlyDbConnection()) 
+			using (var db = ConnectionString.OpenReadOnlyDbConnection())
 			{
 			}
 		}
@@ -54,19 +54,18 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Can_open_two_ReadOnlyConnections_to_same_database()
 		{
-            using (var db = OpenDbConnection())
-            {
-                db.DropAndCreateTable<ModelWithIdAndName>();
-                db.Insert(new ModelWithIdAndName(1));
+			using (var db = OpenDbConnection())
+			{
+				db.DropAndCreateTable<ModelWithIdAndName>();
+				db.Insert(new ModelWithIdAndName(1));
 
-                using (var dbReadOnly = OpenDbConnection())
-                {
-                    dbReadOnly.Insert(new ModelWithIdAndName(2));
-                    var rows = dbReadOnly.Select<ModelWithIdAndName>();
-                    Assert.That(rows, Has.Count.EqualTo(2));
-                }
-            }
+				using (var dbReadOnly = OpenDbConnection())
+				{
+					dbReadOnly.Insert(new ModelWithIdAndName(2));
+					var rows = dbReadOnly.Select<ModelWithIdAndName>();
+					Assert.That(rows, Has.Count.EqualTo(2));
+				}
+			}
 		}
-
 	}
 }

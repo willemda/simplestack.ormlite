@@ -42,7 +42,7 @@
 //				Assert.That(row.Id, Is.EqualTo("id-1"));
 //			}
 //		}
-		
+
 //		[Test]
 //		public void Can_select_with_filter_from_ModelWithOnlyStringFields_table()
 //		{
@@ -113,3 +113,4 @@
 
 //	}
 //}
+

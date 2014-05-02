@@ -16,7 +16,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		private readonly CultureInfo CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 
 		[TestFixtureSetUp]
-		public new  void TestFixtureSetUp()
+		public new void TestFixtureSetUp()
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("vi-VN");
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
@@ -33,6 +33,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			[AutoIncrement]
 			public int Id { get; set; }
+
 			public short Width { get; set; }
 			public float Height { get; set; }
 			public double Top { get; set; }
@@ -42,12 +43,12 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_query_using_float_in_alernate_culuture()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<Point>(true);
 
-				db.Insert(new Point { Width = 4, Height = 1.123f, Top = 3.456d, Left = 2.345m});
-								
+				db.Insert(new Point {Width = 4, Height = 1.123f, Top = 3.456d, Left = 2.345m});
+
 				var points = db.Select<Point>();
 
 				Console.WriteLine(points.Dump());
@@ -56,12 +57,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(points[0].Height, Is.EqualTo(1.123f));
 				Assert.That(points[0].Top, Is.EqualTo(3.456d));
 				Assert.That(points[0].Left, Is.EqualTo(2.345m));
-				
-				points = db.Select<Point>("Height={0}", 1.123f);  // returns no rows! FirebirdSql bug?
-				
-				Assert.That(points.Count>0);
+
+				points = db.Select<Point>("Height={0}", 1.123f); // returns no rows! FirebirdSql bug?
+
+				Assert.That(points.Count > 0);
 			}
 		}
-
 	}
 }

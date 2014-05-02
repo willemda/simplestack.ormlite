@@ -8,7 +8,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Model
 {
 	public class ModelWithFieldsOfDifferentTypesPerf
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(ModelWithFieldsOfDifferentTypesPerf));
+		private static readonly ILog Log = LogManager.GetLogger(typeof (ModelWithFieldsOfDifferentTypesPerf));
 
 		[AutoIncrement]
 		public int Id { get; set; }
@@ -27,20 +27,22 @@ namespace SimpleStack.OrmLite.TestsPerf.Model
 
 		public static ModelWithFieldsOfDifferentTypesPerf Create(int id)
 		{
-			var row = new ModelWithFieldsOfDifferentTypesPerf {
-				Id = id,
-				Bool = id % 2 == 0,
-				DateTime = DateTime.Now.AddDays(id),
-				Double = 1.11d + id,
-				Guid = Guid.NewGuid(),
-				LongId = 999 + id,
-				Name = "Name" + id
-			};
+			var row = new ModelWithFieldsOfDifferentTypesPerf
+				          {
+					          Id = id,
+					          Bool = id%2 == 0,
+					          DateTime = DateTime.Now.AddDays(id),
+					          Double = 1.11d + id,
+					          Guid = Guid.NewGuid(),
+					          LongId = 999 + id,
+					          Name = "Name" + id
+				          };
 
 			return row;
 		}
 
-		public static void AssertIsEqual(ModelWithFieldsOfDifferentTypesPerf actual, ModelWithFieldsOfDifferentTypesPerf expected)
+		public static void AssertIsEqual(ModelWithFieldsOfDifferentTypesPerf actual,
+		                                 ModelWithFieldsOfDifferentTypesPerf expected)
 		{
 			Assert.That(actual.Id, Is.EqualTo(expected.Id));
 			Assert.That(actual.Name, Is.EqualTo(expected.Name));
@@ -64,7 +66,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Model
 			{
 				Log.Error("Trouble with double precisions, trying Assert again with rounding to 10 decimals", ex);
 				Assert.That(Math.Round(actual.Double, 10), Is.EqualTo(Math.Round(actual.Double, 10)));
-			} 
+			}
 		}
 	}
 }

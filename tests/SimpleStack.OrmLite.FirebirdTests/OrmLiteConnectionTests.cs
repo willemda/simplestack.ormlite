@@ -6,13 +6,15 @@ using SimpleStack.Common.Tests.Models;
 namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
-	public class OrmLiteConnectionTests 
+	public class OrmLiteConnectionTests
 		: OrmLiteTestBase
 	{
-		[Test][Ignore]
+		[Test]
+		[Ignore]
 		public void Can_create_connection_to_blank_database()
 		{
-			var connString ="User=SYSDBA;Password=masterkey;Database=ormlite-tests.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;";
+			var connString =
+				"User=SYSDBA;Password=masterkey;Database=ormlite-tests.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;";
 			using (var db = connString.OpenDbConnection())
 			{
 			}
@@ -21,7 +23,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_create_connection()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 			}
 		}
@@ -34,7 +36,8 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			}
 		}
 
-		[Test][Ignore]
+		[Test]
+		[Ignore]
 		public void Can_create_table_with_ReadOnly_connection()
 		{
 			using (var db = ConnectionString.OpenReadOnlyDbConnection())
@@ -56,18 +59,17 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_open_two_ReadOnlyConnections_to_same_database()
 		{
-            var db = ConnectionString.OpenReadOnlyDbConnection();
-            db.CreateTable<ModelWithIdAndName>(true);
-            db.Insert(new ModelWithIdAndName(1));
+			var db = ConnectionString.OpenReadOnlyDbConnection();
+			db.CreateTable<ModelWithIdAndName>(true);
+			db.Insert(new ModelWithIdAndName(1));
 
-            var dbReadOnly = ConnectionString.OpenReadOnlyDbConnection();
-            dbReadOnly.Insert(new ModelWithIdAndName(2));
-            var rows = dbReadOnly.Select<ModelWithIdAndName>();
-            Assert.That(rows, Has.Count.EqualTo(2));
+			var dbReadOnly = ConnectionString.OpenReadOnlyDbConnection();
+			dbReadOnly.Insert(new ModelWithIdAndName(2));
+			var rows = dbReadOnly.Select<ModelWithIdAndName>();
+			Assert.That(rows, Has.Count.EqualTo(2));
 
 			dbReadOnly.Dispose();
 			db.Dispose();
 		}
-
 	}
 }

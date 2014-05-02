@@ -6,24 +6,24 @@ using SimpleStack.DataAnnotations;
 
 namespace SimpleStack.OrmLite.SqlServerTests.UseCase
 {
-    public class TestEntityWithAliases
-    {
-        #region Properties
+	public class TestEntityWithAliases
+	{
+		#region Properties
 
-        [AutoIncrement]
-        [Alias("Id Column")]
-        public int Id { get; set; }
+		[AutoIncrement]
+		[Alias("Id Column")]
+		public int Id { get; set; }
 
-        [Alias("Foo Column")]
-        public String Foo { get; set; }
+		[Alias("Foo Column")]
+		public String Foo { get; set; }
 
-        [Alias("Bar Column")]
-        public String Bar { get; set; }
+		[Alias("Bar Column")]
+		public String Bar { get; set; }
 
-        //[Index]
-        [Alias("Baz Column")]
-        public Decimal Baz { get; set; }
-        
-        #endregion
-    }
+		//[Index]
+		[Alias("Baz Column")]
+		public Decimal Baz { get; set; }
+
+		#endregion
+	}
 }

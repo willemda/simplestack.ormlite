@@ -11,7 +11,7 @@ using SimpleStack.OrmLite.Oracle;
 
 namespace SimpleStack.OrmLite.Oracle.Tests
 {
-    public class OracleTestBase
+	public class OracleTestBase
 	{
 		protected virtual string ConnectionString { get; set; }
 
@@ -20,15 +20,15 @@ namespace SimpleStack.OrmLite.Oracle.Tests
 		{
 			LogManager.LogFactory = new ConsoleLogFactory();
 
-            OrmLiteConfig.DialectProvider = OracleOrmLiteDialectProvider.Instance;
+			OrmLiteConfig.DialectProvider = OracleOrmLiteDialectProvider.Instance;
 			OrmLiteConfig.ClearCache();
-		    ConnectionString = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
+			ConnectionString = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
 		}
-    
-        public IDbConnection OpenDbConnection(string connString = null)
-        {
-            connString = connString ?? ConnectionString;
-            return connString.OpenDbConnection();
-        }
-    }
+
+		public IDbConnection OpenDbConnection(string connString = null)
+		{
+			connString = connString ?? ConnectionString;
+			return connString.OpenDbConnection();
+		}
+	}
 }

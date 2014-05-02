@@ -9,19 +9,19 @@ namespace SimpleStack.OrmLite
 	/// Wrapper IDbConnection class to allow for connection sharing, mocking, etc.
 	/// </summary>
 	public class OrmLiteConnection
-		: IDbConnection, IHasDbConnection 
+		: IDbConnection, IHasDbConnection
 	{
-	    public readonly OrmLiteConnectionFactory Factory;
-        public IDbTransaction Transaction { get; internal set; }
+		public readonly OrmLiteConnectionFactory Factory;
+		public IDbTransaction Transaction { get; internal set; }
 		private IDbConnection dbConnection;
 		private bool isOpen;
 
-        public OrmLiteConnection(OrmLiteConnectionFactory factory)
-        {
-            this.Factory = factory;
-        }
+		public OrmLiteConnection(OrmLiteConnectionFactory factory)
+		{
+			this.Factory = factory;
+		}
 
-        public IDbConnection DbConnection
+		public IDbConnection DbConnection
 		{
 			get
 			{
@@ -35,21 +35,21 @@ namespace SimpleStack.OrmLite
 
 		public void Dispose()
 		{
-            if (Factory.OnDispose != null) Factory.OnDispose(this);
-            if (!Factory.AutoDisposeConnection) return;
+			if (Factory.OnDispose != null) Factory.OnDispose(this);
+			if (!Factory.AutoDisposeConnection) return;
 
 			DbConnection.Dispose();
 			dbConnection = null;
 			isOpen = false;
-        }
+		}
 
 		public IDbTransaction BeginTransaction()
 		{
 			if (Factory.AlwaysReturnTransaction != null)
 				return Factory.AlwaysReturnTransaction;
 
-            Transaction = DbConnection.BeginTransaction();
-            return Transaction;
+			Transaction = DbConnection.BeginTransaction();
+			return Transaction;
 		}
 
 		public IDbTransaction BeginTransaction(IsolationLevel isolationLevel)
@@ -58,13 +58,13 @@ namespace SimpleStack.OrmLite
 				return Factory.AlwaysReturnTransaction;
 
 			Transaction = DbConnection.BeginTransaction(isolationLevel);
-            return Transaction;
+			return Transaction;
 		}
 
 		public void Close()
 		{
-            DbConnection.Close();
-        }
+			DbConnection.Close();
+		}
 
 		public void ChangeDatabase(string databaseName)
 		{
@@ -77,18 +77,24 @@ namespace SimpleStack.OrmLite
 				return Factory.AlwaysReturnCommand;
 
 			var cmd = DbConnection.CreateCommand();
-            if(Transaction != null) { cmd.Transaction = Transaction; }
+			if (Transaction != null)
+			{
+				cmd.Transaction = Transaction;
+			}
 			cmd.CommandTimeout = OrmLiteConfig.CommandTimeout;
-            return cmd;
+			return cmd;
 		}
 
 		public void Open()
 		{
 			if (isOpen) return;
-			
+
 			DbConnection.Open();
-            //so the internal connection is wrapped for example by miniprofiler
-            if(Factory.ConnectionFilter != null) { dbConnection = Factory.ConnectionFilter(dbConnection); }
+			//so the internal connection is wrapped for example by miniprofiler
+			if (Factory.ConnectionFilter != null)
+			{
+				dbConnection = Factory.ConnectionFilter(dbConnection);
+			}
 			isOpen = true;
 		}
 
@@ -115,12 +121,12 @@ namespace SimpleStack.OrmLite
 
 		public static explicit operator SqlConnection(OrmLiteConnection dbConn)
 		{
-			return (SqlConnection)dbConn.DbConnection;
+			return (SqlConnection) dbConn.DbConnection;
 		}
 
 		public static explicit operator DbConnection(OrmLiteConnection dbConn)
 		{
-			return (DbConnection)dbConn.DbConnection;
+			return (DbConnection) dbConn.DbConnection;
 		}
 	}
 }

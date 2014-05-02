@@ -57,11 +57,9 @@ namespace SimpleStack.OrmLite.Firebird
 		public bool AutoIncrement
 		{
 			get { return !string.IsNullOrEmpty(Sequence); }
-			set
-			{
-				;
-			}
+			set { ; }
 		}
+
 		[Ignore]
 		public Type NetType
 		{
@@ -71,72 +69,70 @@ namespace SimpleStack.OrmLite.Firebird
 				switch (DbType)
 				{
 					case "BIGINT":
-						t = Nullable ? typeof(Int64?) : typeof(Int64);
+						t = Nullable ? typeof (Int64?) : typeof (Int64);
 						break;
 
 					case "BLOB":
-						t = Nullable ? typeof(Byte?[]) : typeof(Byte[]);
+						t = Nullable ? typeof (Byte?[]) : typeof (Byte[]);
 						break;
 
 					case "CHAR":
-						t = typeof(string);
+						t = typeof (string);
 						break;
 
 					case "DATE":
-						t = Nullable ? typeof(DateTime?) : typeof(DateTime);
+						t = Nullable ? typeof (DateTime?) : typeof (DateTime);
 						break;
 
 					case "DECIMAL":
-						t = Nullable ? typeof(Decimal?) : typeof(Decimal);
+						t = Nullable ? typeof (Decimal?) : typeof (Decimal);
 						break;
 
 					case "DOUBLE PRECISION":
-						t = Nullable ? typeof(Double?) : typeof(Double);
+						t = Nullable ? typeof (Double?) : typeof (Double);
 						break;
 
 					case "FLOAT":
-						t = Nullable ? typeof(float?) : typeof(float);
+						t = Nullable ? typeof (float?) : typeof (float);
 						break;
 
 					case "NUMERIC":
-						t = Nullable ? typeof(Decimal?) : typeof(Decimal);
+						t = Nullable ? typeof (Decimal?) : typeof (Decimal);
 						break;
 
 					case "SMALLINT":
-						t = Nullable ? typeof(Int16?) : typeof(Int16);
+						t = Nullable ? typeof (Int16?) : typeof (Int16);
 						break;
 
 					case "TIME":
-						t = Nullable ? typeof(DateTime?) : typeof(DateTime);
+						t = Nullable ? typeof (DateTime?) : typeof (DateTime);
 						break;
 
 					case "TIMESTAMP":
-						t = Nullable ? typeof(DateTime?) : typeof(DateTime);
+						t = Nullable ? typeof (DateTime?) : typeof (DateTime);
 						break;
 
 					case "TEXT":
-						t = typeof(string);
+						t = typeof (string);
 						break;
 
 					case "INTEGER":
-						t = Nullable ? typeof(Int32?) : typeof(Int32);
+						t = Nullable ? typeof (Int32?) : typeof (Int32);
 						break;
 
 					case "VARCHAR":
-						t = typeof(string);
+						t = typeof (string);
 						break;
 					case "GUID":
-						t = Nullable ? typeof(Guid?) : typeof(Guid);
+						t = Nullable ? typeof (Guid?) : typeof (Guid);
 						break;
 					default:
-						t = typeof(string);
+						t = typeof (string);
 						break;
 				}
 
 				return t;
 			}
 		}
-
 	}
 }
-

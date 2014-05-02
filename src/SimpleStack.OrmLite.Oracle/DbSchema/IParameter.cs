@@ -26,4 +26,3 @@ namespace SimpleStack.OrmLite.Oracle.DbSchema
 		ParameterDirection Direction { get; }
 	}
 }
-

@@ -6,10 +6,10 @@ using Npgsql;
 
 namespace SimpleStack.OrmLite.PostgreSQL
 {
-    public class PostgreSQLDialectProvider : OrmLiteDialectProviderBase<PostgreSQLDialectProvider>
+	public class PostgreSQLDialectProvider : OrmLiteDialectProviderBase<PostgreSQLDialectProvider>
 	{
 		public static PostgreSQLDialectProvider Instance = new PostgreSQLDialectProvider();
-        const string textColumnDefinition = "text";
+		private const string textColumnDefinition = "text";
 
 		private PostgreSQLDialectProvider()
 		{
@@ -23,16 +23,16 @@ namespace SimpleStack.OrmLite.PostgreSQL
 			base.ParamString = ":";
 			base.BlobColumnDefinition = "bytea";
 			base.RealColumnDefinition = "double precision";
-            base.StringLengthColumnDefinitionFormat = textColumnDefinition;
-            //there is no "n"varchar in postgres. All strings are either unicode or non-unicode, inherited from the database.
-            base.StringLengthUnicodeColumnDefinitionFormat = "character varying({0})";
-            base.StringLengthNonUnicodeColumnDefinitionFormat = "character varying({0})"; 
+			base.StringLengthColumnDefinitionFormat = textColumnDefinition;
+			//there is no "n"varchar in postgres. All strings are either unicode or non-unicode, inherited from the database.
+			base.StringLengthUnicodeColumnDefinitionFormat = "character varying({0})";
+			base.StringLengthNonUnicodeColumnDefinitionFormat = "character varying({0})";
 			base.InitColumnTypeMap();
-		    base.SelectIdentitySql = "SELECT LASTVAL()";
-		    this.NamingStrategy = new PostgreSqlNamingStrategy();
+			base.SelectIdentitySql = "SELECT LASTVAL()";
+			this.NamingStrategy = new PostgreSqlNamingStrategy();
 
-            DbTypeMap.Set<TimeSpan>(DbType.Time, "Interval");
-            DbTypeMap.Set<TimeSpan?>(DbType.Time, "Interval");
+			DbTypeMap.Set<TimeSpan>(DbType.Time, "Interval");
+			DbTypeMap.Set<TimeSpan?>(DbType.Time, "Interval");
 		}
 
 		public override string GetColumnDefinition(
@@ -46,7 +46,7 @@ namespace SimpleStack.OrmLite.PostgreSQL
 			string defaultValue)
 		{
 			string fieldDefinition = null;
-			if (fieldType == typeof(string))
+			if (fieldType == typeof (string))
 			{
 				if (fieldLength != null)
 				{
@@ -54,16 +54,16 @@ namespace SimpleStack.OrmLite.PostgreSQL
 				}
 				else
 				{
-                    fieldDefinition = textColumnDefinition;
+					fieldDefinition = textColumnDefinition;
 				}
 			}
 			else
 			{
 				if (autoIncrement)
 				{
-					if (fieldType == typeof(long))
+					if (fieldType == typeof (long))
 						fieldDefinition = "bigserial";
-					else if (fieldType == typeof(int))
+					else if (fieldType == typeof (int))
 						fieldDefinition = "serial";
 				}
 				else
@@ -97,12 +97,12 @@ namespace SimpleStack.OrmLite.PostgreSQL
 			}
 
 			return sql.ToString();
-		}		
+		}
 
-        public override string GetQuotedParam(string paramValue)
-        {
-            return "'" + paramValue.Replace("'", @"''") + "'";
-        }
+		public override string GetQuotedParam(string paramValue)
+		{
+			return "'" + paramValue.Replace("'", @"''") + "'";
+		}
 
 		public override IDbConnection CreateConnection(string connectionString, Dictionary<string, string> options)
 		{
@@ -113,32 +113,32 @@ namespace SimpleStack.OrmLite.PostgreSQL
 		{
 			if (value == null) return "NULL";
 
-			if (fieldType == typeof(DateTime))
+			if (fieldType == typeof (DateTime))
 			{
-				var dateValue = (DateTime)value;
+				var dateValue = (DateTime) value;
 				const string iso8601Format = "yyyy-MM-dd HH:mm:ss.fff";
-				return base.GetQuotedValue(dateValue.ToString(iso8601Format), typeof(string));
+				return base.GetQuotedValue(dateValue.ToString(iso8601Format), typeof (string));
 			}
-			if (fieldType == typeof(Guid))
+			if (fieldType == typeof (Guid))
 			{
-				var guidValue = (Guid)value;
-				return base.GetQuotedValue(guidValue.ToString("N"), typeof(string));
+				var guidValue = (Guid) value;
+				return base.GetQuotedValue(guidValue.ToString("N"), typeof (string));
 			}
-			if(fieldType == typeof(byte[]))
+			if (fieldType == typeof (byte[]))
 			{
 				return "E'" + ToBinary(value) + "'";
 			}
-			if (fieldType.IsArray && typeof(string).IsAssignableFrom(fieldType.GetElementType()))
+			if (fieldType.IsArray && typeof (string).IsAssignableFrom(fieldType.GetElementType()))
 			{
 				var stringArray = (string[]) value;
 				return ToArray(stringArray);
 			}
-			if (fieldType.IsArray && typeof(int).IsAssignableFrom(fieldType.GetElementType()))
+			if (fieldType.IsArray && typeof (int).IsAssignableFrom(fieldType.GetElementType()))
 			{
 				var integerArray = (int[]) value;
 				return ToArray(integerArray);
 			}
-			if (fieldType.IsArray && typeof(long).IsAssignableFrom(fieldType.GetElementType()))
+			if (fieldType.IsArray && typeof (long).IsAssignableFrom(fieldType.GetElementType()))
 			{
 				var longArray = (long[]) value;
 				return ToArray(longArray);
@@ -150,12 +150,15 @@ namespace SimpleStack.OrmLite.PostgreSQL
 		public override object ConvertDbValue(object value, Type type)
 		{
 			if (value == null || value is DBNull) return null;
-			
-			if (type == typeof(byte[])) { return value; }
+
+			if (type == typeof (byte[]))
+			{
+				return value;
+			}
 
 			return base.ConvertDbValue(value, type);
 		}
-		
+
 		public override SqlExpressionVisitor<T> ExpressionVisitor<T>()
 		{
 			return new PostgreSQLExpressionVisitor<T>();
@@ -165,15 +168,15 @@ namespace SimpleStack.OrmLite.PostgreSQL
 		{
 			var sql = "SELECT COUNT(*) FROM pg_class WHERE relname = {0}"
 				.SqlFormat(tableName);
-		    var conn = dbCmd.Connection;
-            if (conn != null)
-            {
-                var builder = new NpgsqlConnectionStringBuilder(conn.ConnectionString);
-                // If a search path (schema) is specified, and there is only one, then assume the CREATE TABLE directive should apply to that schema.
-                if (!String.IsNullOrEmpty(builder.SearchPath) && !builder.SearchPath.Contains(","))
-                    sql = "SELECT COUNT(*) FROM pg_class JOIN pg_catalog.pg_namespace n ON n.oid = pg_class.relnamespace WHERE relname = {0} AND nspname = {1}"
-                          .SqlFormat(tableName, builder.SearchPath);
-            }     
+			var conn = dbCmd.Connection;
+			if (conn != null)
+			{
+				var builder = new NpgsqlConnectionStringBuilder(conn.ConnectionString);
+				// If a search path (schema) is specified, and there is only one, then assume the CREATE TABLE directive should apply to that schema.
+				if (!String.IsNullOrEmpty(builder.SearchPath) && !builder.SearchPath.Contains(","))
+					sql = "SELECT COUNT(*) FROM pg_class JOIN pg_catalog.pg_namespace n ON n.oid = pg_class.relnamespace WHERE relname = {0} AND nspname = {1}"
+						.SqlFormat(tableName, builder.SearchPath);
+			}
 			dbCmd.CommandText = sql;
 			var result = dbCmd.GetLongScalar();
 
@@ -201,23 +204,23 @@ namespace SimpleStack.OrmLite.PostgreSQL
 			}
 
 			var sql = string.Format("{0} {1}{2}{3};",
-				GetQuotedTableName(modelDef),
-				sbColumnValues.Length > 0 ? "(" : "",
-				sbColumnValues,
-				sbColumnValues.Length > 0 ? ")" : "");
+			                        GetQuotedTableName(modelDef),
+			                        sbColumnValues.Length > 0 ? "(" : "",
+			                        sbColumnValues,
+			                        sbColumnValues.Length > 0 ? ")" : "");
 
 			return sql;
 		}
 
-        public override string GetQuotedTableName(ModelDefinition modelDef)
-        {
-            if (!modelDef.IsInSchema)
-            {
-                return base.GetQuotedTableName(modelDef);
-            }
-            string escapedSchema = modelDef.Schema.Replace(".", "\".\"");
-            return string.Format("\"{0}\".\"{1}\"", escapedSchema, base.NamingStrategy.GetTableName(modelDef.ModelName));
-        }
+		public override string GetQuotedTableName(ModelDefinition modelDef)
+		{
+			if (!modelDef.IsInSchema)
+			{
+				return base.GetQuotedTableName(modelDef);
+			}
+			string escapedSchema = modelDef.Schema.Replace(".", "\".\"");
+			return string.Format("\"{0}\".\"{1}\"", escapedSchema, base.NamingStrategy.GetTableName(modelDef.ModelName));
+		}
 
 		/// <summary>
 		/// based on Npgsql2's source: Npgsql2\src\NpgsqlTypes\NpgsqlTypeConverters.cs
@@ -228,16 +231,16 @@ namespace SimpleStack.OrmLite.PostgreSQL
 		/// <returns></returns>
 		internal static String ToBinary(Object NativeData)
 		{
-			Byte[] byteArray = (Byte[])NativeData;
-			StringBuilder res = new StringBuilder(byteArray.Length * 5);
-			foreach(byte b in byteArray)
-				if(b >= 0x20 && b < 0x7F && b != 0x27 && b != 0x5C)
-					res.Append((char)b);
+			Byte[] byteArray = (Byte[]) NativeData;
+			StringBuilder res = new StringBuilder(byteArray.Length*5);
+			foreach (byte b in byteArray)
+				if (b >= 0x20 && b < 0x7F && b != 0x27 && b != 0x5C)
+					res.Append((char) b);
 				else
 					res.Append("\\\\")
-						.Append((char)('0' + (7 & (b >> 6))))
-						.Append((char)('0' + (7 & (b >> 3))))
-						.Append((char)('0' + (7 & b)));
+					   .Append((char) ('0' + (7 & (b >> 6))))
+					   .Append((char) ('0' + (7 & (b >> 3))))
+					   .Append((char) ('0' + (7 & b)));
 			return res.ToString();
 		}
 
@@ -247,7 +250,7 @@ namespace SimpleStack.OrmLite.PostgreSQL
 			foreach (var value in source)
 			{
 				if (values.Length > 0) values.Append(",");
-				values.Append(base.GetQuotedValue(value, typeof(T)));
+				values.Append(base.GetQuotedValue(value, typeof (T)));
 			}
 			return "ARRAY[" + values + "]";
 		}

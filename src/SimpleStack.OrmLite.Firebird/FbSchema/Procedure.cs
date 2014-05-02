@@ -25,11 +25,7 @@ namespace SimpleStack.OrmLite.Firebird
 		[Ignore]
 		public ProcedureType Type
 		{
-			get
-			{
-				return Outputs == 0 ? ProcedureType.Executable : ProcedureType.Selectable;
-			}
+			get { return Outputs == 0 ? ProcedureType.Executable : ProcedureType.Selectable; }
 		}
 	}
 }
-

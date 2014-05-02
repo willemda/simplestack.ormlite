@@ -1,33 +1,32 @@
 using System;
 using System.Collections.Generic;
 
-namespace Northwind.Common.DataModel{
-	
+namespace Northwind.Common.DataModel
+{
 	public static class NorthwindFactory
 	{
-		
-		public readonly static List<Type> ModelTypes;
-	
+		public static readonly List<Type> ModelTypes;
+
 		static NorthwindFactory()
 		{
 			List<Type> types = new List<Type>();
-			types.Add(typeof(Employee));
-			types.Add(typeof(Category));
-			types.Add(typeof(Customer));
-			types.Add(typeof(Shipper));
-			types.Add(typeof(Supplier));
-			types.Add(typeof(Order));
-			types.Add(typeof(Product));
-			types.Add(typeof(OrderDetail));
-			types.Add(typeof(CustomerCustomerDemo));
-			types.Add(typeof(Category));
-			types.Add(typeof(CustomerDemographic));
-			types.Add(typeof(Region));
-			types.Add(typeof(Territory));
-			types.Add(typeof(EmployeeTerritory));
+			types.Add(typeof (Employee));
+			types.Add(typeof (Category));
+			types.Add(typeof (Customer));
+			types.Add(typeof (Shipper));
+			types.Add(typeof (Supplier));
+			types.Add(typeof (Order));
+			types.Add(typeof (Product));
+			types.Add(typeof (OrderDetail));
+			types.Add(typeof (CustomerCustomerDemo));
+			types.Add(typeof (Category));
+			types.Add(typeof (CustomerDemographic));
+			types.Add(typeof (Region));
+			types.Add(typeof (Territory));
+			types.Add(typeof (EmployeeTerritory));
 			NorthwindFactory.ModelTypes = types;
 		}
-	
+
 		public static Category Category(int id, string categoryName, string description, byte[] picture)
 		{
 			Category category = new Category();
@@ -37,8 +36,10 @@ namespace Northwind.Common.DataModel{
 			category.Picture = picture;
 			return category;
 		}
-	
-		public static Customer Customer(string customerId, string companyName, string contactName, string contactTitle, string address, string city, string region, string postalCode, string country, string phoneNo, string faxNo, byte[] picture)
+
+		public static Customer Customer(string customerId, string companyName, string contactName, string contactTitle,
+		                                string address, string city, string region, string postalCode, string country,
+		                                string phoneNo, string faxNo, byte[] picture)
 		{
 			Customer customer = new Customer();
 			customer.Id = customerId;
@@ -55,7 +56,7 @@ namespace Northwind.Common.DataModel{
 			customer.Picture = picture;
 			return customer;
 		}
-	
+
 		public static CustomerCustomerDemo CustomerCustomerDemo(string customerId, string customerTypeId)
 		{
 			CustomerCustomerDemo customerCustomerDemo = new CustomerCustomerDemo();
@@ -63,8 +64,11 @@ namespace Northwind.Common.DataModel{
 			customerCustomerDemo.CustomerTypeId = customerTypeId;
 			return customerCustomerDemo;
 		}
-	
-		public static Employee Employee(int employeeId, string lastName, string firstName, string title, string titleOfCourtesy, DateTime? birthDate, DateTime? hireDate, string address, string city, string region, string postalCode, string country, string homePhone, string extension, byte[] photo, string notes, int? reportsTo, string photoPath)
+
+		public static Employee Employee(int employeeId, string lastName, string firstName, string title,
+		                                string titleOfCourtesy, DateTime? birthDate, DateTime? hireDate, string address,
+		                                string city, string region, string postalCode, string country, string homePhone,
+		                                string extension, byte[] photo, string notes, int? reportsTo, string photoPath)
 		{
 			Employee employee = new Employee();
 			employee.Id = employeeId;
@@ -87,7 +91,7 @@ namespace Northwind.Common.DataModel{
 			employee.PhotoPath = photoPath;
 			return employee;
 		}
-	
+
 		public static EmployeeTerritory EmployeeTerritory(int employeeId, string territoryId)
 		{
 			EmployeeTerritory employeeTerritory = new EmployeeTerritory();
@@ -95,8 +99,10 @@ namespace Northwind.Common.DataModel{
 			employeeTerritory.TerritoryId = territoryId;
 			return employeeTerritory;
 		}
-	
-		public static Order Order(int orderId, string customerId, int employeeId, DateTime? orderDate, DateTime? requiredDate, DateTime? shippedDate, int shipVia, decimal freight, string shipName, string address, string city, string region, string postalCode, string country)
+
+		public static Order Order(int orderId, string customerId, int employeeId, DateTime? orderDate, DateTime? requiredDate,
+		                          DateTime? shippedDate, int shipVia, decimal freight, string shipName, string address,
+		                          string city, string region, string postalCode, string country)
 		{
 			Order order = new Order();
 			order.Id = orderId;
@@ -115,7 +121,7 @@ namespace Northwind.Common.DataModel{
 			order.ShipCountry = country;
 			return order;
 		}
-	
+
 		public static OrderDetail OrderDetail(int orderId, int productId, decimal unitPrice, short quantity, double discount)
 		{
 			OrderDetail orderDetail = new OrderDetail();
@@ -126,8 +132,10 @@ namespace Northwind.Common.DataModel{
 			orderDetail.Discount = discount;
 			return orderDetail;
 		}
-	
-		public static Product Product(int productId, string productName, int supplierId, int categoryId, string qtyPerUnit, decimal unitPrice, short unitsInStock, short unitsOnOrder, short reorderLevel, bool discontinued)
+
+		public static Product Product(int productId, string productName, int supplierId, int categoryId, string qtyPerUnit,
+		                              decimal unitPrice, short unitsInStock, short unitsOnOrder, short reorderLevel,
+		                              bool discontinued)
 		{
 			Product product = new Product();
 			product.Id = productId;
@@ -142,7 +150,7 @@ namespace Northwind.Common.DataModel{
 			product.Discontinued = discontinued;
 			return product;
 		}
-	
+
 		public static Region Region(int regionId, string regionDescription)
 		{
 			Region region = new Region();
@@ -150,7 +158,7 @@ namespace Northwind.Common.DataModel{
 			region.RegionDescription = regionDescription;
 			return region;
 		}
-	
+
 		public static Shipper Shipper(int id, string companyName, string phoneNo)
 		{
 			Shipper shipper = new Shipper();
@@ -159,8 +167,10 @@ namespace Northwind.Common.DataModel{
 			shipper.Phone = phoneNo;
 			return shipper;
 		}
-	
-		public static Supplier Supplier(int supplierId, string companyName, string contactName, string contactTitle, string address, string city, string region, string postalCode, string country, string phoneNo, string faxNo, string homePage)
+
+		public static Supplier Supplier(int supplierId, string companyName, string contactName, string contactTitle,
+		                                string address, string city, string region, string postalCode, string country,
+		                                string phoneNo, string faxNo, string homePage)
 		{
 			Supplier supplier = new Supplier();
 			supplier.Id = supplierId;
@@ -177,7 +187,7 @@ namespace Northwind.Common.DataModel{
 			supplier.HomePage = homePage;
 			return supplier;
 		}
-	
+
 		public static Territory Territory(string territoryId, string territoryDescription, int regionId)
 		{
 			Territory territory = new Territory();

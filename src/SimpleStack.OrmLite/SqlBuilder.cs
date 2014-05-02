@@ -17,18 +17,18 @@ namespace SimpleStack.OrmLite
 	/// </summary>
 	public class SqlBuilder
 	{
-		readonly Dictionary<string, Clauses> data = new Dictionary<string, Clauses>();
-		int seq;
+		private readonly Dictionary<string, Clauses> data = new Dictionary<string, Clauses>();
+		private int seq;
 
-		class Clause
+		private class Clause
 		{
 			public string Sql { get; set; }
 			public object Parameters { get; set; }
 		}
 
-		class DynamicParameters
+		private class DynamicParameters
 		{
-			class Property
+			private class Property
 			{
 				public Property(string name, Type type, object value)
 				{
@@ -62,15 +62,16 @@ namespace SimpleStack.OrmLite
 			}
 
 			// The property set and get methods require a special attrs:
-			private const MethodAttributes GetSetAttr = MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig;
+			private const MethodAttributes GetSetAttr =
+				MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig;
 
 			public object CreateDynamicType()
 			{
-				var assemblyName = new AssemblyName { Name = "tmpAssembly" };
-				var typeBuilder = 
-                    Thread.GetDomain().DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run)
-					.DefineDynamicModule("tmpModule")
-					.DefineType("SqlBuilderDynamicParameters", TypeAttributes.Public | TypeAttributes.Class);
+				var assemblyName = new AssemblyName {Name = "tmpAssembly"};
+				var typeBuilder =
+					Thread.GetDomain().DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run)
+					      .DefineDynamicModule("tmpModule")
+					      .DefineType("SqlBuilderDynamicParameters", TypeAttributes.Public | TypeAttributes.Class);
 
 				var emptyCtor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, Type.EmptyTypes);
 				var ctorIL = emptyCtor.GetILGenerator();
@@ -84,22 +85,22 @@ namespace SimpleStack.OrmLite
 					var field = typeBuilder.DefineField("_" + p.Name, p.Type, FieldAttributes.Private);
 
 					//set default values with Emit for popular types
-					if (p.Type == typeof(int))
+					if (p.Type == typeof (int))
 					{
 						ctorIL.Emit(OpCodes.Ldarg_0);
-						ctorIL.Emit(OpCodes.Ldc_I4, (int)p.Value);
+						ctorIL.Emit(OpCodes.Ldc_I4, (int) p.Value);
 						ctorIL.Emit(OpCodes.Stfld, field);
 					}
-					else if (p.Type == typeof(long))
+					else if (p.Type == typeof (long))
 					{
 						ctorIL.Emit(OpCodes.Ldarg_0);
-						ctorIL.Emit(OpCodes.Ldc_I8, (long)p.Value);
+						ctorIL.Emit(OpCodes.Ldc_I8, (long) p.Value);
 						ctorIL.Emit(OpCodes.Stfld, field);
 					}
-					else if (p.Type == typeof(string))
+					else if (p.Type == typeof (string))
 					{
 						ctorIL.Emit(OpCodes.Ldarg_0);
-						ctorIL.Emit(OpCodes.Ldstr, (string)p.Value);
+						ctorIL.Emit(OpCodes.Ldstr, (string) p.Value);
 						ctorIL.Emit(OpCodes.Stfld, field);
 					}
 					else
@@ -108,7 +109,7 @@ namespace SimpleStack.OrmLite
 					}
 
 					// Generate a public property
-					var property = typeBuilder.DefineProperty(p.Name, PropertyAttributes.None, p.Type, new[] { p.Type });
+					var property = typeBuilder.DefineProperty(p.Name, PropertyAttributes.None, p.Type, new[] {p.Type});
 
 					// Define the "get" accessor method for current private field.
 					var currGetPropMthdBldr = typeBuilder.DefineMethod("get_" + p.Name, GetSetAttr, p.Type, Type.EmptyTypes);
@@ -120,7 +121,7 @@ namespace SimpleStack.OrmLite
 					currGetIL.Emit(OpCodes.Ret);
 
 					// Define the "set" accessor method for current private field.
-					var currSetPropMthdBldr = typeBuilder.DefineMethod("set_" + p.Name, GetSetAttr, null, new[] { p.Type });
+					var currSetPropMthdBldr = typeBuilder.DefineMethod("set_" + p.Name, GetSetAttr, null, new[] {p.Type});
 
 					// Set Property impl
 					var currSetIL = currSetPropMthdBldr.GetILGenerator();
@@ -142,18 +143,18 @@ namespace SimpleStack.OrmLite
 				//Using reflection for less property types. Not caching since it's a generated type.
 				foreach (var p in unsetValues)
 				{
-					generetedType.GetProperty(p.Name).GetSetMethod().Invoke(instance, new[] { p.Value });
+					generetedType.GetProperty(p.Name).GetSetMethod().Invoke(instance, new[] {p.Value});
 				}
 
 				return instance;
 			}
 		}
 
-		class Clauses : List<Clause>
+		private class Clauses : List<Clause>
 		{
-			readonly string joiner;
-			readonly string prefix;
-			readonly string postfix;
+			private readonly string joiner;
+			private readonly string prefix;
+			private readonly string postfix;
 
 			public Clauses(string joiner, string prefix = "", string postfix = "")
 			{
@@ -174,10 +175,10 @@ namespace SimpleStack.OrmLite
 
 		public class Template
 		{
-			readonly string sql;
-			readonly SqlBuilder builder;
-			readonly object initParams;
-			int dataSeq = -1; // Unresolved
+			private readonly string sql;
+			private readonly SqlBuilder builder;
+			private readonly object initParams;
+			private int dataSeq = -1; // Unresolved
 
 			public Template(SqlBuilder builder, string sql, object parameters)
 			{
@@ -186,9 +187,9 @@ namespace SimpleStack.OrmLite
 				this.builder = builder;
 			}
 
-			static readonly Regex regex = new Regex(@"\/\*\*.+\*\*\/", RegexOptions.Compiled | RegexOptions.Multiline);
+			private static readonly Regex regex = new Regex(@"\/\*\*.+\*\*\/", RegexOptions.Compiled | RegexOptions.Multiline);
 
-			void ResolveSql()
+			private void ResolveSql()
 			{
 				if (dataSeq != builder.seq)
 				{
@@ -209,11 +210,26 @@ namespace SimpleStack.OrmLite
 				}
 			}
 
-			string rawSql;
-			object parameters;
+			private string rawSql;
+			private object parameters;
 
-			public string RawSql { get { ResolveSql(); return rawSql; } }
-			public object Parameters { get { ResolveSql(); return parameters; } }
+			public string RawSql
+			{
+				get
+				{
+					ResolveSql();
+					return rawSql;
+				}
+			}
+
+			public object Parameters
+			{
+				get
+				{
+					ResolveSql();
+					return parameters;
+				}
+			}
 		}
 
 		public Template AddTemplate(string sql, object parameters = null)
@@ -221,7 +237,8 @@ namespace SimpleStack.OrmLite
 			return new Template(this, sql, parameters);
 		}
 
-		void AddClause(string name, string sql, object parameters, string joiner, string prefix = "", string postfix = "")
+		private void AddClause(string name, string sql, object parameters, string joiner, string prefix = "",
+		                       string postfix = "")
 		{
 			Clauses clauses;
 			if (!data.TryGetValue(name, out clauses))
@@ -229,7 +246,7 @@ namespace SimpleStack.OrmLite
 				clauses = new Clauses(joiner, prefix, postfix);
 				data[name] = clauses;
 			}
-			clauses.Add(new Clause { Sql = sql, Parameters = parameters });
+			clauses.Add(new Clause {Sql = sql, Parameters = parameters});
 			seq++;
 		}
 
@@ -271,5 +288,4 @@ namespace SimpleStack.OrmLite
 		}
 	}
 #endif
-
 }

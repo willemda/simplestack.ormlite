@@ -37,13 +37,13 @@ namespace SimpleStack.OrmLite.Tests
 
 				var basicProvider = new OrmLitePersistenceProvider(db);
 
-				var rowIds = new List<int> { 1, 2, 3, 4, 5 };
+				var rowIds = new List<int> {1, 2, 3, 4, 5};
 
 				var rows = rowIds.ConvertAll(x => ModelWithFieldsOfDifferentTypes.Create(x));
 
 				rows.ForEach(x => db.Insert(x));
 
-				var getRowIds = new[] { 2, 4 };
+				var getRowIds = new[] {2, 4};
 				var providerRows = basicProvider.GetByIds<ModelWithFieldsOfDifferentTypes>(getRowIds).ToList();
 				var providerRowIds = providerRows.ConvertAll(x => x.Id);
 
@@ -60,13 +60,13 @@ namespace SimpleStack.OrmLite.Tests
 
 				var basicProvider = new OrmLitePersistenceProvider(db);
 
-				var rowIds = new List<int> { 1, 2, 3, 4, 5 };
+				var rowIds = new List<int> {1, 2, 3, 4, 5};
 
 				var rows = rowIds.ConvertAll(x => ModelWithFieldsOfDifferentTypes.Create(x));
 
 				rows.ForEach(x => basicProvider.Store(x));
 
-				var getRowIds = new[] { 2, 4 };
+				var getRowIds = new[] {2, 4};
 				var providerRows = db.GetByIds<ModelWithFieldsOfDifferentTypes>(getRowIds).ToList();
 				var providerRowIds = providerRows.ConvertAll(x => x.Id);
 
@@ -83,13 +83,13 @@ namespace SimpleStack.OrmLite.Tests
 
 				var basicProvider = new OrmLitePersistenceProvider(db);
 
-				var rowIds = new List<int> { 1, 2, 3, 4, 5 };
+				var rowIds = new List<int> {1, 2, 3, 4, 5};
 
 				var rows = rowIds.ConvertAll(x => ModelWithFieldsOfDifferentTypes.Create(x));
 
 				rows.ForEach(x => db.Insert(x));
 
-				var deleteRowIds = new List<int> { 2, 4 };
+				var deleteRowIds = new List<int> {2, 4};
 
 				foreach (var row in rows)
 				{
@@ -108,7 +108,5 @@ namespace SimpleStack.OrmLite.Tests
 				Assert.That(providerRowIds, Is.EquivalentTo(remainingIds));
 			}
 		}
-
 	}
-
 }

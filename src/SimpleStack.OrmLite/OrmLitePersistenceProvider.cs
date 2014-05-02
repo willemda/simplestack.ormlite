@@ -29,14 +29,15 @@ namespace SimpleStack.OrmLite
 		protected bool DisposeConnection = true;
 
 		protected IDbConnection connection;
+
 		public IDbConnection Connection
 		{
 			get
 			{
 				if (connection == null)
 				{
-				    var connStr = this.ConnectionString;
-                    connection = connStr.OpenDbConnection();
+					var connStr = this.ConnectionString;
+					connection = connStr.OpenDbConnection();
 				}
 				return connection;
 			}
@@ -104,7 +105,7 @@ namespace SimpleStack.OrmLite
 			return entity;
 		}
 
-		public void StoreAll<TEntity>(IEnumerable<TEntity> entities) 
+		public void StoreAll<TEntity>(IEnumerable<TEntity> entities)
 			where TEntity : class, new()
 		{
 			using (var dbCmd = CreateCommand())
@@ -155,7 +156,7 @@ namespace SimpleStack.OrmLite
 		{
 			if (!DisposeConnection) return;
 			if (this.connection == null) return;
-			
+
 			this.connection.Dispose();
 			this.connection = null;
 		}

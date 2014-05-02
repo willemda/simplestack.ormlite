@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,58 +11,37 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 		where TTable : ITable, new()
 		where TColumn : IColumn, new()
 		where TProcedure : IProcedure, new()
-		where TParameter : IParameter, new(){
-		
+		where TParameter : IParameter, new()
+	{
 		public PocoCreator()
 		{
-
 			OutputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "src");
-			Usings ="using System;\n" +
-					"using System.ComponentModel.DataAnnotations;\n" +
-					"using SimpleStack.Common;\n" +
-					"using SimpleStack.DataAnnotations;\n" +
-					"using SimpleStack.DesignPatterns.Model;\n";
+			Usings = "using System;\n" +
+			         "using System.ComponentModel.DataAnnotations;\n" +
+			         "using SimpleStack.Common;\n" +
+			         "using SimpleStack.DataAnnotations;\n" +
+			         "using SimpleStack.DesignPatterns.Model;\n";
 
 			SpaceName = "Database.Records";
-			MetadataClassName="Me";
+			MetadataClassName = "Me";
 			IdField = OrmLiteConfig.IdField;
 		}
 
-		public bool GenerateMetadata{get;set;}
-		
-		public string MetadataClassName{get; set;}
-		
-		public string IdField{ get; set;}
-		
-		public string SpaceName
-		{
-			get;
-			set;
-		}
-		
-		public string ServiceNameSpace
-		{
-			get;
-			set;
-		}
-		
-		public string Usings
-		{
-			get;
-			set;
-		}
+		public bool GenerateMetadata { get; set; }
 
-		public string OutputDirectory
-		{
-			get;
-			set;
-		}
+		public string MetadataClassName { get; set; }
 
-		public ISchema<TTable, TColumn, TProcedure, TParameter> Schema
-		{
-			get;
-			set;
-		}
+		public string IdField { get; set; }
+
+		public string SpaceName { get; set; }
+
+		public string ServiceNameSpace { get; set; }
+
+		public string Usings { get; set; }
+
+		public string OutputDirectory { get; set; }
+
+		public ISchema<TTable, TColumn, TProcedure, TParameter> Schema { get; set; }
 
 		public virtual void WriteClass(TTable table)
 		{
@@ -71,14 +50,14 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 
 		public virtual void WriteClass(TTable table, string className)
 		{
-			if(string.IsNullOrEmpty( ServiceNameSpace)) ServiceNameSpace="Interface";
+			if (string.IsNullOrEmpty(ServiceNameSpace)) ServiceNameSpace = "Interface";
 			className = ToDotName(className);
-			StringBuilder properties= new StringBuilder();
-			StringBuilder meProperties= new StringBuilder();
+			StringBuilder properties = new StringBuilder();
+			StringBuilder meProperties = new StringBuilder();
 			List<TColumn> columns = Schema.GetColumns(table.Name);
 
 			bool hasIdField = columns.Count(r => ToDotName(r.Name) == IdField) == 1;
-			string idType= string.Empty;
+			string idType = string.Empty;
 
 			foreach (var cl in columns)
 			{
@@ -86,93 +65,95 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 				if (!string.IsNullOrEmpty(cl.Sequence)) properties.AppendFormat("\t\t[Sequence(\"{0}\")]\n", cl.Sequence);
 				if (cl.IsPrimaryKey) properties.Append("\t\t[PrimaryKey]\n");
 				if (cl.AutoIncrement) properties.Append("\t\t[AutoIncrement]\n");
-				if ( TypeToString(cl.NetType)=="System.String"){
+				if (TypeToString(cl.NetType) == "System.String")
+				{
 					if (!cl.Nullable) properties.Append("\t\t[Required]\n");
-					properties.AppendFormat("\t\t[StringLength({0})]\n",cl.Length);
+					properties.AppendFormat("\t\t[StringLength({0})]\n", cl.Length);
 				}
-				if(cl.DbType.ToUpper()=="DECIMAL" || cl.DbType.ToUpper()=="NUMERIC")
-					properties.AppendFormat("\t\t[DecimalLength({0},{1})]\n",cl.Presicion, cl.Scale);
+				if (cl.DbType.ToUpper() == "DECIMAL" || cl.DbType.ToUpper() == "NUMERIC")
+					properties.AppendFormat("\t\t[DecimalLength({0},{1})]\n", cl.Presicion, cl.Scale);
 				if (cl.IsComputed) properties.Append("\t\t[Compute]\n");
-					
+
 				string propertyName;
-				if(cl.AutoIncrement && cl.IsPrimaryKey && !hasIdField){
-					propertyName= IdField;
+				if (cl.AutoIncrement && cl.IsPrimaryKey && !hasIdField)
+				{
+					propertyName = IdField;
 					idType = TypeToString(cl.NetType);
-					hasIdField=true;
+					hasIdField = true;
 				}
-				else{
-					propertyName= ToDotName(cl.Name);
-					if(propertyName==IdField) idType= TypeToString(cl.NetType);
-					else if(propertyName==className) propertyName= propertyName+"Name";
+				else
+				{
+					propertyName = ToDotName(cl.Name);
+					if (propertyName == IdField) idType = TypeToString(cl.NetType);
+					else if (propertyName == className) propertyName = propertyName + "Name";
 				}
-				
+
 				properties.AppendFormat("\t\tpublic {0}{1} {2} {{ get; set;}} \n\n",
-										TypeToString(cl.NetType),
-										(cl.Nullable && cl.NetType != typeof(string)) ? "?" : "",
-										 propertyName);
-				
-				if(GenerateMetadata){
-					if(meProperties.Length==0)
+				                        TypeToString(cl.NetType),
+				                        (cl.Nullable && cl.NetType != typeof (string)) ? "?" : "",
+				                        propertyName);
+
+				if (GenerateMetadata)
+				{
+					if (meProperties.Length == 0)
 						meProperties.AppendFormat("\n\t\t\tpublic static string ClassName {{ get {{ return \"{0}\"; }}}}",
 						                          className);
 					meProperties.AppendFormat("\n\t\t\tpublic static string {0} {{ get {{ return \"{0}\"; }}}}",
-					                         propertyName);
+					                          propertyName);
 				}
-				
 			}
-				    
+
 			if (!Directory.Exists(OutputDirectory))
 				Directory.CreateDirectory(OutputDirectory);
-			
-			string typesDir=Path.Combine(OutputDirectory,"Types");
-			
-			if(!Directory.Exists(typesDir))		
+
+			string typesDir = Path.Combine(OutputDirectory, "Types");
+
+			if (!Directory.Exists(typesDir))
 				Directory.CreateDirectory(typesDir);
-						
-			string attrDir=Path.Combine(OutputDirectory,"Attributes");
-			if(!Directory.Exists(attrDir))		
+
+			string attrDir = Path.Combine(OutputDirectory, "Attributes");
+			if (!Directory.Exists(attrDir))
 				Directory.CreateDirectory(attrDir);
-			
-			string servDir=Path.Combine(OutputDirectory,"Services");
-			if(!Directory.Exists(servDir))		
+
+			string servDir = Path.Combine(OutputDirectory, "Services");
+			if (!Directory.Exists(servDir))
 				Directory.CreateDirectory(servDir);
-			
+
 			using (TextWriter tw = new StreamWriter(Path.Combine(typesDir, className + ".cs")))
 			{
 				StringBuilder ns = new StringBuilder();
-				StringBuilder cl =  new StringBuilder();
+				StringBuilder cl = new StringBuilder();
 				StringBuilder me = new StringBuilder();
 				cl.AppendFormat("\t[Alias(\"{0}\")]\n", table.Name);
-				if(GenerateMetadata){
+				if (GenerateMetadata)
+				{
 					me.AppendFormat("\n\t\tpublic static class {0} {{\n\t\t\t{1}\n\n\t\t}}\n",
 					                MetadataClassName, meProperties.ToString());
-					
 				}
 				cl.AppendFormat("\tpublic partial class {0}{1}{{\n\n\t\tpublic {0}(){{}}\n\n{2}{3}\t}}",
-								className, 
-				                hasIdField?string.Format( ":IHasId<{0}>",idType):"", 
+				                className,
+				                hasIdField ? string.Format(":IHasId<{0}>", idType) : "",
 				                properties.ToString(),
 				                me.ToString());
-			
+
 				ns.AppendFormat("namespace {0}\n{{\n{1}\n}}", SpaceName, cl.ToString());
 				tw.WriteLine(Usings);
-				tw.WriteLine(ns.ToString());	
-				
+				tw.WriteLine(ns.ToString());
+
 				tw.Close();
 			}
-			
+
 			using (TextWriter twp = new StreamWriter(Path.Combine(attrDir, className + ".cs")))
 			{
-				twp.Write(string.Format(partialTemplate,SpaceName,className,IdField));				
+				twp.Write(string.Format(partialTemplate, SpaceName, className, IdField));
 				twp.Close();
 			}
-			
+
 			using (TextWriter twp = new StreamWriter(Path.Combine(servDir, className + "Service.cs")))
 			{
-				twp.Write(string.Format(serviceTemplate,SpaceName, ServiceNameSpace, className));				
+				twp.Write(string.Format(serviceTemplate, SpaceName, ServiceNameSpace, className));
 				twp.Close();
 			}
-			
 		}
 
 		public virtual void WriteClass(TProcedure procedure)
@@ -180,16 +161,14 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 			WriteClass(procedure, procedure.Name);
 		}
 
-		public virtual  void WriteClass(TProcedure procedure, string className)
+		public virtual void WriteClass(TProcedure procedure, string className)
 		{
-
 		}
 
 		protected string ToDotName(string name)
 		{
-
 			StringBuilder t = new StringBuilder();
-			string [] parts = name.Split('_');
+			string[] parts = name.Split('_');
 			foreach (var s in parts)
 			{
 				t.Append(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s.ToLower()));
@@ -203,8 +182,8 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 			string st = type.ToString();
 			return (!st.Contains("[")) ? st : st.Substring(st.IndexOf("[") + 1, st.IndexOf("]") - st.IndexOf("[") - 1);
 		}
-		
-		private string partialTemplate=@"using System;
+
+		private string partialTemplate = @"using System;
 using SimpleStack.ServiceHost;
 
 namespace {0}
@@ -218,9 +197,9 @@ namespace {0}
 	{{
 	}}
 }}";
-		
-		private string serviceTemplate =@"using System;
-﻿using SimpleStack.CacheAccess;
+
+		private string serviceTemplate = @"using System;
+ using SimpleStack.CacheAccess;
 using SimpleStack.Common;
 using SimpleStack.ServiceHost;
 using SimpleStack.ServiceInterface;
@@ -239,7 +218,5 @@ namespace {1}
 		
 	}}
 }}";
-		
-
 	}
 }

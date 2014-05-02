@@ -6,4 +6,3 @@ namespace SimpleStack.OrmLite.Oracle.DbSchema
 		Executable = 1
 	}
 }
-

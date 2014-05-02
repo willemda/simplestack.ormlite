@@ -2,34 +2,26 @@
 using NUnit.Framework;
 using SimpleStack.DataAnnotations;
 
-namespace SimpleStack.Common.Tests.Models{
-	
+namespace SimpleStack.Common.Tests.Models
+{
 	[Alias("ModelWIN")]
 	public class ModelWithIdAndName
 	{
 		[Sequence("ModelWIN_Id_GEN")]
-		public int Id
-		{
-			get;
-			set;
-		}
-	
-		public string Name
-		{
-			get;
-			set;
-		}
-	
+		public int Id { get; set; }
+
+		public string Name { get; set; }
+
 		public ModelWithIdAndName()
 		{
 		}
-	
+
 		public ModelWithIdAndName(int id)
 		{
 			this.Id = id;
 			this.Name = string.Concat("Name", id);
 		}
-	
+
 		public static void AssertIsEqual(ModelWithIdAndName actual, ModelWithIdAndName expected)
 		{
 			if (actual == null || expected == null)
@@ -40,12 +32,12 @@ namespace SimpleStack.Common.Tests.Models{
 			Assert.That(actual.Id, Is.EqualTo(expected.Id));
 			Assert.That(actual.Name, Is.EqualTo(expected.Name));
 		}
-	
+
 		public static ModelWithIdAndName Create(int id)
 		{
 			return new ModelWithIdAndName(id);
 		}
-	
+
 		public bool Equals(ModelWithIdAndName other)
 		{
 			if (object.ReferenceEquals(null, other))
@@ -62,7 +54,7 @@ namespace SimpleStack.Common.Tests.Models{
 			}
 			return false;
 		}
-	
+
 		public override bool Equals(object obj)
 		{
 			if (object.ReferenceEquals(null, obj))
@@ -73,16 +65,16 @@ namespace SimpleStack.Common.Tests.Models{
 			{
 				return true;
 			}
-			if (obj.GetType() != typeof(ModelWithIdAndName))
+			if (obj.GetType() != typeof (ModelWithIdAndName))
 			{
 				return false;
 			}
-			return this.Equals((ModelWithIdAndName)obj);
+			return this.Equals((ModelWithIdAndName) obj);
 		}
-	
+
 		public override int GetHashCode()
 		{
-			return this.Id * 397 ^  ( (this.Name != null) ? this.Name.GetHashCode() : 0) ;
+			return this.Id*397 ^ ((this.Name != null) ? this.Name.GetHashCode() : 0);
 		}
 	}
 }

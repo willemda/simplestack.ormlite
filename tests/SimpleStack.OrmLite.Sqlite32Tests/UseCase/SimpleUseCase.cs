@@ -42,17 +42,17 @@ namespace SimpleStack.OrmLite.Tests.UseCase
 		[Test]
 		public void Simple_CRUD_example()
 		{
-            var path = Config.SqliteFileDb;
-            if (File.Exists(path))
-                File.Delete(path);
+			var path = Config.SqliteFileDb;
+			if (File.Exists(path))
+				File.Delete(path);
 			//using (IDbConnection db = ":memory:".OpenDbConnection())
 			using (IDbConnection db = path.OpenDbConnection())
 			{
 				db.CreateTable<User>(true);
 
-				db.Insert(new User { Id = 1, Name = "A", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 2, Name = "B", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 3, Name = "B", CreatedDate = DateTime.Now });
+				db.Insert(new User {Id = 1, Name = "A", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 2, Name = "B", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 3, Name = "B", CreatedDate = DateTime.Now});
 
 				var rowsB = db.Select<User>("Name = {0}", "B");
 				var rowsB1 = db.Select<User>(user => user.Name == "B");
@@ -61,7 +61,7 @@ namespace SimpleStack.OrmLite.Tests.UseCase
 				Assert.That(rowsB1, Has.Count.EqualTo(2));
 
 				var rowIds = rowsB.ConvertAll(x => x.Id);
-				Assert.That(rowIds, Is.EquivalentTo(new List<long> { 2, 3 }));
+				Assert.That(rowIds, Is.EquivalentTo(new List<long> {2, 3}));
 
 				rowsB.ForEach(x => db.Delete(x));
 
@@ -80,18 +80,19 @@ namespace SimpleStack.OrmLite.Tests.UseCase
 		[Test]
 		public void Simple_CRUD_example2()
 		{
-            var path = Config.SqliteFileDb;
-			if(File.Exists(path))
+			var path = Config.SqliteFileDb;
+			if (File.Exists(path))
 				File.Delete(path);
 			//using (IDbConnection db = ":memory:".OpenDbConnection())
 			using (IDbConnection db = path.OpenDbConnection())
 			{
-                db.ExecuteSql("PRAGMA synchronous = OFF; PRAGMA page_size = 4096; PRAGMA cache_size = 3000; PRAGMA journal_mode = OFF;");
+				db.ExecuteSql(
+					"PRAGMA synchronous = OFF; PRAGMA page_size = 4096; PRAGMA cache_size = 3000; PRAGMA journal_mode = OFF;");
 
 				db.CreateTable<User2>(false);
 
 				// we have to do a custom insert because the provider base ignores AutoInc columns
-                db.ExecuteSql("INSERT INTO Users VALUES(5000000000, -1)");
+				db.ExecuteSql("INSERT INTO Users VALUES(5000000000, -1)");
 
 				var obj1 = new User2 {Value = 6000000000L};
 				db.Insert(obj1);
@@ -104,7 +105,5 @@ namespace SimpleStack.OrmLite.Tests.UseCase
 			}
 			File.Delete(path);
 		}
-
 	}
-
 }

@@ -7,7 +7,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class TaskQueue
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(TaskQueue));
+		private static readonly ILog Log = LogManager.GetLogger(typeof (TaskQueue));
 
 		public const string TaskLoad = "Load";
 		public const string TaskIndex = "Index";
@@ -41,13 +41,14 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public static TaskQueue Create(int id)
 		{
-			return new TaskQueue {
-				ContentUrn = "urn:track:" + id,
-				CreatedDate = DateTime.Now,
-				Task = TaskLoad,
-				Status = StatusPending,
-				NoOfAttempts = 0,
-			};
+			return new TaskQueue
+				       {
+					       ContentUrn = "urn:track:" + id,
+					       CreatedDate = DateTime.Now,
+					       Task = TaskLoad,
+					       Status = StatusPending,
+					       NoOfAttempts = 0,
+				       };
 		}
 
 		public static void AssertIsEqual(TaskQueue actual, TaskQueue expected)
@@ -69,6 +70,5 @@ namespace SimpleStack.OrmLite.Tests.Shared
 			Assert.That(actual.NoOfAttempts, Is.EqualTo(expected.NoOfAttempts));
 			Assert.That(actual.ErrorMessage, Is.EqualTo(expected.ErrorMessage));
 		}
-
 	}
 }

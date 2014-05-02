@@ -10,7 +10,6 @@ namespace SimpleStack.OrmLite.Tests
 	public class OrmLiteInsertTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_insert_into_ModelWithFieldsOfDifferentTypes_table()
 		{
@@ -108,8 +107,8 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<ModelWithIdAndName1>(true);
 
-                var row1 = new ModelWithIdAndName1() { Name = "A", Id = 4 };
-                var row2 = new ModelWithIdAndName1() { Name = "B", Id = 5 };
+				var row1 = new ModelWithIdAndName1() {Name = "A", Id = 4};
+				var row2 = new ModelWithIdAndName1() {Name = "B", Id = 5};
 
 				db.Insert(row1);
 				var row1LastInsertId = db.GetLastInsertId();
@@ -117,8 +116,8 @@ namespace SimpleStack.OrmLite.Tests
 				db.Insert(row2);
 				var row2LastInsertId = db.GetLastInsertId();
 
-                var insertedRow1 = db.GetById<ModelWithIdAndName1>(row1LastInsertId);
-                var insertedRow2 = db.GetById<ModelWithIdAndName1>(row2LastInsertId);
+				var insertedRow1 = db.GetById<ModelWithIdAndName1>(row1LastInsertId);
+				var insertedRow2 = db.GetById<ModelWithIdAndName1>(row2LastInsertId);
 
 				Assert.That(insertedRow1.Name, Is.EqualTo(row1.Name));
 				Assert.That(insertedRow2.Name, Is.EqualTo(row2.Name));
@@ -133,14 +132,14 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<ModelWithIdAndName1>(true);
 
-				var row1 = new ModelWithIdAndName1() { Name = @"'", Id = 55};
-				
+				var row1 = new ModelWithIdAndName1() {Name = @"'", Id = 55};
+
 				db.Insert(row1);
 				var row1LastInsertId = db.GetLastInsertId();
-                
+
 				var insertedRow1 = db.GetById<ModelWithIdAndName1>(row1LastInsertId);
-			 
-				Assert.That(insertedRow1.Name, Is.EqualTo(row1.Name));				 
+
+				Assert.That(insertedRow1.Name, Is.EqualTo(row1.Name));
 			}
 		}
 
@@ -167,41 +166,41 @@ namespace SimpleStack.OrmLite.Tests
 		}
 
 
-	//	[Test]
-	//	public void Can_insert_table_with_blobs()
-	//	{
-	//		using (var db = OpenDbConnection())
-	//		{
-	//			db.CreateTable<OrderBlob>(true);
+		//	[Test]
+		//	public void Can_insert_table_with_blobs()
+		//	{
+		//		using (var db = OpenDbConnection())
+		//		{
+		//			db.CreateTable<OrderBlob>(true);
 
-	//			var row = OrderBlob.Create(1);
+		//			var row = OrderBlob.Create(1);
 
-	//			db.Insert(row);
+		//			db.Insert(row);
 
-	//			var rows = db.Select<OrderBlob>();
+		//			var rows = db.Select<OrderBlob>();
 
-	//			Assert.That(rows, Has.Count.EqualTo(1));
+		//			Assert.That(rows, Has.Count.EqualTo(1));
 
-	//			var newRow = rows[0];
+		//			var newRow = rows[0];
 
-	//			Assert.That(newRow.Id, Is.EqualTo(row.Id));
-	//			Assert.That(newRow.Customer.Id, Is.EqualTo(row.Customer.Id));
-	//			Assert.That(newRow.Employee.Id, Is.EqualTo(row.Employee.Id));
-	//			Assert.That(newRow.IntIds, Is.EquivalentTo(row.IntIds));
-	//			Assert.That(newRow.CharMap, Is.EquivalentTo(row.CharMap));
-	//			Assert.That(newRow.OrderDetails.Count, Is.EqualTo(row.OrderDetails.Count));
-	//			Assert.That(newRow.OrderDetails[0].ProductId, Is.EqualTo(row.OrderDetails[0].ProductId));
-	//			Assert.That(newRow.OrderDetails[1].ProductId, Is.EqualTo(row.OrderDetails[1].ProductId));
-	//			Assert.That(newRow.OrderDetails[2].ProductId, Is.EqualTo(row.OrderDetails[2].ProductId));
-	//		}
-	//	}
+		//			Assert.That(newRow.Id, Is.EqualTo(row.Id));
+		//			Assert.That(newRow.Customer.Id, Is.EqualTo(row.Customer.Id));
+		//			Assert.That(newRow.Employee.Id, Is.EqualTo(row.Employee.Id));
+		//			Assert.That(newRow.IntIds, Is.EquivalentTo(row.IntIds));
+		//			Assert.That(newRow.CharMap, Is.EquivalentTo(row.CharMap));
+		//			Assert.That(newRow.OrderDetails.Count, Is.EqualTo(row.OrderDetails.Count));
+		//			Assert.That(newRow.OrderDetails[0].ProductId, Is.EqualTo(row.OrderDetails[0].ProductId));
+		//			Assert.That(newRow.OrderDetails[1].ProductId, Is.EqualTo(row.OrderDetails[1].ProductId));
+		//			Assert.That(newRow.OrderDetails[2].ProductId, Is.EqualTo(row.OrderDetails[2].ProductId));
+		//		}
+		//	}
 	}
 
-    class ModelWithIdAndName1
-    {
-        [AutoIncrement]
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+	internal class ModelWithIdAndName1
+	{
+		[AutoIncrement]
+		public int Id { get; set; }
 
+		public string Name { get; set; }
+	}
 }

@@ -10,74 +10,74 @@ using SimpleStack.OrmLite.Oracle.DbSchema;
 
 namespace TestClassWriter
 {
-	class MainClass
+	internal class MainClass
 	{
-		public static void Main (string[] args)
+		public static void Main(string[] args)
 		{
-
-            OrmLiteConfig.DialectProvider = new OracleOrmLiteDialectProvider();
+			OrmLiteConfig.DialectProvider = new OracleOrmLiteDialectProvider();
 			using (IDbConnection db =
-                "Data Source=x;User Id=x;Password=x;".OpenDbConnection())
-			using ( IDbCommand dbConn = db.CreateCommand())
+				"Data Source=x;User Id=x;Password=x;".OpenDbConnection())
+			using (IDbCommand dbConn = db.CreateCommand())
 			{
-				Schema fbd= new Schema(){
-					Connection = db
-				};
+				Schema fbd = new Schema()
+					             {
+						             Connection = db
+					             };
 
-				ClassWriter cw = new ClassWriter(){
-					Schema=fbd,
-					GenerateMetadata=true,
-					//SpaceName= "your.app.namespace",
-					//OutputDirectory="outputpath"
-					//Usings="Using System;\nUsing System.Data\n"
-				};
+				ClassWriter cw = new ClassWriter()
+					                 {
+						                 Schema = fbd,
+						                 GenerateMetadata = true,
+						                 //SpaceName= "your.app.namespace",
+						                 //OutputDirectory="outputpath"
+						                 //Usings="Using System;\nUsing System.Data\n"
+					                 };
 
-				foreach(var t in fbd.Tables){
+				foreach (var t in fbd.Tables)
+				{
 					Console.Write("Generating POCO Class for table:'{0}'...", t.Name);
-					cw.WriteClass( t);	
+					cw.WriteClass(t);
 					Console.WriteLine(" Done.");
 				}
 				Console.WriteLine("---------------------------------");
 				Console.WriteLine("See classes in: '{0}'", cw.OutputDirectory);
-				
+
 				//compilar ...
 				CompilerParameters cp = new CompilerParameters();
-				cp.GenerateExecutable=false;
-				cp.GenerateInMemory=false;
+				cp.GenerateExecutable = false;
+				cp.GenerateInMemory = false;
 				cp.ReferencedAssemblies.AddRange(
-					new string[]{
-						"System.dll",
-						"System.ComponentModel.DataAnnotations.dll",
-						Path.Combine( Directory.GetCurrentDirectory(), "SimpleStack.OrmLite.dll"),
-						Path.Combine( Directory.GetCurrentDirectory(), "SimpleStack.Common.dll"),
-						Path.Combine( Directory.GetCurrentDirectory(),"SimpleStack.Interfaces.dll")
-				});
-				cp.OutputAssembly= Path.Combine(cw.OutputDirectory, cw.SpaceName+".dll");
-				
-				var providerOptions = new Dictionary<string,string>();
-    			providerOptions.Add("CompilerVersion", "v3.5");
-				
-				CodeDomProvider cdp =new CSharpCodeProvider(providerOptions);
-			
-				string [] files = Directory.GetFiles(cw.OutputDirectory,"*.cs");
-				CompilerResults cr= cdp.CompileAssemblyFromFile(cp, files);
-				
-				if( cr.Errors.Count==0){
-					Console.WriteLine("Generated file {0}", Path.Combine(cw.OutputDirectory, cw.SpaceName+".dll")); 
-				}
-            	else{							
-            		foreach (CompilerError ce in cr.Errors)
-                		Console.WriteLine(ce.ErrorText);
-				}
-				
-						
-			
+					new string[]
+						{
+							"System.dll",
+							"System.ComponentModel.DataAnnotations.dll",
+							Path.Combine(Directory.GetCurrentDirectory(), "SimpleStack.OrmLite.dll"),
+							Path.Combine(Directory.GetCurrentDirectory(), "SimpleStack.Common.dll"),
+							Path.Combine(Directory.GetCurrentDirectory(), "SimpleStack.Interfaces.dll")
+						});
+				cp.OutputAssembly = Path.Combine(cw.OutputDirectory, cw.SpaceName + ".dll");
 
+				var providerOptions = new Dictionary<string, string>();
+				providerOptions.Add("CompilerVersion", "v3.5");
+
+				CodeDomProvider cdp = new CSharpCodeProvider(providerOptions);
+
+				string[] files = Directory.GetFiles(cw.OutputDirectory, "*.cs");
+				CompilerResults cr = cdp.CompileAssemblyFromFile(cp, files);
+
+				if (cr.Errors.Count == 0)
+				{
+					Console.WriteLine("Generated file {0}", Path.Combine(cw.OutputDirectory, cw.SpaceName + ".dll"));
+				}
+				else
+				{
+					foreach (CompilerError ce in cr.Errors)
+						Console.WriteLine(ce.ErrorText);
+				}
 			}
 
 
-			Console.WriteLine ("This is The End my friend!");
-			
+			Console.WriteLine("This is The End my friend!");
 		}
 	}
 }

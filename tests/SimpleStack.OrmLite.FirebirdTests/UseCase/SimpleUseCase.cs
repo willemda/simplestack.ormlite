@@ -17,16 +17,15 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			//Inject your database provider here
 			OrmLiteConfig.DialectProvider = new FirebirdOrmLiteDialectProvider();
 		}
-		
-		
+
+
 		public class User
-		{	
+		{
 			public long Id { get; set; }
 
 			[Index]
-			
-			public string Name { get; set; }	
-			
+			public string Name { get; set; }
+
 			public DateTime CreatedDate { get; set; }
 		}
 
@@ -38,20 +37,23 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Simple_CRUD_example()
 		{
-			using (IDbConnection db = "User=SYSDBA;Password=masterkey;Database=ormlite-tests.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;".OpenDbConnection())
+			using (
+				IDbConnection db =
+					"User=SYSDBA;Password=masterkey;Database=ormlite-tests.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;"
+						.OpenDbConnection())
 			{
 				db.CreateTable<User>(true);
-				
-				db.Insert(new User { Id = 1, Name = "A", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 2, Name = "B", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 3, Name = "B", CreatedDate = DateTime.Now });
-				
+
+				db.Insert(new User {Id = 1, Name = "A", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 2, Name = "B", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 3, Name = "B", CreatedDate = DateTime.Now});
+
 				var rowsB = db.Select<User>("Name = {0}", "B");
 
 				Assert.That(rowsB, Has.Count.EqualTo(2));
 
 				var rowIds = rowsB.ConvertAll(x => x.Id);
-				Assert.That(rowIds, Is.EquivalentTo(new List<long> { 2, 3 }));
+				Assert.That(rowIds, Is.EquivalentTo(new List<long> {2, 3}));
 
 				rowsB.ForEach(x => db.Delete(x));
 
@@ -65,13 +67,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 
 				db.CreateTable<GuidId>(true);
 				Guid g = Guid.NewGuid();
-				db.Insert(new GuidId { Id = g });
+				db.Insert(new GuidId {Id = g});
 
 				GuidId gid = db.First<GuidId>("Id = {0}", g);
 				Assert.That(g == gid.Id);
 			}
 		}
-
 	}
-	
 }

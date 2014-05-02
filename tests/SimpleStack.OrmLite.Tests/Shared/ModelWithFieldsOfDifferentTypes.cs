@@ -8,7 +8,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 {
 	public class ModelWithFieldsOfDifferentTypesAsNullables
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(ModelWithFieldsOfDifferentTypesAsNullables));
+		private static readonly ILog Log = LogManager.GetLogger(typeof (ModelWithFieldsOfDifferentTypesAsNullables));
 
 		public int? Id { get; set; }
 
@@ -26,35 +26,38 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public static ModelWithFieldsOfDifferentTypesAsNullables Create(int id)
 		{
-			var row = new ModelWithFieldsOfDifferentTypesAsNullables {
-				Id = id,
-				Bool = id % 2 == 0,
-				DateTime = System.DateTime.Now.AddDays(id),
-				Double = 1.11d + id,
-				Guid = System.Guid.NewGuid(),
-				LongId = 999 + id,
-				Name = "Name" + id
-			};
+			var row = new ModelWithFieldsOfDifferentTypesAsNullables
+				          {
+					          Id = id,
+					          Bool = id%2 == 0,
+					          DateTime = System.DateTime.Now.AddDays(id),
+					          Double = 1.11d + id,
+					          Guid = System.Guid.NewGuid(),
+					          LongId = 999 + id,
+					          Name = "Name" + id
+				          };
 
 			return row;
 		}
 
 		public static ModelWithFieldsOfDifferentTypesAsNullables CreateConstant(int id)
 		{
-			var row = new ModelWithFieldsOfDifferentTypesAsNullables {
-				Id = id,
-				Bool = id % 2 == 0,
-				DateTime = new DateTime(1979, (id % 12) + 1, (id % 28) + 1),
-				Double = 1.11d + id,
-				Guid = new Guid(((id % 240) + 16).ToString("X") + "726E3B-9983-40B4-A8CB-2F8ADA8C8760"),
-				LongId = 999 + id,
-				Name = "Name" + id
-			};
+			var row = new ModelWithFieldsOfDifferentTypesAsNullables
+				          {
+					          Id = id,
+					          Bool = id%2 == 0,
+					          DateTime = new DateTime(1979, (id%12) + 1, (id%28) + 1),
+					          Double = 1.11d + id,
+					          Guid = new Guid(((id%240) + 16).ToString("X") + "726E3B-9983-40B4-A8CB-2F8ADA8C8760"),
+					          LongId = 999 + id,
+					          Name = "Name" + id
+				          };
 
 			return row;
 		}
 
-		public static void AssertIsEqual(ModelWithFieldsOfDifferentTypes actual, ModelWithFieldsOfDifferentTypesAsNullables expected)
+		public static void AssertIsEqual(ModelWithFieldsOfDifferentTypes actual,
+		                                 ModelWithFieldsOfDifferentTypesAsNullables expected)
 		{
 			Assert.That(actual.Id, Is.EqualTo(expected.Id.Value));
 			Assert.That(actual.Name, Is.EqualTo(expected.Name));
@@ -82,10 +85,10 @@ namespace SimpleStack.OrmLite.Tests.Shared
 		}
 	}
 
-	
+
 	public class ModelWithFieldsOfDifferentTypes
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(ModelWithFieldsOfDifferentTypes));
+		private static readonly ILog Log = LogManager.GetLogger(typeof (ModelWithFieldsOfDifferentTypes));
 
 		[AutoIncrement]
 		public int Id { get; set; }
@@ -104,30 +107,32 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public static ModelWithFieldsOfDifferentTypes Create(int id)
 		{
-			var row = new ModelWithFieldsOfDifferentTypes {
-				Id = id,
-				Bool = id % 2 == 0,
-				DateTime = DateTime.Now.AddDays(id),
-				Double = 1.11d + id,
-				Guid = Guid.NewGuid(),
-				LongId = 999 + id,
-				Name = "Name" + id
-			};
+			var row = new ModelWithFieldsOfDifferentTypes
+				          {
+					          Id = id,
+					          Bool = id%2 == 0,
+					          DateTime = DateTime.Now.AddDays(id),
+					          Double = 1.11d + id,
+					          Guid = Guid.NewGuid(),
+					          LongId = 999 + id,
+					          Name = "Name" + id
+				          };
 
 			return row;
 		}
 
 		public static ModelWithFieldsOfDifferentTypes CreateConstant(int id)
 		{
-			var row = new ModelWithFieldsOfDifferentTypes {
-				Id = id,
-				Bool = id % 2 == 0,
-				DateTime = new DateTime(1979, (id % 12) + 1, (id % 28) + 1),
-				Double = 1.11d + id,
-				Guid = new Guid(((id % 240) + 16).ToString("X") + "726E3B-9983-40B4-A8CB-2F8ADA8C8760"),
-				LongId = 999 + id,
-				Name = "Name" + id
-			};
+			var row = new ModelWithFieldsOfDifferentTypes
+				          {
+					          Id = id,
+					          Bool = id%2 == 0,
+					          DateTime = new DateTime(1979, (id%12) + 1, (id%28) + 1),
+					          Double = 1.11d + id,
+					          Guid = new Guid(((id%240) + 16).ToString("X") + "726E3B-9983-40B4-A8CB-2F8ADA8C8760"),
+					          LongId = 999 + id,
+					          Name = "Name" + id
+				          };
 
 			return row;
 		}

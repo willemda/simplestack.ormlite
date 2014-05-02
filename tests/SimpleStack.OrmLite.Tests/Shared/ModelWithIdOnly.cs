@@ -13,6 +13,5 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		// must be long as you cannot have a table with only an autoincrement field
 		public long Id { get; set; }
-
 	}
 }

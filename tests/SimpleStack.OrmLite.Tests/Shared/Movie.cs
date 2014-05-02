@@ -38,7 +38,9 @@ namespace SimpleStack.OrmLite.Tests.Shared
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
-			return Equals(other.Id, Id) && Equals(other.Title, Title) && other.Rating == Rating && Equals(other.Director, Director) && other.ReleaseDate.Equals(ReleaseDate) && Equals(other.TagLine, TagLine) && EnumerableExtensions.EquivalentTo(Genres, other.Genres);
+			return Equals(other.Id, Id) && Equals(other.Title, Title) && other.Rating == Rating &&
+			       Equals(other.Director, Director) && other.ReleaseDate.Equals(ReleaseDate) && Equals(other.TagLine, TagLine) &&
+			       EnumerableExtensions.EquivalentTo(Genres, other.Genres);
 		}
 
 		public override bool Equals(object obj)

@@ -56,10 +56,10 @@ namespace Northwind.Common.DataModel
 
 		public byte[] Photo { get; set; }
 
-        [StringLength(8000)]
+		[StringLength(8000)]
 		public string Notes { get; set; }
 
-		[References(typeof(Employee))]
+		[References(typeof (Employee))]
 		public int? ReportsTo { get; set; }
 
 		[StringLength(255)]
@@ -201,13 +201,13 @@ namespace Northwind.Common.DataModel
 		public int Id { get; set; }
 
 		[Index]
-		[References(typeof(Customer))]
+		[References(typeof (Customer))]
 		[Alias("CustomerID")]
 		[StringLength(5)]
 		public string CustomerId { get; set; }
 
 		[Index]
-		[References(typeof(Employee))]
+		[References(typeof (Employee))]
 		[Alias("EmployeeID")]
 		public int EmployeeId { get; set; }
 
@@ -220,7 +220,7 @@ namespace Northwind.Common.DataModel
 		public DateTime? ShippedDate { get; set; }
 
 		[Index]
-		[References(typeof(Shipper))]
+		[References(typeof (Shipper))]
 		public int? ShipVia { get; set; }
 
 		public decimal Freight { get; set; }
@@ -260,12 +260,12 @@ namespace Northwind.Common.DataModel
 
 		[Index]
 		[Alias("SupplierID")]
-		[References(typeof(Supplier))]		
+		[References(typeof (Supplier))]
 		public int SupplierId { get; set; }
 
 		[Index]
 		[Alias("CategoryID")]
-		[References(typeof(Category))]
+		[References(typeof (Category))]
 		public int CategoryId { get; set; }
 
 		[StringLength(20)]
@@ -290,16 +290,19 @@ namespace Northwind.Common.DataModel
 	public class OrderDetail
 		: IHasStringId
 	{
-		public string Id { get { return this.OrderId + "/" + this.ProductId; } }
+		public string Id
+		{
+			get { return this.OrderId + "/" + this.ProductId; }
+		}
 
 		[Index]
 		[Alias("OrderID")]
-		[References(typeof(Order))]
+		[References(typeof (Order))]
 		public int OrderId { get; set; }
 
 		[Index]
 		[Alias("ProductID")]
-		[References(typeof(Product))]
+		[References(typeof (Product))]
 		public int ProductId { get; set; }
 
 		[Range(0, double.MaxValue)]
@@ -359,7 +362,7 @@ namespace Northwind.Common.DataModel
 		public string TerritoryDescription { get; set; }
 
 		[Alias("RegionID")]
-		[References(typeof(Region))]
+		[References(typeof (Region))]
 		public int RegionId { get; set; }
 	}
 
@@ -367,7 +370,10 @@ namespace Northwind.Common.DataModel
 	public class EmployeeTerritory
 		: IHasStringId
 	{
-		public string Id { get { return this.EmployeeId + "/" + this.TerritoryId; } }
+		public string Id
+		{
+			get { return this.EmployeeId + "/" + this.TerritoryId; }
+		}
 
 		[Alias("EmployeeID")]
 		public int EmployeeId { get; set; }

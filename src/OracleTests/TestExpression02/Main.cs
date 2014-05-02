@@ -2,11 +2,11 @@ using System;
 
 namespace TestExpression02
 {
-	class MainClass
+	internal class MainClass
 	{
-		public static void Main (string[] args)
+		public static void Main(string[] args)
 		{
-			Console.WriteLine ("Hello World!");
+			Console.WriteLine("Hello World!");
 		}
 	}
 }

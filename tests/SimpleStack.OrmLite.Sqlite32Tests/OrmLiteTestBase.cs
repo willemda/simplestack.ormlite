@@ -9,12 +9,12 @@ using SimpleStack.OrmLite.Sqlite;
 
 namespace SimpleStack.OrmLite.Tests
 {
-    public class Config
-    {
-        public static string SqliteMemoryDb = ":memory:";
-        public static string SqliteFileDir = "~/App_Data/".MapAbsolutePath();
-        public static string SqliteFileDb = "~/App_Data/db.sqlite".MapAbsolutePath();
-    }
+	public class Config
+	{
+		public static string SqliteMemoryDb = ":memory:";
+		public static string SqliteFileDir = "~/App_Data/".MapAbsolutePath();
+		public static string SqliteFileDb = "~/App_Data/db.sqlite".MapAbsolutePath();
+	}
 
 	public class OrmLiteTestBase
 	{
@@ -22,7 +22,7 @@ namespace SimpleStack.OrmLite.Tests
 
 		protected virtual string GetFileConnectionString()
 		{
-            var connectionString = Config.SqliteFileDb;
+			var connectionString = Config.SqliteFileDb;
 			if (File.Exists(connectionString))
 				File.Delete(connectionString);
 
@@ -53,27 +53,27 @@ namespace SimpleStack.OrmLite.Tests
 			Console.WriteLine(text);
 		}
 
-        public IDbConnection InMemoryDbConnection { get; set; }
+		public IDbConnection InMemoryDbConnection { get; set; }
 
-        public IDbConnection OpenDbConnection(string connString = null)
-        {
-            connString = connString ?? ConnectionString;
-            if (connString == ":memory:")
-            {
-                if (InMemoryDbConnection == null)
-                {
-                    var dbConn = connString.OpenDbConnection();
-                    InMemoryDbConnection = new OrmLiteConnectionWrapper(dbConn)
-                    {
-                        DialectProvider = OrmLiteConfig.DialectProvider,
-                        AutoDisposeConnection = false,
-                    };
-                }
+		public IDbConnection OpenDbConnection(string connString = null)
+		{
+			connString = connString ?? ConnectionString;
+			if (connString == ":memory:")
+			{
+				if (InMemoryDbConnection == null)
+				{
+					var dbConn = connString.OpenDbConnection();
+					InMemoryDbConnection = new OrmLiteConnectionWrapper(dbConn)
+						                       {
+							                       DialectProvider = OrmLiteConfig.DialectProvider,
+							                       AutoDisposeConnection = false,
+						                       };
+				}
 
-                return InMemoryDbConnection;
-            }
+				return InMemoryDbConnection;
+			}
 
-            return connString.OpenDbConnection();
-        }
-    }
+			return connString.OpenDbConnection();
+		}
+	}
 }

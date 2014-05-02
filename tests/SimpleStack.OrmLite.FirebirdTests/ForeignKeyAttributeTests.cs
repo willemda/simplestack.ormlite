@@ -14,7 +14,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<ReferencedType>(true);
 			}
 		}
-		
+
 		[Test]
 		public void CanCreateSimpleForeignKey()
 		{
@@ -23,7 +23,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithSimpleForeignKey>(true);
 			}
 		}
-		
+
 		[Test]
 		public void CanCreateForeignWithOnDeleteCascade()
 		{
@@ -32,27 +32,27 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithOnDeleteCascade>(true);
 			}
 		}
-		
+
 		[Test]
 		public void CascadesOnDelete()
 		{
 			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<TypeWithOnDeleteCascade>(true);
-				
-				db.Save(new ReferencedType { Id = 1 });
-				db.Save(new TypeWithOnDeleteCascade { RefId = 1 });
-				
+
+				db.Save(new ReferencedType {Id = 1});
+				db.Save(new TypeWithOnDeleteCascade {RefId = 1});
+
 				Assert.AreEqual(1, db.Select<ReferencedType>().Count);
 				Assert.AreEqual(1, db.Select<TypeWithOnDeleteCascade>().Count);
-				
+
 				db.Delete<ReferencedType>(r => r.Id == 1);
-				
+
 				Assert.AreEqual(0, db.Select<ReferencedType>().Count);
 				Assert.AreEqual(0, db.Select<TypeWithOnDeleteCascade>().Count);
 			}
 		}
-		
+
 		[Test]
 		public void CanCreateForeignWithOnDeleteCascadeAndOnUpdateCascade()
 		{
@@ -61,7 +61,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithOnDeleteAndUpdateCascade>(true);
 			}
 		}
-		
+
 		[Test]
 		public void CanCreateForeignWithOnDeleteNoAction()
 		{
@@ -70,7 +70,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithOnDeleteNoAction>(true);
 			}
 		}
-		
+
 		[Test]
 		public void CanCreateForeignWithOnDeleteRestrict()
 		{
@@ -79,7 +79,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithOnDeleteRestrict>(true);
 			}
 		}
-		
+
 
 		[Test]
 		public void CanCreateForeignWithOnDeleteSetDefault()
@@ -89,7 +89,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithOnDeleteSetDefault>(true);
 			}
 		}
-		
+
 		[Test]
 		public void CanCreateForeignWithOnDeleteSetNull()
 		{
@@ -98,7 +98,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				db.CreateTable<TypeWithOnDeleteSetNull>(true);
 			}
 		}
-		
+
 		[TestFixtureTearDown]
 		public void TearDwon()
 		{
@@ -115,19 +115,20 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			}
 		}
 	}
-	
+
 	public class ReferencedType
 	{
 		public int Id { get; set; }
 	}
-	
+
 
 	[Alias("TWSKF")]
 	public class TypeWithSimpleForeignKey
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		[References(typeof(ReferencedType))]
+
+		[References(typeof (ReferencedType))]
 		public int RefId { get; set; }
 	}
 
@@ -136,8 +137,8 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		
-		[ForeignKey(typeof(ReferencedType), OnDelete = "CASCADE", ForeignKeyName="FK_DC")]
+
+		[ForeignKey(typeof (ReferencedType), OnDelete = "CASCADE", ForeignKeyName = "FK_DC")]
 		public int? RefId { get; set; }
 	}
 
@@ -146,8 +147,8 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		
-		[ForeignKey(typeof(ReferencedType), OnDelete = "CASCADE", OnUpdate = "CASCADE", ForeignKeyName="FK_DC_UC")]
+
+		[ForeignKey(typeof (ReferencedType), OnDelete = "CASCADE", OnUpdate = "CASCADE", ForeignKeyName = "FK_DC_UC")]
 		public int? RefId { get; set; }
 	}
 
@@ -156,8 +157,8 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		
-		[ForeignKey(typeof(ReferencedType), OnDelete = "NO ACTION", ForeignKeyName="FK_DNA")]
+
+		[ForeignKey(typeof (ReferencedType), OnDelete = "NO ACTION", ForeignKeyName = "FK_DNA")]
 		public int? RefId { get; set; }
 	}
 
@@ -166,8 +167,8 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		
-		[ForeignKey(typeof(ReferencedType), OnDelete = "RESTRICT", ForeignKeyName="FK_DR")]
+
+		[ForeignKey(typeof (ReferencedType), OnDelete = "RESTRICT", ForeignKeyName = "FK_DR")]
 		public int? RefId { get; set; }
 	}
 
@@ -176,9 +177,9 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		
-		[Default(typeof(int), "17")]
-		[ForeignKey(typeof(ReferencedType), OnDelete = "SET DEFAULT", ForeignKeyName="FK_DDF")]
+
+		[Default(typeof (int), "17")]
+		[ForeignKey(typeof (ReferencedType), OnDelete = "SET DEFAULT", ForeignKeyName = "FK_DDF")]
 		public int RefId { get; set; }
 	}
 
@@ -187,8 +188,8 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	{
 		[AutoIncrement]
 		public int Id { get; set; }
-		
-		[ForeignKey(typeof(ReferencedType), OnDelete = "SET NULL", ForeignKeyName="FKSN")]
+
+		[ForeignKey(typeof (ReferencedType), OnDelete = "SET NULL", ForeignKeyName = "FKSN")]
 		public int? RefId { get; set; }
 	}
 }

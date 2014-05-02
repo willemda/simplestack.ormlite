@@ -15,7 +15,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 			Name = "Name" + id;
 		}
 
-        [AutoIncrement]
+		[AutoIncrement]
 		public int Id { get; set; }
 
 		public string Name { get; set; }

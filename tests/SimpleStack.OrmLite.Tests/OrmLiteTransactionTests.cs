@@ -8,7 +8,7 @@ using SimpleStack.Text;
 namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
-	public class OrmLiteTransactionTests 
+	public class OrmLiteTransactionTests
 		: OrmLiteTestBase
 	{
 		[Test]
@@ -38,12 +38,12 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Transaction_rollsback_if_not_committed()
 		{
-            using (var db = Config.OpenDbConnection())
+			using (var db = Config.OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 				db.Insert(new ModelWithIdAndName(1));
 
-                using (var dbTrans = db.OpenTransaction())
+				using (var dbTrans = db.OpenTransaction())
 				{
 					db.Insert(new ModelWithIdAndName(2));
 					db.Insert(new ModelWithIdAndName(3));
@@ -60,15 +60,15 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Transaction_rollsback_transactions_to_different_tables()
 		{
-            using (var db = Config.OpenDbConnection())
+			using (var db = Config.OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
-                db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
 				db.Insert(new ModelWithIdAndName(1));
 
-                using (var dbTrans = db.OpenTransaction())
+				using (var dbTrans = db.OpenTransaction())
 				{
 					db.Insert(new ModelWithIdAndName(2));
 					db.Insert(ModelWithFieldsOfDifferentTypes.Create(3));
@@ -88,15 +88,15 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Transaction_commits_inserts_to_different_tables()
 		{
-            using (var db = Config.OpenDbConnection())
+			using (var db = Config.OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
-                db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
 				db.Insert(new ModelWithIdAndName(1));
 
-                using (var dbTrans = db.OpenTransaction())
+				using (var dbTrans = db.OpenTransaction())
 				{
 					db.Insert(new ModelWithIdAndName(2));
 					db.Insert(ModelWithFieldsOfDifferentTypes.Create(3));
@@ -114,86 +114,86 @@ namespace SimpleStack.OrmLite.Tests
 				Assert.That(db.Select<ModelWithOnlyStringFields>(), Has.Count.EqualTo(1));
 			}
 		}
-        
-        class MyTable
-        {
-            [AutoIncrement]
-            public int Id { get; set; }
-            public String SomeTextField { get; set; }
-        }
 
-        [Test]
-        public void Does_Sqlite_transactions()
-        {
-            var factory = new OrmLiteConnectionFactory(":memory:", true, SqliteDialect.Provider);
+		private class MyTable
+		{
+			[AutoIncrement]
+			public int Id { get; set; }
 
-            // test 1 - no transactions
-            try
-            {
-                using (var conn = factory.OpenDbConnection())
-                {
-                    conn.CreateTable<MyTable>();
+			public String SomeTextField { get; set; }
+		}
 
-                    conn.Insert(new MyTable { SomeTextField = "Example" });
-                    var record = conn.GetById<MyTable>(1);
-                }
+		[Test]
+		public void Does_Sqlite_transactions()
+		{
+			var factory = new OrmLiteConnectionFactory(":memory:", true, SqliteDialect.Provider);
 
-                "Test 1 Success".Print();
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Test 1 Failed: {0}".Fmt(e.Message));
-            }
+			// test 1 - no transactions
+			try
+			{
+				using (var conn = factory.OpenDbConnection())
+				{
+					conn.CreateTable<MyTable>();
 
-            // test 2 - all transactions
-            try
-            {
-                using (var conn = factory.OpenDbConnection())
-                {
-                    conn.CreateTable<MyTable>();
+					conn.Insert(new MyTable {SomeTextField = "Example"});
+					var record = conn.GetById<MyTable>(1);
+				}
 
-                    using (var tran = conn.OpenTransaction())
-                    {
-                        conn.Insert(new MyTable { SomeTextField = "Example" });
-                        tran.Commit();
-                    }
+				"Test 1 Success".Print();
+			}
+			catch (Exception e)
+			{
+				Assert.Fail("Test 1 Failed: {0}".Fmt(e.Message));
+			}
 
-                    using (var tran = conn.OpenTransaction())
-                    {
-                        var record = conn.GetById<MyTable>(1);
-                    }
-                }
+			// test 2 - all transactions
+			try
+			{
+				using (var conn = factory.OpenDbConnection())
+				{
+					conn.CreateTable<MyTable>();
 
-                "Test 2 Success".Print();
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Test 2 Failed: {0}".Fmt(e.Message));
-            }
+					using (var tran = conn.OpenTransaction())
+					{
+						conn.Insert(new MyTable {SomeTextField = "Example"});
+						tran.Commit();
+					}
 
-            // test 3 - transaction for insert, not for select
-            try
-            {
-                using (var conn = factory.OpenDbConnection())
-                {
-                    conn.CreateTable<MyTable>();
+					using (var tran = conn.OpenTransaction())
+					{
+						var record = conn.GetById<MyTable>(1);
+					}
+				}
 
-                    using (var tran = conn.OpenTransaction())
-                    {
-                        conn.Insert(new MyTable { SomeTextField = "Example" });
-                        tran.Commit();
-                    }
+				"Test 2 Success".Print();
+			}
+			catch (Exception e)
+			{
+				Assert.Fail("Test 2 Failed: {0}".Fmt(e.Message));
+			}
 
-                    var record = conn.GetById<MyTable>(1);
-                }
+			// test 3 - transaction for insert, not for select
+			try
+			{
+				using (var conn = factory.OpenDbConnection())
+				{
+					conn.CreateTable<MyTable>();
 
-                "Test 3 Success".Print();
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Test 3 Failed: {0}".Fmt(e.Message));
-            }
-        }
- 
+					using (var tran = conn.OpenTransaction())
+					{
+						conn.Insert(new MyTable {SomeTextField = "Example"});
+						tran.Commit();
+					}
+
+					var record = conn.GetById<MyTable>(1);
+				}
+
+				"Test 3 Success".Print();
+			}
+			catch (Exception e)
+			{
+				Assert.Fail("Test 3 Failed: {0}".Fmt(e.Message));
+			}
+		}
 	}
 }

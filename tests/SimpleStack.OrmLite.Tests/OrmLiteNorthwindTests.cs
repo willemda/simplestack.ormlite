@@ -13,23 +13,23 @@ namespace SimpleStack.OrmLite.Tests
 		public static void CreateNorthwindTables(IDbConnection db)
 		{
 			db.CreateTables
-			(
-				 true,
-				 typeof(Employee),
-				 typeof(Category),
-				 typeof(Customer),
-				 typeof(Shipper),
-				 typeof(Supplier),
-				 typeof(Order),
-				 typeof(Product),
-				 typeof(OrderDetail),
-				 typeof(CustomerCustomerDemo),
-				 typeof(Category),
-				 typeof(CustomerDemographic),
-				 typeof(Region),
-				 typeof(Territory),
-				 typeof(EmployeeTerritory)
-			);
+				(
+					true,
+					typeof (Employee),
+					typeof (Category),
+					typeof (Customer),
+					typeof (Shipper),
+					typeof (Supplier),
+					typeof (Order),
+					typeof (Product),
+					typeof (OrderDetail),
+					typeof (CustomerCustomerDemo),
+					typeof (Category),
+					typeof (CustomerDemographic),
+					typeof (Region),
+					typeof (Territory),
+					typeof (EmployeeTerritory)
+				);
 		}
 
 		private static void LoadNorthwindData(IDbConnection db)
@@ -80,6 +80,5 @@ namespace SimpleStack.OrmLite.Tests
 				LoadNorthwindData(db);
 			}
 		}
-
 	}
 }

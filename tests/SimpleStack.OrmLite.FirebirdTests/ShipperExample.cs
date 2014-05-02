@@ -33,7 +33,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			[StringLength(24)]
 			public string Phone { get; set; }
 
-			[References(typeof(ShipperType))]
+			[References(typeof (ShipperType))]
 			[Alias("Type")]
 			public int ShipperTypeId { get; set; }
 		}
@@ -68,29 +68,33 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Shippers_UseCase()
 		{
-            using (var db = new OrmLiteConnectionFactory("User=SYSDBA;Password=masterkey;Database=ormlite-tests.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;", FirebirdDialect.Provider).Open())
+			using (
+				var db =
+					new OrmLiteConnectionFactory(
+						"User=SYSDBA;Password=masterkey;Database=ormlite-tests.fdb;DataSource=localhost;Dialect=3;charset=ISO8859_1;",
+						FirebirdDialect.Provider).Open())
 			{
 				const bool overwrite = false;
 				db.DropTable<Shipper>();
 				db.DropTable<ShipperType>();
-				db.CreateTables(overwrite, typeof(ShipperType),  typeof(Shipper));// ShipperType must be created first!
+				db.CreateTables(overwrite, typeof (ShipperType), typeof (Shipper)); // ShipperType must be created first!
 
 				int trainsTypeId, planesTypeId;
 
 				//Playing with transactions
 				using (IDbTransaction dbTrans = db.BeginTransaction())
 				{
-					db.Insert(new ShipperType { Name = "Trains" });
-					trainsTypeId = (int)db.GetLastInsertId();
+					db.Insert(new ShipperType {Name = "Trains"});
+					trainsTypeId = (int) db.GetLastInsertId();
 
-					db.Insert(new ShipperType { Name = "Planes" });
-					planesTypeId = (int)db.GetLastInsertId();
+					db.Insert(new ShipperType {Name = "Planes"});
+					planesTypeId = (int) db.GetLastInsertId();
 
 					dbTrans.Commit();
 				}
 				using (IDbTransaction dbTrans = db.BeginTransaction(IsolationLevel.ReadCommitted))
 				{
-					db.Insert(new ShipperType { Name = "Automobiles" });
+					db.Insert(new ShipperType {Name = "Automobiles"});
 					Assert.That(db.Select<ShipperType>(), Has.Count.EqualTo(3));
 
 					dbTrans.Rollback();
@@ -99,20 +103,21 @@ namespace SimpleStack.OrmLite.FirebirdTests
 
 
 				//Performing standard Insert's and Selects
-				db.Insert(new Shipper { CompanyName = "Trains R Us", Phone = "555-TRAINS", ShipperTypeId = trainsTypeId });
-				db.Insert(new Shipper { CompanyName = "Planes R Us", Phone = "555-PLANES", ShipperTypeId = planesTypeId });
-				db.Insert(new Shipper { CompanyName = "We do everything!", Phone = "555-UNICORNS", ShipperTypeId = planesTypeId });
+				db.Insert(new Shipper {CompanyName = "Trains R Us", Phone = "555-TRAINS", ShipperTypeId = trainsTypeId});
+				db.Insert(new Shipper {CompanyName = "Planes R Us", Phone = "555-PLANES", ShipperTypeId = planesTypeId});
+				db.Insert(new Shipper {CompanyName = "We do everything!", Phone = "555-UNICORNS", ShipperTypeId = planesTypeId});
 
 				var trainsAreUs = db.First<Shipper>("\"Type\" = {0}", trainsTypeId);
 				Assert.That(trainsAreUs.CompanyName, Is.EqualTo("Trains R Us"));
-				Assert.That(db.Select<Shipper>("CompanyName = {0} OR Phone = {1}", "Trains R Us", "555-UNICORNS"), Has.Count.EqualTo(2));
+				Assert.That(db.Select<Shipper>("CompanyName = {0} OR Phone = {1}", "Trains R Us", "555-UNICORNS"),
+				            Has.Count.EqualTo(2));
 				Assert.That(db.Select<Shipper>("\"Type\" = {0}", planesTypeId), Has.Count.EqualTo(2));
 
 				//Lets update a record
 				trainsAreUs.Phone = "666-TRAINS";
 				db.Update(trainsAreUs);
 				Assert.That(db.GetById<Shipper>(trainsAreUs.Id).Phone, Is.EqualTo("666-TRAINS"));
-				
+
 				//Then make it dissappear
 				db.Delete(trainsAreUs);
 				Assert.That(db.GetByIdOrDefault<Shipper>(trainsAreUs.Id), Is.Null);
@@ -145,7 +150,5 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(db.Select<ShipperType>(), Has.Count.EqualTo(0));
 			}
 		}
-		
 	}
-
 }

@@ -26,4 +26,3 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 		ParameterDirection Direction { get; }
 	}
 }
-

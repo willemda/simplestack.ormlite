@@ -3,13 +3,15 @@ using NUnit.Framework;
 namespace SimpleStack.OrmLite.MySql.Tests
 {
 	[TestFixture]
-	public class OrmLiteConnectionTests 
+	public class OrmLiteConnectionTests
 		: OrmLiteTestBase
 	{
-		[Test][Ignore]
+		[Test]
+		[Ignore]
 		public void Can_create_connection_to_blank_database()
 		{
-			var connString = @"C:\Projects\PoToPe\trunk\website\src\Mflow.Intranet\Mflow.Intranet\App_Data\Exports\2009-10\MonthlySnapshot.mdf";
+			var connString =
+				@"C:\Projects\PoToPe\trunk\website\src\Mflow.Intranet\Mflow.Intranet\App_Data\Exports\2009-10\MonthlySnapshot.mdf";
 			using (var db = connString.OpenDbConnection())
 			using (var dbCmd = db.CreateCommand())
 			{
@@ -24,6 +26,5 @@ namespace SimpleStack.OrmLite.MySql.Tests
 			{
 			}
 		}
-
 	}
 }

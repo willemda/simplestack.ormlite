@@ -32,16 +32,16 @@ namespace SimpleStack.OrmLite.Tests.UseCase
 			{
 				db.CreateTable<User>(false);
 
-				db.Insert(new User { Id = 1, Name = "A", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 2, Name = "B", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 3, Name = "B", CreatedDate = DateTime.Now });
+				db.Insert(new User {Id = 1, Name = "A", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 2, Name = "B", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 3, Name = "B", CreatedDate = DateTime.Now});
 
 				var rowsB = db.Select<User>("Name = {0}", "B");
 
 				Assert.That(rowsB, Has.Count.EqualTo(2));
 
 				var rowIds = rowsB.ConvertAll(x => x.Id);
-				Assert.That(rowIds, Is.EquivalentTo(new List<long> { 2, 3 }));
+				Assert.That(rowIds, Is.EquivalentTo(new List<long> {2, 3}));
 
 				rowsB.ForEach(x => db.Delete(x));
 
@@ -54,7 +54,5 @@ namespace SimpleStack.OrmLite.Tests.UseCase
 				Assert.That(rowsLeft[0].Name, Is.EqualTo("A"));
 			}
 		}
-
 	}
-
 }

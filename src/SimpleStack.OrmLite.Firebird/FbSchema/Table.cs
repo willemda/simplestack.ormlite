@@ -17,4 +17,3 @@ namespace SimpleStack.OrmLite.Firebird
 		public string Owner { get; set; }
 	}
 }
-

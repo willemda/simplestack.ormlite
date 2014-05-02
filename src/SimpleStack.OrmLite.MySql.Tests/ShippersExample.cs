@@ -32,7 +32,7 @@ namespace SimpleStack.OrmLite.MySql.Tests
 			[StringLength(24)]
 			public string Phone { get; set; }
 
-			[References(typeof(ShipperType))]
+			[References(typeof (ShipperType))]
 			public int ShipperTypeId { get; set; }
 		}
 
@@ -69,25 +69,25 @@ namespace SimpleStack.OrmLite.MySql.Tests
 			using (IDbConnection db = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString.OpenDbConnection())
 			{
 				const bool overwrite = true;
-			    db.CreateTable<ShipperType>(overwrite);
-                db.CreateTable<Shipper>(overwrite);
+				db.CreateTable<ShipperType>(overwrite);
+				db.CreateTable<Shipper>(overwrite);
 
 				int trainsTypeId, planesTypeId;
 
 				//Playing with transactions
 				using (IDbTransaction dbTrans = db.BeginTransaction())
 				{
-					db.Insert(new ShipperType { Name = "Trains" });
-					trainsTypeId = (int)db.GetLastInsertId();
+					db.Insert(new ShipperType {Name = "Trains"});
+					trainsTypeId = (int) db.GetLastInsertId();
 
-					db.Insert(new ShipperType { Name = "Planes" });
-					planesTypeId = (int)db.GetLastInsertId();
+					db.Insert(new ShipperType {Name = "Planes"});
+					planesTypeId = (int) db.GetLastInsertId();
 
 					dbTrans.Commit();
 				}
 				using (IDbTransaction dbTrans = db.BeginTransaction(IsolationLevel.ReadCommitted))
 				{
-					db.Insert(new ShipperType { Name = "Automobiles" });
+					db.Insert(new ShipperType {Name = "Automobiles"});
 					Assert.That(db.Select<ShipperType>(), Has.Count.EqualTo(3));
 
 					dbTrans.Rollback();
@@ -96,20 +96,21 @@ namespace SimpleStack.OrmLite.MySql.Tests
 
 
 				//Performing standard Insert's and Selects
-				db.Insert(new Shipper { CompanyName = "Trains R Us", Phone = "555-TRAINS", ShipperTypeId = trainsTypeId });
-				db.Insert(new Shipper { CompanyName = "Planes R Us", Phone = "555-PLANES", ShipperTypeId = planesTypeId });
-				db.Insert(new Shipper { CompanyName = "We do everything!", Phone = "555-UNICORNS", ShipperTypeId = planesTypeId });
+				db.Insert(new Shipper {CompanyName = "Trains R Us", Phone = "555-TRAINS", ShipperTypeId = trainsTypeId});
+				db.Insert(new Shipper {CompanyName = "Planes R Us", Phone = "555-PLANES", ShipperTypeId = planesTypeId});
+				db.Insert(new Shipper {CompanyName = "We do everything!", Phone = "555-UNICORNS", ShipperTypeId = planesTypeId});
 
 				var trainsAreUs = db.First<Shipper>("ShipperTypeId = {0}", trainsTypeId);
 				Assert.That(trainsAreUs.CompanyName, Is.EqualTo("Trains R Us"));
-				Assert.That(db.Select<Shipper>("CompanyName = {0} OR Phone = {1}", "Trains R Us", "555-UNICORNS"), Has.Count.EqualTo(2));
+				Assert.That(db.Select<Shipper>("CompanyName = {0} OR Phone = {1}", "Trains R Us", "555-UNICORNS"),
+				            Has.Count.EqualTo(2));
 				Assert.That(db.Select<Shipper>("ShipperTypeId = {0}", planesTypeId), Has.Count.EqualTo(2));
 
 				//Lets update a record
 				trainsAreUs.Phone = "666-TRAINS";
 				db.Update(trainsAreUs);
 				Assert.That(db.GetById<Shipper>(trainsAreUs.Id).Phone, Is.EqualTo("666-TRAINS"));
-				
+
 				//Then make it dissappear
 				db.Delete(trainsAreUs);
 				Assert.That(db.GetByIdOrDefault<Shipper>(trainsAreUs.Id), Is.Null);

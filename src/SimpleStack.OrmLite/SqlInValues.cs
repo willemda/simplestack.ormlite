@@ -8,22 +8,22 @@ namespace SimpleStack.OrmLite
 	{
 		private readonly IEnumerable values;
 
-        public int Count { get; private set; }
+		public int Count { get; private set; }
 
 		public SqlInValues(IEnumerable values)
 		{
 			this.values = values;
 
-            if(values != null)
+			if (values != null)
 
-            foreach (var value in values)
-                ++Count;
+				foreach (var value in values)
+					++Count;
 		}
 
 		public string ToSqlInString()
 		{
-            if(Count == 0)
-                return "NULL";
+			if (Count == 0)
+				return "NULL";
 
 			return OrmLiteUtilExtensions.SqlJoin(values);
 		}

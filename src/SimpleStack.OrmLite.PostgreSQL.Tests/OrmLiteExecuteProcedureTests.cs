@@ -5,10 +5,10 @@ using SimpleStack.OrmLite.Tests;
 
 namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
-    [TestFixture]
-    public class OrmLiteExecuteProcedureTests : OrmLiteTestBase
-    {
-        private const string Create = @"
+	[TestFixture]
+	public class OrmLiteExecuteProcedureTests : OrmLiteTestBase
+	{
+		private const string Create = @"
             CREATE OR REPLACE FUNCTION f_service_stack(
                 v_string_values CHARACTER VARYING[],
                 v_integer_values INTEGER[]
@@ -36,29 +36,29 @@ namespace SimpleStack.OrmLite.PostgreSQL.Tests
             LANGUAGE plpgsql VOLATILE COST 100;
             ";
 
-        private const string Drop = "DROP FUNCTION f_service_stack(CHARACTER VARYING[], INTEGER[]);";
+		private const string Drop = "DROP FUNCTION f_service_stack(CHARACTER VARYING[], INTEGER[]);";
 
-        [Alias("f_service_stack")]
-        public class SimpleStackFunction
-        {
-            public string[] StringValues { get; set; }
-            public int[] IntegerValues { get; set; }
-        }
+		[Alias("f_service_stack")]
+		public class SimpleStackFunction
+		{
+			public string[] StringValues { get; set; }
+			public int[] IntegerValues { get; set; }
+		}
 
-        [Test]
-        public void Can_execute_stored_procedure_with_array_arguments()
-        {
-            using (var db = OpenDbConnection())
-            {
-                db.ExecuteSql(Create);
+		[Test]
+		public void Can_execute_stored_procedure_with_array_arguments()
+		{
+			using (var db = OpenDbConnection())
+			{
+				db.ExecuteSql(Create);
 
-                db.ExecuteProcedure(new SimpleStackFunction
-                                        {
-                                            StringValues = new[] { "SimpleStack", "Thoughtfully Architected" },
-                                            IntegerValues = new[] { 1, 2, 3 }
-                                        });
-                db.ExecuteSql(Drop);
-            }
-        }
-    }
+				db.ExecuteProcedure(new SimpleStackFunction
+					                    {
+						                    StringValues = new[] {"SimpleStack", "Thoughtfully Architected"},
+						                    IntegerValues = new[] {1, 2, 3}
+					                    });
+				db.ExecuteSql(Drop);
+			}
+		}
+	}
 }
