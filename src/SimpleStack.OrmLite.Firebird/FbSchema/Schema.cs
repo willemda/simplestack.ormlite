@@ -17,7 +17,7 @@ namespace SimpleStack.OrmLite.Firebird
 		private StringBuilder sqlGenerator = new StringBuilder();
 		private StringBuilder sqlProcedures = new StringBuilder();
 
-		private StringBuilder  sqlParameters = new StringBuilder();
+		private StringBuilder sqlParameters = new StringBuilder();
 
 		public IDbConnection Connection { private get; set; }
 
@@ -28,61 +28,59 @@ namespace SimpleStack.OrmLite.Firebird
 
 		public List<Table> Tables
 		{
-			get
-			{
-                return Connection.Select<Table>(sqlTables);
-            }
+			get { return Connection.Select<Table>(sqlTables); }
 		}
 
 		public Table GetTable(string name)
 		{
-
 			string sql = sqlTables +
-						string.Format("    AND a.rdb$relation_name ='{0}' ", name);
+			             string.Format("    AND a.rdb$relation_name ='{0}' ", name);
 
-            var query = Connection.Select<Table>(sql);
-            return query.FirstOrDefault();
-        }
-		
+			var query = Connection.Select<Table>(sql);
+			return query.FirstOrDefault();
+		}
+
 		public List<Column> GetColumns(string tableName)
 		{
-
 			string sql = string.Format(sqlColumns.ToString(),
-									   string.IsNullOrEmpty(tableName) ? "idx.rdb$relation_name" :
-									   string.Format("'{0}'", tableName),
-									   string.IsNullOrEmpty(tableName) ? "r.rdb$relation_name" :
-									   string.Format("'{0}'", tableName));
+			                           string.IsNullOrEmpty(tableName)
+				                           ? "idx.rdb$relation_name"
+				                           : string.Format("'{0}'", tableName),
+			                           string.IsNullOrEmpty(tableName)
+				                           ? "r.rdb$relation_name"
+				                           : string.Format("'{0}'", tableName));
 
-            List<Column> columns =Connection.Select<Column>(sql);
+			List<Column> columns = Connection.Select<Column>(sql);
 
-            List<Generador> gens = Connection.Select<Generador>(sqlGenerator.ToString());
+			List<Generador> gens = Connection.Select<Generador>(sqlGenerator.ToString());
 
-            sql = string.Format(sqlFieldGenerator.ToString(),
-                                string.IsNullOrEmpty(tableName) ? "TRIGGERS.RDB$RELATION_NAME" :
-                                   string.Format("'{0}'", tableName));
+			sql = string.Format(sqlFieldGenerator.ToString(),
+			                    string.IsNullOrEmpty(tableName)
+				                    ? "TRIGGERS.RDB$RELATION_NAME"
+				                    : string.Format("'{0}'", tableName));
 
-            List<FieldGenerator> fg = Connection.Select<FieldGenerator>(sql);
+			List<FieldGenerator> fg = Connection.Select<FieldGenerator>(sql);
 
-            foreach (var record in columns)
-            {
-                IEnumerable<string> query=  from q in fg
-                                            where q.TableName == record.TableName
-                                            && q.FieldName == record.Name
-                                            select q.SequenceName;
-                if (query.Count() == 1)
-                    record.Sequence = query.First();
-                else
-                {
-                    string g = (from gen in gens
-                                where gen.Name == tableName + "_" + record.Name + "_GEN"
-                                select gen.Name).FirstOrDefault();
+			foreach (var record in columns)
+			{
+				IEnumerable<string> query = from q in fg
+				                            where q.TableName == record.TableName
+				                                  && q.FieldName == record.Name
+				                            select q.SequenceName;
+				if (query.Count() == 1)
+					record.Sequence = query.First();
+				else
+				{
+					string g = (from gen in gens
+					            where gen.Name == tableName + "_" + record.Name + "_GEN"
+					            select gen.Name).FirstOrDefault();
 
-                    if (!string.IsNullOrEmpty(g)) record.Sequence = g.Trim();
-                }
-            }
+					if (!string.IsNullOrEmpty(g)) record.Sequence = g.Trim();
+				}
+			}
 
-            return columns;
-        }
+			return columns;
+		}
 
 		public List<Column> GetColumns(Table table)
 		{
@@ -92,19 +90,16 @@ namespace SimpleStack.OrmLite.Firebird
 
 		public Procedure GetProcedure(string name)
 		{
-			string sql= sqlProcedures.ToString() +
-						string.Format("WHERE  b.rdb$procedure_name ='{0}'", name);
+			string sql = sqlProcedures.ToString() +
+			             string.Format("WHERE  b.rdb$procedure_name ='{0}'", name);
 
-            var query = Connection.Select<Procedure>(sql);
-            return query.FirstOrDefault();
-        }
+			var query = Connection.Select<Procedure>(sql);
+			return query.FirstOrDefault();
+		}
 
 		public List<Procedure> Procedures
 		{
-			get
-			{
-                return Connection.Select<Procedure>(sqlProcedures.ToString());
-            }
+			get { return Connection.Select<Procedure>(sqlProcedures.ToString()); }
 		}
 
 		public List<Parameter> GetParameters(Procedure procedure)
@@ -114,34 +109,35 @@ namespace SimpleStack.OrmLite.Firebird
 
 		public List<Parameter> GetParameters(string procedureName)
 		{
-
 			string sql = string.Format(sqlParameters.ToString(),
-									   string.IsNullOrEmpty(procedureName) ? "a.rdb$procedure_name" :
-									   string.Format("'{0}'", procedureName));
+			                           string.IsNullOrEmpty(procedureName)
+				                           ? "a.rdb$procedure_name"
+				                           : string.Format("'{0}'", procedureName));
 
-            return Connection.Select<Parameter>(sql);
-        }
-		
+			return Connection.Select<Parameter>(sql);
+		}
+
 		private void Init()
 		{
-
 			sqlTables =
-			"SELECT \n" +
-			"    trim(a.rdb$relation_name) AS name, \n" +
-			"    trim(a.rdb$owner_name)    AS owner \n" +
-			"FROM \n" +
-			"    rdb$relations a \n" +
-			"WHERE\n" +
-			"    rdb$system_flag = 0 \n" +
-			"    AND rdb$view_blr IS NULL \n";
+				"SELECT \n" +
+				"    trim(a.rdb$relation_name) AS name, \n" +
+				"    trim(a.rdb$owner_name)    AS owner \n" +
+				"FROM \n" +
+				"    rdb$relations a \n" +
+				"WHERE\n" +
+				"    rdb$system_flag = 0 \n" +
+				"    AND rdb$view_blr IS NULL \n";
 
 
 			sqlColumns.Append("SELECT TRIM(r.rdb$field_name)                          AS field_name, \n");
 			sqlColumns.Append("       r.rdb$field_position                            AS field_position, \n");
 			sqlColumns.Append("       CASE f.rdb$field_type \n");
 			sqlColumns.Append("         WHEN 261 THEN " +
-							  "         trim(iif(f.rdb$field_sub_type = 0,'BLOB', 'TEXT')) \n");
-			sqlColumns.Append("         WHEN 14 THEN trim(iif( cset.rdb$character_set_name='OCTETS'and f.rdb$field_length=16,'GUID', 'CHAR' )) \n"); //CHAR
+			                  "         trim(iif(f.rdb$field_sub_type = 0,'BLOB', 'TEXT')) \n");
+			sqlColumns.Append(
+				"         WHEN 14 THEN trim(iif( cset.rdb$character_set_name='OCTETS'and f.rdb$field_length=16,'GUID', 'CHAR' )) \n");
+				//CHAR
 			sqlColumns.Append("         WHEN 40 THEN trim('VARCHAR') \n"); //CSTRING
 			sqlColumns.Append("         WHEN 11 THEN trim('FLOAT') \n"); //D_FLOAT
 			sqlColumns.Append("         WHEN 27 THEN trim('DOUBLE') \n");
@@ -150,7 +146,7 @@ namespace SimpleStack.OrmLite.Firebird
 			sqlColumns.Append("          Iif(f.rdb$field_sub_type = 1, 'NUMERIC', 'DECIMAL'))) \n");
 			sqlColumns.Append("         WHEN 8 THEN trim(Iif(f.rdb$field_sub_type = 0, 'INTEGER', \n");
 			sqlColumns.Append("          Iif(f.rdb$field_sub_type = 1, 'NUMERIC', 'DECIMAL'))) \n");
-			sqlColumns.Append("         WHEN 9 THEN trim('BIGINT') \n");       //QUAD
+			sqlColumns.Append("         WHEN 9 THEN trim('BIGINT') \n"); //QUAD
 			sqlColumns.Append("         WHEN 7 THEN trim('SMALLINT') \n");
 			sqlColumns.Append("         WHEN 12 THEN trim('DATE') \n");
 			sqlColumns.Append("         WHEN 13 THEN trim('TIME') \n");
@@ -242,40 +238,26 @@ namespace SimpleStack.OrmLite.Firebird
 			sqlParameters.Append("ORDER  BY a.rdb$procedure_name, \n");
 			sqlParameters.Append("          a.rdb$parameter_type, \n");
 			sqlParameters.Append("          a.rdb$parameter_number ");
-			
+
 			sqlGenerator.Append("SELECT trim(RDB$GENERATOR_NAME) AS \"Name\"	FROM RDB$GENERATORS");
 		}
-		
+
 		private class FieldGenerator
 		{
-
 			[Alias("TABLENAME")]
-			public string TableName
-			{
-				get;
-				set;
-			}
+			public string TableName { get; set; }
 
 			[Alias("FIELD_NAME")]
-			public string FieldName
-			{
-				get;
-				set;
-			}
+			public string FieldName { get; set; }
 
 			[Alias("SEQUENCE_NAME")]
-			public string SequenceName
-			{
-				get;
-				set;
-			}
+			public string SequenceName { get; set; }
+		}
 
+		private class Generador
+		{
+			public string Name { get; set; }
 		}
-		
-		private class Generador{
-			public string Name { get; set;}
-		}
-		
 	}
 }
 

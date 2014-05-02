@@ -14,7 +14,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 			var i = 0;
 
 			actualList.ForEach(x =>
-				AssertIsEqual(x, expectedList[i++]));
+			                   AssertIsEqual(x, expectedList[i++]));
 		}
 
 		public abstract T CreateInstance(int i);
@@ -23,38 +23,33 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public T ExistingValue
 		{
-			get
-			{
-				return CreateInstance(4);
-			}
+			get { return CreateInstance(4); }
 		}
 
 		public T NonExistingValue
 		{
-			get
-			{
-				return CreateInstance(5);
-			}
+			get { return CreateInstance(5); }
 		}
 
 		public List<T> CreateList()
 		{
-			return new List<T> 
-			{
-				CreateInstance(1),
-				CreateInstance(2),
-				CreateInstance(3),
-				CreateInstance(4),
-			};
+			return new List<T>
+				       {
+					       CreateInstance(1),
+					       CreateInstance(2),
+					       CreateInstance(3),
+					       CreateInstance(4),
+				       };
 		}
+
 		public List<T> CreateList2()
 		{
-			return new List<T> 
-			{
-				CreateInstance(5),
-			    CreateInstance(6),
-			    CreateInstance(7),
-			};
+			return new List<T>
+				       {
+					       CreateInstance(5),
+					       CreateInstance(6),
+					       CreateInstance(7),
+				       };
 		}
 
 		#endregion

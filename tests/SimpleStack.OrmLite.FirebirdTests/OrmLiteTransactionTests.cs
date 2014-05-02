@@ -6,13 +6,13 @@ using SimpleStack.Common.Tests.Models;
 namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
-	public class OrmLiteTransactionTests 
+	public class OrmLiteTransactionTests
 		: OrmLiteTestBase
 	{
 		[Test]
 		public void Transaction_commit_persists_data_to_the_db()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -37,7 +37,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Transaction_rollsback_if_not_committed()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -60,7 +60,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Transaction_rollsback_transactions_to_different_tables()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
@@ -88,12 +88,12 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Transaction_commits_inserts_to_different_tables()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 				db.CreateTable<ModelWithOnlyStringFields>(true);
-				
+
 				db.DeleteAll<ModelWithIdAndName>();
 				db.Insert(new ModelWithIdAndName(0));
 
@@ -115,7 +115,5 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(db.Select<ModelWithOnlyStringFields>(), Has.Count.EqualTo(1));
 			}
 		}
-
-
 	}
 }

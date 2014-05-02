@@ -5,72 +5,73 @@ using SimpleStack.DataAnnotations;
 
 namespace SimpleStack.OrmLite.SqlServerTests.UseCase
 {
-    [TestFixture]
-    public class NestedComplexTypeUseCase : OrmLiteTestBase
-    {
-        public class Location
-        {
-            [AutoIncrement]
-            public int Id { get; set; }
+	[TestFixture]
+	public class NestedComplexTypeUseCase : OrmLiteTestBase
+	{
+		public class Location
+		{
+			[AutoIncrement]
+			public int Id { get; set; }
 
-            [StringLength(50)]
-            public string Description { get; set; }
+			[StringLength(50)]
+			public string Description { get; set; }
 
-            public GeoLocation GeoLocation { get; set; }
-        }
+			public GeoLocation GeoLocation { get; set; }
+		}
 
-        public class GeoLocation
-        {
-            [StringLength(50)]
-            public string Latitude { get; set; }
-            [StringLength(50)]
-            public string Longitude { get; set; }
-        }
+		public class GeoLocation
+		{
+			[StringLength(50)]
+			public string Latitude { get; set; }
 
-        [Test]
-        public void Handles_NULL_correctly_on_InsertParam_entity_with_nested_complex_type_where_nested_property_is_null()
-        {
-            using (IDbConnection db = OpenDbConnection())
-            {
-                db.CreateTable<Location>(true);
+			[StringLength(50)]
+			public string Longitude { get; set; }
+		}
 
-                var location = new Location
-                {
-                    Description = "HQ",
-                    GeoLocation = null
-                };
+		[Test]
+		public void Handles_NULL_correctly_on_InsertParam_entity_with_nested_complex_type_where_nested_property_is_null()
+		{
+			using (IDbConnection db = OpenDbConnection())
+			{
+				db.CreateTable<Location>(true);
 
-                location.Id = (int)db.InsertParam<Location>(location, true);
+				var location = new Location
+					               {
+						               Description = "HQ",
+						               GeoLocation = null
+					               };
 
-                var newLocation = db.GetByIdOrDefault<Location>(location.Id);
+				location.Id = (int) db.InsertParam<Location>(location, true);
 
-                Assert.That(newLocation, Is.Not.Null);
-                Assert.That(newLocation.Id, Is.EqualTo(location.Id));
-                Assert.That(newLocation.GeoLocation, Is.Null);
-            }
-        }
+				var newLocation = db.GetByIdOrDefault<Location>(location.Id);
 
-        [Test]
-        public void Handles_NULL_correctly_on_Insert_entity_with_nested_complex_type_where_nested_property_is_null()
-        {
-            using (IDbConnection db = OpenDbConnection())
-            {
-                db.CreateTable<Location>(true);
+				Assert.That(newLocation, Is.Not.Null);
+				Assert.That(newLocation.Id, Is.EqualTo(location.Id));
+				Assert.That(newLocation.GeoLocation, Is.Null);
+			}
+		}
 
-                var location = new Location
-                {
-                    Description = "HQ",
-                    GeoLocation = null
-                };
+		[Test]
+		public void Handles_NULL_correctly_on_Insert_entity_with_nested_complex_type_where_nested_property_is_null()
+		{
+			using (IDbConnection db = OpenDbConnection())
+			{
+				db.CreateTable<Location>(true);
 
-                db.Insert<Location>(location);
-                location.Id = (int)db.GetLastInsertId();
+				var location = new Location
+					               {
+						               Description = "HQ",
+						               GeoLocation = null
+					               };
 
-                var newLocation = db.GetByIdOrDefault<Location>(location.Id);
+				db.Insert<Location>(location);
+				location.Id = (int) db.GetLastInsertId();
 
-                Assert.That(newLocation, Is.Not.Null);
-                Assert.That(newLocation.GeoLocation, Is.Null);
-            }
-        }
-    }
+				var newLocation = db.GetByIdOrDefault<Location>(location.Id);
+
+				Assert.That(newLocation, Is.Not.Null);
+				Assert.That(newLocation.GeoLocation, Is.Null);
+			}
+		}
+	}
 }

@@ -4,195 +4,202 @@ using System.Data;
 
 namespace SimpleStack.OrmLite
 {
-    /// <summary>
-    /// Allow for mocking and unit testing by providing non-disposing 
-    /// connection factory with injectable IDbCommand and IDbTransaction proxies
-    /// </summary>
-    public class OrmLiteConnectionFactory : IDbConnectionFactory
-    {
-        public OrmLiteConnectionFactory()
-            : this(null, true)
-        {
-        }
+	/// <summary>
+	/// Allow for mocking and unit testing by providing non-disposing 
+	/// connection factory with injectable IDbCommand and IDbTransaction proxies
+	/// </summary>
+	public class OrmLiteConnectionFactory : IDbConnectionFactory
+	{
+		public OrmLiteConnectionFactory()
+			: this(null, true)
+		{
+		}
 
-        public OrmLiteConnectionFactory(string connectionString)
-            : this(connectionString, true)
-        {
-        }
+		public OrmLiteConnectionFactory(string connectionString)
+			: this(connectionString, true)
+		{
+		}
 
-        public OrmLiteConnectionFactory(string connectionString, bool autoDisposeConnection)
-            : this(connectionString, autoDisposeConnection, null)
-        {
-        }
+		public OrmLiteConnectionFactory(string connectionString, bool autoDisposeConnection)
+			: this(connectionString, autoDisposeConnection, null)
+		{
+		}
 
-        public OrmLiteConnectionFactory(string connectionString, IOrmLiteDialectProvider dialectProvider)
-            : this(connectionString, true, dialectProvider)
-        {
-        }
+		public OrmLiteConnectionFactory(string connectionString, IOrmLiteDialectProvider dialectProvider)
+			: this(connectionString, true, dialectProvider)
+		{
+		}
 
-        public OrmLiteConnectionFactory(string connectionString, bool autoDisposeConnection, IOrmLiteDialectProvider dialectProvider)
-            : this(connectionString, autoDisposeConnection, dialectProvider, true)
-        {
-        }
+		public OrmLiteConnectionFactory(string connectionString, bool autoDisposeConnection,
+		                                IOrmLiteDialectProvider dialectProvider)
+			: this(connectionString, autoDisposeConnection, dialectProvider, true)
+		{
+		}
 
-        public OrmLiteConnectionFactory(string connectionString, bool autoDisposeConnection, IOrmLiteDialectProvider dialectProvider, bool setGlobalConnection)
-        {
-            ConnectionString = connectionString;
-            AutoDisposeConnection = autoDisposeConnection;
-            this.DialectProvider = dialectProvider ?? OrmLiteConfig.DialectProvider;
+		public OrmLiteConnectionFactory(string connectionString, bool autoDisposeConnection,
+		                                IOrmLiteDialectProvider dialectProvider, bool setGlobalConnection)
+		{
+			ConnectionString = connectionString;
+			AutoDisposeConnection = autoDisposeConnection;
+			this.DialectProvider = dialectProvider ?? OrmLiteConfig.DialectProvider;
 
-            if (setGlobalConnection && dialectProvider != null)
-            {
-                OrmLiteConfig.DialectProvider = dialectProvider;
-            }
+			if (setGlobalConnection && dialectProvider != null)
+			{
+				OrmLiteConfig.DialectProvider = dialectProvider;
+			}
 
-            this.ConnectionFilter = x => x;
-        }
+			this.ConnectionFilter = x => x;
+		}
 
-        public IOrmLiteDialectProvider DialectProvider { get; set; }
+		public IOrmLiteDialectProvider DialectProvider { get; set; }
 
-        public string ConnectionString { get; set; }
+		public string ConnectionString { get; set; }
 
-        public bool AutoDisposeConnection { get; set; }
+		public bool AutoDisposeConnection { get; set; }
 
-        public Func<IDbConnection, IDbConnection> ConnectionFilter { get; set; }
+		public Func<IDbConnection, IDbConnection> ConnectionFilter { get; set; }
 
-        /// <summary>
-        /// Force the IDbConnection to always return this IDbCommand
-        /// </summary>
-        public IDbCommand AlwaysReturnCommand { get; set; }
+		/// <summary>
+		/// Force the IDbConnection to always return this IDbCommand
+		/// </summary>
+		public IDbCommand AlwaysReturnCommand { get; set; }
 
-        /// <summary>
-        /// Force the IDbConnection to always return this IDbTransaction
-        /// </summary>
-        public IDbTransaction AlwaysReturnTransaction { get; set; }
+		/// <summary>
+		/// Force the IDbConnection to always return this IDbTransaction
+		/// </summary>
+		public IDbTransaction AlwaysReturnTransaction { get; set; }
 
-        public Action<OrmLiteConnection> OnDispose { get; set; }
+		public Action<OrmLiteConnection> OnDispose { get; set; }
 
-        private OrmLiteConnection ormLiteConnection;
-        private OrmLiteConnection OrmLiteConnection
-        {
-            get
-            {
-                if (ormLiteConnection == null)
-                {
-                    ormLiteConnection = new OrmLiteConnection(this);
-                }
-                return ormLiteConnection;
-            }
-        }
+		private OrmLiteConnection ormLiteConnection;
 
-        public IDbConnection OpenDbConnection()
-        {
-            var connection = CreateDbConnection();
-            connection.Open();
+		private OrmLiteConnection OrmLiteConnection
+		{
+			get
+			{
+				if (ormLiteConnection == null)
+				{
+					ormLiteConnection = new OrmLiteConnection(this);
+				}
+				return ormLiteConnection;
+			}
+		}
 
-            return connection;
-        }
+		public IDbConnection OpenDbConnection()
+		{
+			var connection = CreateDbConnection();
+			connection.Open();
 
-        public IDbConnection CreateDbConnection()
-        {
-            if (this.ConnectionString == null)
-                throw new ArgumentNullException("ConnectionString", "ConnectionString must be set");
+			return connection;
+		}
 
-            var connection = AutoDisposeConnection
-                ? new OrmLiteConnection(this)
-                : OrmLiteConnection;
+		public IDbConnection CreateDbConnection()
+		{
+			if (this.ConnectionString == null)
+				throw new ArgumentNullException("ConnectionString", "ConnectionString must be set");
 
-            //moved setting up the ConnectionFilter to OrmLiteConnection.Open
-            //return ConnectionFilter(connection);
-            return connection;
-        }
+			var connection = AutoDisposeConnection
+				                 ? new OrmLiteConnection(this)
+				                 : OrmLiteConnection;
 
-        public IDbConnection OpenDbConnection(string connectionKey)
-        {
-            OrmLiteConnectionFactory factory;
-            if (!NamedConnections.TryGetValue(connectionKey, out factory))
-                throw new KeyNotFoundException("No factory registered is named " + connectionKey);
+			//moved setting up the ConnectionFilter to OrmLiteConnection.Open
+			//return ConnectionFilter(connection);
+			return connection;
+		}
 
-            IDbConnection connection = factory.AutoDisposeConnection
-                ? new OrmLiteConnection(factory)
-                : factory.OrmLiteConnection;
+		public IDbConnection OpenDbConnection(string connectionKey)
+		{
+			OrmLiteConnectionFactory factory;
+			if (!NamedConnections.TryGetValue(connectionKey, out factory))
+				throw new KeyNotFoundException("No factory registered is named " + connectionKey);
 
-            //moved setting up the ConnectionFilter to OrmLiteConnection.Open
-            //connection = factory.ConnectionFilter(connection);
-            connection.Open();
+			IDbConnection connection = factory.AutoDisposeConnection
+				                           ? new OrmLiteConnection(factory)
+				                           : factory.OrmLiteConnection;
 
-            return connection;
-        }
+			//moved setting up the ConnectionFilter to OrmLiteConnection.Open
+			//connection = factory.ConnectionFilter(connection);
+			connection.Open();
 
-        private static Dictionary<string, OrmLiteConnectionFactory> namedConnections;
-        public static Dictionary<string, OrmLiteConnectionFactory> NamedConnections
-        {
-            get
-            {
-                return namedConnections = namedConnections
-                    ?? (namedConnections = new Dictionary<string, OrmLiteConnectionFactory>());
-            }
-        }
+			return connection;
+		}
 
-        public void RegisterConnection(string connectionKey, string connectionString, IOrmLiteDialectProvider dialectProvider, bool autoDisposeConnection = true)
-        {
-            RegisterConnection(connectionKey, new OrmLiteConnectionFactory(connectionString, autoDisposeConnection, dialectProvider, autoDisposeConnection));
-        }
+		private static Dictionary<string, OrmLiteConnectionFactory> namedConnections;
 
-        public void RegisterConnection(string connectionKey, OrmLiteConnectionFactory connectionFactory)
-        {
-            NamedConnections[connectionKey] = connectionFactory;
-        }
-    }
+		public static Dictionary<string, OrmLiteConnectionFactory> NamedConnections
+		{
+			get
+			{
+				return namedConnections = namedConnections
+				                          ?? (namedConnections = new Dictionary<string, OrmLiteConnectionFactory>());
+			}
+		}
 
-    public static class OrmLiteConnectionFactoryExtensions
-    {
-        [Obsolete("Use IDbConnectionFactory.Run(IDbConnection db => ...) extension method instead")]
-        public static void Exec(this IDbConnectionFactory connectionFactory, Action<IDbCommand> runDbCommandsFn)
-        {
-            using (var dbConn = connectionFactory.OpenDbConnection())
-            using (var dbCmd = dbConn.CreateCommand())
-            {
-                runDbCommandsFn(dbCmd);
-            }
-        }
+		public void RegisterConnection(string connectionKey, string connectionString, IOrmLiteDialectProvider dialectProvider,
+		                               bool autoDisposeConnection = true)
+		{
+			RegisterConnection(connectionKey,
+			                   new OrmLiteConnectionFactory(connectionString, autoDisposeConnection, dialectProvider,
+			                                                autoDisposeConnection));
+		}
 
-        [Obsolete("Use IDbConnectionFactory.Run(IDbConnection db => ...) extension method instead")]
-        public static T Exec<T>(this IDbConnectionFactory connectionFactory, Func<IDbCommand, T> runDbCommandsFn)
-        {
-            using (var dbConn = connectionFactory.OpenDbConnection())
-            using (var dbCmd = dbConn.CreateCommand())
-            {
-                return runDbCommandsFn(dbCmd);
-            }
-        }
+		public void RegisterConnection(string connectionKey, OrmLiteConnectionFactory connectionFactory)
+		{
+			NamedConnections[connectionKey] = connectionFactory;
+		}
+	}
 
-        public static void Run(this IDbConnectionFactory connectionFactory, Action<IDbConnection> runDbCommandsFn)
-        {
-            using (var dbConn = connectionFactory.OpenDbConnection())
-            {
-                runDbCommandsFn(dbConn);
-            }
-        }
+	public static class OrmLiteConnectionFactoryExtensions
+	{
+		[Obsolete("Use IDbConnectionFactory.Run(IDbConnection db => ...) extension method instead")]
+		public static void Exec(this IDbConnectionFactory connectionFactory, Action<IDbCommand> runDbCommandsFn)
+		{
+			using (var dbConn = connectionFactory.OpenDbConnection())
+			using (var dbCmd = dbConn.CreateCommand())
+			{
+				runDbCommandsFn(dbCmd);
+			}
+		}
 
-        public static T Run<T>(this IDbConnectionFactory connectionFactory, Func<IDbConnection, T> runDbCommandsFn)
-        {
-            using (var dbConn = connectionFactory.OpenDbConnection())
-            {
-                return runDbCommandsFn(dbConn);
-            }
-        }
+		[Obsolete("Use IDbConnectionFactory.Run(IDbConnection db => ...) extension method instead")]
+		public static T Exec<T>(this IDbConnectionFactory connectionFactory, Func<IDbCommand, T> runDbCommandsFn)
+		{
+			using (var dbConn = connectionFactory.OpenDbConnection())
+			using (var dbCmd = dbConn.CreateCommand())
+			{
+				return runDbCommandsFn(dbCmd);
+			}
+		}
 
-        public static IDbConnection Open(this IDbConnectionFactory connectionFactory)
-        {
-            return connectionFactory.OpenDbConnection();
-        }
+		public static void Run(this IDbConnectionFactory connectionFactory, Action<IDbConnection> runDbCommandsFn)
+		{
+			using (var dbConn = connectionFactory.OpenDbConnection())
+			{
+				runDbCommandsFn(dbConn);
+			}
+		}
 
-        public static IDbConnection Open(this IDbConnectionFactory connectionFactory, string namedConnection)
-        {
-            return ((OrmLiteConnectionFactory)connectionFactory).OpenDbConnection(namedConnection);
-        }
+		public static T Run<T>(this IDbConnectionFactory connectionFactory, Func<IDbConnection, T> runDbCommandsFn)
+		{
+			using (var dbConn = connectionFactory.OpenDbConnection())
+			{
+				return runDbCommandsFn(dbConn);
+			}
+		}
 
-        public static IDbConnection OpenDbConnection(this IDbConnectionFactory connectionFactory, string namedConnection)
-        {
-            return ((OrmLiteConnectionFactory)connectionFactory).OpenDbConnection(namedConnection);
-        }
-    }
+		public static IDbConnection Open(this IDbConnectionFactory connectionFactory)
+		{
+			return connectionFactory.OpenDbConnection();
+		}
+
+		public static IDbConnection Open(this IDbConnectionFactory connectionFactory, string namedConnection)
+		{
+			return ((OrmLiteConnectionFactory) connectionFactory).OpenDbConnection(namedConnection);
+		}
+
+		public static IDbConnection OpenDbConnection(this IDbConnectionFactory connectionFactory, string namedConnection)
+		{
+			return ((OrmLiteConnectionFactory) connectionFactory).OpenDbConnection(namedConnection);
+		}
+	}
 }

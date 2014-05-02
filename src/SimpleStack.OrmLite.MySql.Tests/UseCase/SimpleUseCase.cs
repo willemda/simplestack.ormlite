@@ -13,7 +13,7 @@ namespace SimpleStack.OrmLite.MySql.Tests.UseCase
 		public void TestFixtureSetUp()
 		{
 			//Inject your database provider here
-            OrmLiteConfig.DialectProvider = MySqlDialectProvider.Instance;
+			OrmLiteConfig.DialectProvider = MySqlDialectProvider.Instance;
 		}
 
 		public class User
@@ -29,20 +29,20 @@ namespace SimpleStack.OrmLite.MySql.Tests.UseCase
 		[Test]
 		public void Simple_CRUD_example()
 		{
-            using (IDbConnection db = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString.OpenDbConnection())
+			using (IDbConnection db = ConfigurationManager.ConnectionStrings["testDb"].ConnectionString.OpenDbConnection())
 			{
 				db.CreateTable<User>(true);
 
-				db.Insert(new User { Id = 1, Name = "A", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 2, Name = "B", CreatedDate = DateTime.Now });
-				db.Insert(new User { Id = 3, Name = "B", CreatedDate = DateTime.Now });
+				db.Insert(new User {Id = 1, Name = "A", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 2, Name = "B", CreatedDate = DateTime.Now});
+				db.Insert(new User {Id = 3, Name = "B", CreatedDate = DateTime.Now});
 
 				var rowsB = db.Select<User>("Name = {0}", "B");
 
 				Assert.That(rowsB, Has.Count.EqualTo(2));
 
 				var rowIds = rowsB.ConvertAll(x => x.Id);
-				Assert.That(rowIds, Is.EquivalentTo(new List<long> { 2, 3 }));
+				Assert.That(rowIds, Is.EquivalentTo(new List<long> {2, 3}));
 
 				rowsB.ForEach(x => db.Delete(x));
 
@@ -55,7 +55,5 @@ namespace SimpleStack.OrmLite.MySql.Tests.UseCase
 				Assert.That(rowsLeft[0].Name, Is.EqualTo("A"));
 			}
 		}
-
 	}
-
 }

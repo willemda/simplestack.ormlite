@@ -6,4 +6,3 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 		Executable = 1
 	}
 }
-

@@ -8,17 +8,18 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 {
 	public class OrmLiteScenrioConfig
 	{
-		private static readonly Dictionary<IOrmLiteDialectProvider, List<string>> DataProviderAndConnectionStrings 
-			= new Dictionary<IOrmLiteDialectProvider, List<string>> {
-				{ 
-					new SqliteOrmLiteDialectProvider(), 
-					new List<string>
-                  	{
-                  		":memory:",
-						"~/App_Data/perf.sqlite".MapAbsolutePath(),
-                  	} 
-				}
-			};
+		private static readonly Dictionary<IOrmLiteDialectProvider, List<string>> DataProviderAndConnectionStrings
+			= new Dictionary<IOrmLiteDialectProvider, List<string>>
+				  {
+					  {
+						  new SqliteOrmLiteDialectProvider(),
+						  new List<string>
+							  {
+								  ":memory:",
+								  "~/App_Data/perf.sqlite".MapAbsolutePath(),
+							  }
+					  }
+				  };
 
 		public static IEnumerable<OrmLiteConfigRun> DataProviderConfigRuns()
 		{
@@ -29,10 +30,11 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 
 				foreach (var connectionString in connectionStrings)
 				{
-					yield return new OrmLiteConfigRun {
-						DialectProvider = dialectProvider,
-						ConnectionString = connectionString,
-					};
+					yield return new OrmLiteConfigRun
+						             {
+							             DialectProvider = dialectProvider,
+							             ConnectionString = connectionString,
+						             };
 				}
 			}
 		}
@@ -58,7 +60,5 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 
 			dbScenarioBase.ConnectionString = this.ConnectionString;
 		}
-
 	}
-
 }

@@ -20,20 +20,20 @@ namespace SimpleStack.OrmLite
 {
 	public static class OrmLiteUtilExtensions
 	{
-        public static T CreateInstance<T>()
-        {
-            return (T)ReflectionExtensions.CreateInstance<T>();
-        }
+		public static T CreateInstance<T>()
+		{
+			return (T) ReflectionExtensions.CreateInstance<T>();
+		}
 
 		public static T ConvertTo<T>(this IDataReader dataReader)
-        {
+		{
 			var fieldDefs = ModelDefinition<T>.Definition.AllFieldDefinitionsArray;
 
 			using (dataReader)
 			{
 				if (dataReader.Read())
 				{
-                    var row = CreateInstance<T>();
+					var row = CreateInstance<T>();
 					var indexCache = dataReader.GetIndexFieldsCache(ModelDefinition<T>.Definition);
 					row.PopulateWithSqlReader(dataReader, fieldDefs, indexCache);
 					return row;
@@ -44,7 +44,7 @@ namespace SimpleStack.OrmLite
 
 		public static List<T> ConvertToList<T>(this IDataReader dataReader)
 		{
-            var fieldDefs = ModelDefinition<T>.Definition.AllFieldDefinitionsArray;
+			var fieldDefs = ModelDefinition<T>.Definition.AllFieldDefinitionsArray;
 
 			var to = new List<T>();
 			using (dataReader)
@@ -52,7 +52,7 @@ namespace SimpleStack.OrmLite
 				var indexCache = dataReader.GetIndexFieldsCache(ModelDefinition<T>.Definition);
 				while (dataReader.Read())
 				{
-                    var row = CreateInstance<T>();
+					var row = CreateInstance<T>();
 					row.PopulateWithSqlReader(dataReader, fieldDefs, indexCache);
 					to.Add(row);
 				}
@@ -62,21 +62,22 @@ namespace SimpleStack.OrmLite
 
 		internal static string GetColumnNames(this Type tableType)
 		{
-		    var modelDefinition = tableType.GetModelDefinition();
-		    return GetColumnNames(modelDefinition);
+			var modelDefinition = tableType.GetModelDefinition();
+			return GetColumnNames(modelDefinition);
 		}
 
-	    public static string GetColumnNames(this ModelDefinition modelDef)
-	    {
-            var sqlColumns = new StringBuilder();
-	        modelDef.FieldDefinitions.ForEach(x => 
-                sqlColumns.AppendFormat("{0}{1} ", sqlColumns.Length > 0 ? "," : "",
-                  OrmLiteConfig.DialectProvider.GetQuotedColumnName(x.FieldName)));
+		public static string GetColumnNames(this ModelDefinition modelDef)
+		{
+			var sqlColumns = new StringBuilder();
+			modelDef.FieldDefinitions.ForEach(x =>
+			                                  sqlColumns.AppendFormat("{0}{1} ", sqlColumns.Length > 0 ? "," : "",
+			                                                          OrmLiteConfig.DialectProvider.GetQuotedColumnName(
+				                                                          x.FieldName)));
 
-	        return sqlColumns.ToString();
-	    }
+			return sqlColumns.ToString();
+		}
 
-	    internal static string GetIdsInSql(this IEnumerable idValues)
+		internal static string GetIdsInSql(this IEnumerable idValues)
 		{
 			var sql = new StringBuilder();
 			foreach (var idValue in idValues)
@@ -89,7 +90,7 @@ namespace SimpleStack.OrmLite
 
 		public static string Params(this string sqlText, params object[] sqlParams)
 		{
-		    return SqlFormat(sqlText, sqlParams);
+			return SqlFormat(sqlText, sqlParams);
 		}
 
 		public static string SqlFormat(this string sqlText, params object[] sqlParams)
@@ -151,22 +152,22 @@ namespace SimpleStack.OrmLite
 			return new SqlInValues(values);
 		}
 
-        public static Dictionary<string, int> GetIndexFieldsCache(this IDataReader reader, ModelDefinition modelDefinition = null)
-        {
-            var cache = new Dictionary<string, int>();
-            if (modelDefinition != null)
-            {
-                foreach (var field in modelDefinition.IgnoredFieldDefinitions)
-                {
-                    cache[field.FieldName] = -1;
-                }
-            }
-            for (var i = 0; i < reader.FieldCount; i++)
-            {
-                cache[reader.GetName(i)] = i;
-            }
-            return cache;
-        }
-
+		public static Dictionary<string, int> GetIndexFieldsCache(this IDataReader reader,
+		                                                          ModelDefinition modelDefinition = null)
+		{
+			var cache = new Dictionary<string, int>();
+			if (modelDefinition != null)
+			{
+				foreach (var field in modelDefinition.IgnoredFieldDefinitions)
+				{
+					cache[field.FieldName] = -1;
+				}
+			}
+			for (var i = 0; i < reader.FieldCount; i++)
+			{
+				cache[reader.GetName(i)] = i;
+			}
+			return cache;
+		}
 	}
 }

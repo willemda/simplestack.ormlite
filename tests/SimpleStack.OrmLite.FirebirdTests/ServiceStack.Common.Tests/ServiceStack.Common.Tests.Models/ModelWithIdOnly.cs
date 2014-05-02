@@ -1,19 +1,15 @@
 ﻿using System;
 
-namespace SimpleStack.Common.Tests.Models{
-	
+namespace SimpleStack.Common.Tests.Models
+{
 	public class ModelWithIdOnly
 	{
-		public long Id
-		{
-			get;
-			set;
-		}
-	
+		public long Id { get; set; }
+
 		public ModelWithIdOnly()
 		{
 		}
-	
+
 		public ModelWithIdOnly(long id)
 		{
 			this.Id = id;

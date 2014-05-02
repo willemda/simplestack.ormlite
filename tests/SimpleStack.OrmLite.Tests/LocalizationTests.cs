@@ -33,6 +33,7 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			[AutoIncrement]
 			public int Id { get; set; }
+
 			public short Width { get; set; }
 			public float Height { get; set; }
 			public double Top { get; set; }
@@ -46,7 +47,7 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<Point>(true);
 
-				db.Insert(new Point { Width = 4, Height = 1.123f, Top = 3.456d, Left = 2.345m});
+				db.Insert(new Point {Width = 4, Height = 1.123f, Top = 3.456d, Left = 2.345m});
 
 				var points = db.Select<Point>("Height={0}", 1.123f);
 
@@ -57,8 +58,6 @@ namespace SimpleStack.OrmLite.Tests
 				Assert.That(points[0].Top, Is.EqualTo(3.456d));
 				Assert.That(points[0].Left, Is.EqualTo(2.345m));
 			}
-
 		}
-
 	}
 }

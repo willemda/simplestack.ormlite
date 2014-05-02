@@ -3,148 +3,160 @@ using SimpleStack.OrmLite.Tests;
 
 namespace SimpleStack.OrmLite.PostgreSQL.Tests
 {
-    public class TypeWithByteArrayFieldTests : OrmLiteTestBase
-    {
-        TypeWithByteArrayField getSampleObject()
-        {
-            var testByteArray = new byte[256];
-            for(int i = 0; i < 256; i++) { testByteArray[i] = (byte)i; }
-            
-            return new TypeWithByteArrayField { Id = 1, Content = testByteArray };
-        }
+	public class TypeWithByteArrayFieldTests : OrmLiteTestBase
+	{
+		private TypeWithByteArrayField getSampleObject()
+		{
+			var testByteArray = new byte[256];
+			for (int i = 0; i < 256; i++)
+			{
+				testByteArray[i] = (byte) i;
+			}
 
-        [Test]
-        public void CanInsertAndSelectByteArray()
-        {
-            var orig = getSampleObject();
+			return new TypeWithByteArrayField {Id = 1, Content = testByteArray};
+		}
 
-            using (var db = OpenDbConnection())
-            {
-                db.CreateTable<TypeWithByteArrayField>(true);
+		[Test]
+		public void CanInsertAndSelectByteArray()
+		{
+			var orig = getSampleObject();
 
-                db.Save(orig);
+			using (var db = OpenDbConnection())
+			{
+				db.CreateTable<TypeWithByteArrayField>(true);
 
-                var target = db.GetById<TypeWithByteArrayField>(orig.Id);
+				db.Save(orig);
 
-                Assert.AreEqual(orig.Id, target.Id);
-                Assert.AreEqual(orig.Content, target.Content);
-            }
-        }
+				var target = db.GetById<TypeWithByteArrayField>(orig.Id);
 
-        [Test]
-        public void CanInsertAndSelectByteArray__manual_insert__manual_select()
-        {
-            var orig = getSampleObject();
+				Assert.AreEqual(orig.Id, target.Id);
+				Assert.AreEqual(orig.Content, target.Content);
+			}
+		}
 
-            using(var db = OpenDbConnection()) {
-                //insert and select manually - ok
-                db.CreateTable<TypeWithByteArrayField>(true);
-                _insertManually(orig, db);
+		[Test]
+		public void CanInsertAndSelectByteArray__manual_insert__manual_select()
+		{
+			var orig = getSampleObject();
 
-                _selectAndVerifyManually(orig, db);
-            }
-        }
+			using (var db = OpenDbConnection())
+			{
+				//insert and select manually - ok
+				db.CreateTable<TypeWithByteArrayField>(true);
+				_insertManually(orig, db);
 
-        [Test]
-        public void CanInsertAndSelectByteArray__InsertParam_insert__manual_select()
-        {
-            var orig = getSampleObject();
+				_selectAndVerifyManually(orig, db);
+			}
+		}
 
-            using(var db = OpenDbConnection()) {
-                //insert using InsertParam, and select manually - ok
-                db.CreateTable<TypeWithByteArrayField>(true);
-                db.InsertParam(orig);
+		[Test]
+		public void CanInsertAndSelectByteArray__InsertParam_insert__manual_select()
+		{
+			var orig = getSampleObject();
 
-                _selectAndVerifyManually(orig, db);
-            }
-        }
+			using (var db = OpenDbConnection())
+			{
+				//insert using InsertParam, and select manually - ok
+				db.CreateTable<TypeWithByteArrayField>(true);
+				db.InsertParam(orig);
 
-        [Test]
-        public void CanInsertAndSelectByteArray__InsertParam_insert__GetById_select()
-        {
-            var orig = getSampleObject();
+				_selectAndVerifyManually(orig, db);
+			}
+		}
 
-            using(var db = OpenDbConnection()) {
-                //InsertParam + GetByID - fails
-                db.CreateTable<TypeWithByteArrayField>(true);
-                db.InsertParam(orig);
+		[Test]
+		public void CanInsertAndSelectByteArray__InsertParam_insert__GetById_select()
+		{
+			var orig = getSampleObject();
 
-                var target = db.GetById<TypeWithByteArrayField>(orig.Id);
+			using (var db = OpenDbConnection())
+			{
+				//InsertParam + GetByID - fails
+				db.CreateTable<TypeWithByteArrayField>(true);
+				db.InsertParam(orig);
 
-                Assert.AreEqual(orig.Id, target.Id);
-                Assert.AreEqual(orig.Content, target.Content);
-            }
-        }
+				var target = db.GetById<TypeWithByteArrayField>(orig.Id);
 
-        [Test]
-        public void CanInsertAndSelectByteArray__Insert_insert__GetById_select()
-        {
-            var orig = getSampleObject();
+				Assert.AreEqual(orig.Id, target.Id);
+				Assert.AreEqual(orig.Content, target.Content);
+			}
+		}
 
-            using(var db = OpenDbConnection()) {
-                //InsertParam + GetByID - fails
-                db.CreateTable<TypeWithByteArrayField>(true);
-                db.Insert(orig);
+		[Test]
+		public void CanInsertAndSelectByteArray__Insert_insert__GetById_select()
+		{
+			var orig = getSampleObject();
 
-                var target = db.GetById<TypeWithByteArrayField>(orig.Id);
+			using (var db = OpenDbConnection())
+			{
+				//InsertParam + GetByID - fails
+				db.CreateTable<TypeWithByteArrayField>(true);
+				db.Insert(orig);
 
-                Assert.AreEqual(orig.Id, target.Id);
-                Assert.AreEqual(orig.Content, target.Content);
-            }
-        }
+				var target = db.GetById<TypeWithByteArrayField>(orig.Id);
 
-        [Test]
-        public void CanInsertAndSelectByteArray__Insert_insert__manual_select()
-        {
-            var orig = getSampleObject();
+				Assert.AreEqual(orig.Id, target.Id);
+				Assert.AreEqual(orig.Content, target.Content);
+			}
+		}
 
-            using(var db = OpenDbConnection()) {
-                //InsertParam + GetByID - fails
-                db.CreateTable<TypeWithByteArrayField>(true);
-                db.Insert(orig);
+		[Test]
+		public void CanInsertAndSelectByteArray__Insert_insert__manual_select()
+		{
+			var orig = getSampleObject();
 
-                _selectAndVerifyManually(orig, db);
-            }
-        }
+			using (var db = OpenDbConnection())
+			{
+				//InsertParam + GetByID - fails
+				db.CreateTable<TypeWithByteArrayField>(true);
+				db.Insert(orig);
 
-        private static void _selectAndVerifyManually(TypeWithByteArrayField orig, System.Data.IDbConnection db)
-        {
-            using(var cmd = db.CreateCommand()) {
-                cmd.CommandText = @"select ""Content"" from ""TypeWithByteArrayField"" where ""Id"" = 1 --manual select";
-                using(var reader = cmd.ExecuteReader()) {
-                    reader.Read();
-                    var ba = reader["Content"] as byte[];
-                    Assert.AreEqual(orig.Content.Length, ba.Length);
-                    Assert.AreEqual(orig.Content, ba);
-                }
-            }
-        }
+				_selectAndVerifyManually(orig, db);
+			}
+		}
 
-        private static void _insertManually(TypeWithByteArrayField orig, System.Data.IDbConnection db)
-        {
-            using(var cmd = db.CreateCommand()) {
-                cmd.CommandText = @"INSERT INTO ""TypeWithByteArrayField"" (""Id"",""Content"") VALUES (@Id, @Content) --manual parameterized insert";
+		private static void _selectAndVerifyManually(TypeWithByteArrayField orig, System.Data.IDbConnection db)
+		{
+			using (var cmd = db.CreateCommand())
+			{
+				cmd.CommandText = @"select ""Content"" from ""TypeWithByteArrayField"" where ""Id"" = 1 --manual select";
+				using (var reader = cmd.ExecuteReader())
+				{
+					reader.Read();
+					var ba = reader["Content"] as byte[];
+					Assert.AreEqual(orig.Content.Length, ba.Length);
+					Assert.AreEqual(orig.Content, ba);
+				}
+			}
+		}
 
-                var p_id = cmd.CreateParameter();
-                p_id.ParameterName = "@Id";
-                p_id.Value = orig.Id;
+		private static void _insertManually(TypeWithByteArrayField orig, System.Data.IDbConnection db)
+		{
+			using (var cmd = db.CreateCommand())
+			{
+				cmd.CommandText =
+					@"INSERT INTO ""TypeWithByteArrayField"" (""Id"",""Content"") VALUES (@Id, @Content) --manual parameterized insert";
 
-                cmd.Parameters.Add(p_id);
+				var p_id = cmd.CreateParameter();
+				p_id.ParameterName = "@Id";
+				p_id.Value = orig.Id;
 
-                var p_content = cmd.CreateParameter();
-                p_content.ParameterName = "@Content";
-                p_content.Value = orig.Content;
+				cmd.Parameters.Add(p_id);
 
-                cmd.Parameters.Add(p_content);
+				var p_content = cmd.CreateParameter();
+				p_content.ParameterName = "@Content";
+				p_content.Value = orig.Content;
 
-                cmd.ExecuteNonQuery();
-            }
-        }
-    }
+				cmd.Parameters.Add(p_content);
 
-    class TypeWithByteArrayField
-    {
-        public int Id { get; set; }
-        public byte[] Content { get; set; }
-    }
+				cmd.ExecuteNonQuery();
+			}
+		}
+	}
+
+	internal class TypeWithByteArrayField
+	{
+		public int Id { get; set; }
+		public byte[] Content { get; set; }
+	}
 }

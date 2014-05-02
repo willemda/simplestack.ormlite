@@ -25,7 +25,7 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Can_insert_and_select_from_ModelWithComplexTypes_table()
 		{
-            using (var db = OpenDbConnection())
+			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<ModelWithComplexTypes>(true);
 
@@ -44,11 +44,11 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void Can_insert_and_select_from_OrderLineData()
 		{
-            using (var db = OpenDbConnection())
+			using (var db = OpenDbConnection())
 			{
 				db.CreateTable<SampleOrderLine>(true);
 
-				var orderIds = new[] { 1, 2, 3, 4, 5 }.ToList();
+				var orderIds = new[] {1, 2, 3, 4, 5}.ToList();
 
 				orderIds.ForEach(x => db.Insert(
 					SampleOrderLine.Create(Guid.NewGuid(), x, 1)));
@@ -57,7 +57,5 @@ namespace SimpleStack.OrmLite.Tests
 				Assert.That(rows, Has.Count.EqualTo(orderIds.Count));
 			}
 		}
-
 	}
-
 }

@@ -5,7 +5,5 @@ namespace SimpleStack.OrmLite.Firebird
 {
 	public class ClassWriter : PocoCreator<Table, Column, Procedure, Parameter>
 	{
-
 	}
 }
-

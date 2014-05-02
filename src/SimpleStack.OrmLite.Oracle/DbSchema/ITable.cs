@@ -1,4 +1,3 @@
-
 namespace SimpleStack.OrmLite.Oracle.DbSchema
 {
 	public interface ITable
@@ -8,4 +7,3 @@ namespace SimpleStack.OrmLite.Oracle.DbSchema
 		string Owner { get; set; }
 	}
 }
-

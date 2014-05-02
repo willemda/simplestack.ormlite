@@ -9,17 +9,17 @@ namespace SimpleStack.DataAnnotations
 	// 
 	//
 	[AttributeUsage(AttributeTargets.Property)]
-	public class ComputeAttribute:Attribute
+	public class ComputeAttribute : Attribute
 	{
-		public string Expression{ get; set;}
-		
-		public ComputeAttribute ():this(string.Empty)
+		public string Expression { get; set; }
+
+		public ComputeAttribute() : this(string.Empty)
 		{
 		}
-		
-		public ComputeAttribute(string expression){
-			Expression=expression;
-		}		
+
+		public ComputeAttribute(string expression)
+		{
+			Expression = expression;
+		}
 	}
 }
-

@@ -12,15 +12,14 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	public class OrmLiteSelectTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_GetById_int_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -33,11 +32,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_GetById_string_from_ModelWithOnlyStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -50,11 +49,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_GetByIds_int_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -68,11 +67,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_GetByIds_string_from_ModelWithOnlyStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -86,11 +85,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_select_with_filter_from_ModelWithOnlyStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -112,7 +111,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			const int n = 5;
 
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -128,11 +127,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_loop_each_string_from_ModelWithOnlyStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -149,11 +148,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_loop_each_with_filter_from_ModelWithOnlyStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -179,7 +178,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			const int n = 5;
 
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -197,7 +196,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			const int n = 5;
 
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -215,16 +214,17 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			const int n = 5;
 
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
 
-				n.Times(x => {
-					var row = ModelWithIdAndName.Create(0);
-					row.Name = x % 2 == 0 ? "OddGroup" : "EvenGroup";
-					db.Insert(row);
-				});
+				n.Times(x =>
+					        {
+						        var row = ModelWithIdAndName.Create(0);
+						        row.Name = x%2 == 0 ? "OddGroup" : "EvenGroup";
+						        db.Insert(row);
+					        });
 
 				var lookup = db.GetLookup<string, int>("SELECT Name, Id FROM ModelWIN");
 
@@ -239,7 +239,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			const int n = 5;
 
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -256,11 +256,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_Select_subset_ModelWithIdAndName_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -274,15 +274,15 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_Select_Into_ModelWithIdAndName_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
-				var rows = db.Select<ModelWithIdAndName>(typeof(ModelWithFieldsOfDifferentTypes));
+				var rows = db.Select<ModelWithIdAndName>(typeof (ModelWithFieldsOfDifferentTypes));
 				var dbRowIds = rows.ConvertAll(x => x.Id);
 
 				Assert.That(dbRowIds, Is.EquivalentTo(rowIds));
@@ -295,25 +295,27 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		{
 			const int n = 5;
 
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
-				
-				for(int i=1; i<=n; i++){
-					ModelWithIdAndName m = new ModelWithIdAndName(){
-						Name= 	"Name"+i.ToString()
-					};
+
+				for (int i = 1; i <= n; i++)
+				{
+					ModelWithIdAndName m = new ModelWithIdAndName()
+						                       {
+							                       Name = "Name" + i.ToString()
+						                       };
 					db.Insert(m);
 				}
-				
+
 				var selectInNames = new[] {"Name1", "Name2"};
 				var rows = db.Select<ModelWithIdAndName>("Name IN ({0})", selectInNames.SqlInValues());
 
 				Assert.That(rows.Count, Is.EqualTo(selectInNames.Length));
 			}
 		}
-		
+
 		//[Alias("RDB$DATABASE")]
 		public class PocoFlag
 		{
@@ -324,7 +326,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_populate_PocoFlag()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				var rows = db.Select<PocoFlag>("SELECT 1 as Flag FROM RDB$DATABASE");
 				Assert.That(rows[0].Flag);
@@ -340,13 +342,12 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_populate_PocoFlagWithId()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				var rows = db.Select<PocoFlagWithId>("SELECT 1 as Id, 1 as Flag FROM RDB$DATABASE");
 				Assert.That(rows[0].Id, Is.EqualTo(1));
 				Assert.That(rows[0].Flag);
 			}
 		}
-
 	}
 }

@@ -19,11 +19,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_Delete_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
 				var rows = db.Select<ModelWithFieldsOfDifferentTypes>();
@@ -34,18 +34,18 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				rows = db.GetByIds<ModelWithFieldsOfDifferentTypes>(rowIds);
 				var dbRowIds = rows.ConvertAll(x => x.Id);
 
-				Assert.That(dbRowIds, Is.EquivalentTo(new[] { 1, 3 }));
+				Assert.That(dbRowIds, Is.EquivalentTo(new[] {1, 3}));
 			}
 		}
 
 		[Test]
 		public void Can_DeleteById_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
 				db.DeleteById<ModelWithFieldsOfDifferentTypes>(2);
@@ -53,28 +53,27 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				var rows = db.GetByIds<ModelWithFieldsOfDifferentTypes>(rowIds);
 				var dbRowIds = rows.ConvertAll(x => x.Id);
 
-				Assert.That(dbRowIds, Is.EquivalentTo(new[] { 1, 3 }));
+				Assert.That(dbRowIds, Is.EquivalentTo(new[] {1, 3}));
 			}
 		}
 
 		[Test]
 		public void Can_DeleteByIds_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
-				db.DeleteByIds<ModelWithFieldsOfDifferentTypes>(new[] { 1, 3 });
+				db.DeleteByIds<ModelWithFieldsOfDifferentTypes>(new[] {1, 3});
 
 				var rows = db.GetByIds<ModelWithFieldsOfDifferentTypes>(rowIds);
 				var dbRowIds = rows.ConvertAll(x => x.Id);
 
-				Assert.That(dbRowIds, Is.EquivalentTo(new[] { 2 }));
+				Assert.That(dbRowIds, Is.EquivalentTo(new[] {2}));
 			}
 		}
-
 	}
 }

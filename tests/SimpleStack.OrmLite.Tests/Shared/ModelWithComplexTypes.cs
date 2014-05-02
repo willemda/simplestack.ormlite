@@ -27,24 +27,25 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public static ModelWithComplexTypes Create(int id)
 		{
-			var row = new ModelWithComplexTypes {
-				Id = id,
-				StringList = { "val" + id + 1, "val" + id + 2, "val" + id + 3 },
-				IntList = { id + 1, id + 2, id + 3 },
-				StringMap =
-            		{
-            			{"key" + id + 1, "val" + id + 1},
-            			{"key" + id + 2, "val" + id + 2},
-            			{"key" + id + 3, "val" + id + 3},
-            		},
-				IntMap =
-            		{
-            			{id + 1, id + 2},
-            			{id + 3, id + 4},
-            			{id + 5, id + 6},
-            		},
-				Child = new ModelWithComplexTypes { Id = id * 2 },
-			};
+			var row = new ModelWithComplexTypes
+				          {
+					          Id = id,
+					          StringList = {"val" + id + 1, "val" + id + 2, "val" + id + 3},
+					          IntList = {id + 1, id + 2, id + 3},
+					          StringMap =
+						          {
+							          {"key" + id + 1, "val" + id + 1},
+							          {"key" + id + 2, "val" + id + 2},
+							          {"key" + id + 3, "val" + id + 3},
+						          },
+					          IntMap =
+						          {
+							          {id + 1, id + 2},
+							          {id + 3, id + 4},
+							          {id + 5, id + 6},
+						          },
+					          Child = new ModelWithComplexTypes {Id = id*2},
+				          };
 
 			return row;
 		}

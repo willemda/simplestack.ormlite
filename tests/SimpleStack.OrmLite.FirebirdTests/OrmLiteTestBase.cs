@@ -12,13 +12,13 @@ using SimpleStack.OrmLite.Firebird;
 namespace SimpleStack.OrmLite.FirebirdTests
 {
 	public class OrmLiteTestBase
-	{		
+	{
 		protected virtual string ConnectionString { get; set; }
 
 		protected string GetFileConnectionString()
 		{
-            return ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
-        }
+			return ConfigurationManager.ConnectionStrings["testDb"].ConnectionString;
+		}
 
 		protected void CreateNewDatabase()
 		{
@@ -39,10 +39,10 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			Console.WriteLine(text);
 		}
 
-        public IDbConnection OpenDbConnection(string connString = null)
-        {
-            connString = connString ?? ConnectionString;
-            return connString.OpenDbConnection();
-        }
-    }
+		public IDbConnection OpenDbConnection(string connString = null)
+		{
+			connString = connString ?? ConnectionString;
+			return connString.OpenDbConnection();
+		}
+	}
 }

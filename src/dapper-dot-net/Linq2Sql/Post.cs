@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SqlMapper.Linq2Sql
 {
-    public partial class Post
-    {
-        /*
+	public partial class Post
+	{
+		/*
         public int Bloat { get; set; }
         public int Bloat1 { get; set; }
         public int Bloat2 { get; set; }
@@ -29,5 +29,5 @@ namespace SqlMapper.Linq2Sql
         public int Bloat17 { get; set; }
         public int Bloat18 { get; set; }
         */
-    }
+	}
 }

@@ -31,7 +31,5 @@ namespace SimpleStack.OrmLite.TestsPerf.PerfTests
 				RunMultipleTimes(scenarioBase.Run, scenarioBase.GetType().Name);
 			}
 		}
-
 	}
-
 }

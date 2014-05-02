@@ -5,10 +5,9 @@ using SimpleStack.OrmLite.Tests.Shared;
 namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
-	public class OrmLiteCreateTableWithIndexesTests 
+	public class OrmLiteCreateTableWithIndexesTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_create_ModelWithIndexFields_table()
 		{
@@ -16,7 +15,7 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<ModelWithIndexFields>(true);
 
-				var sql =OrmLiteConfig.DialectProvider.ToCreateIndexStatements( typeof (ModelWithIndexFields) ).Join();
+				var sql = OrmLiteConfig.DialectProvider.ToCreateIndexStatements(typeof (ModelWithIndexFields)).Join();
 
 				Assert.IsTrue(sql.Contains("idx_modelwithindexfields_name"));
 				Assert.IsTrue(sql.Contains("uidx_modelwithindexfields_uniquename"));
@@ -30,27 +29,26 @@ namespace SimpleStack.OrmLite.Tests
 			{
 				db.CreateTable<ModelWithCompositeIndexFields>(true);
 
-				var sql = OrmLiteConfig.DialectProvider.ToCreateIndexStatements(typeof(ModelWithCompositeIndexFields)).Join();
+				var sql = OrmLiteConfig.DialectProvider.ToCreateIndexStatements(typeof (ModelWithCompositeIndexFields)).Join();
 
 				Assert.IsTrue(sql.Contains("idx_modelwithcompositeindexfields_name"));
 				Assert.IsTrue(sql.Contains("idx_modelwithcompositeindexfields_composite1_composite2"));
 			}
 		}
 
-        [Test]
-        public void Can_create_ModelWithNamedCompositeIndex_table()
-        {
-            using (var db = OpenDbConnection())
-            {
-                db.CreateTable<ModelWithNamedCompositeIndex>(true);
+		[Test]
+		public void Can_create_ModelWithNamedCompositeIndex_table()
+		{
+			using (var db = OpenDbConnection())
+			{
+				db.CreateTable<ModelWithNamedCompositeIndex>(true);
 
-                var sql = OrmLiteConfig.DialectProvider.ToCreateIndexStatements(typeof(ModelWithNamedCompositeIndex)).Join();
+				var sql = OrmLiteConfig.DialectProvider.ToCreateIndexStatements(typeof (ModelWithNamedCompositeIndex)).Join();
 
-                Assert.IsTrue(sql.Contains("idx_modelwithnamedcompositeindex_name"));
-                Assert.IsTrue(sql.Contains("custom_index_name"));
-                Assert.IsFalse(sql.Contains("uidx_modelwithnamedcompositeindexfields_composite1_composite2"));
-            }
-        }
-
+				Assert.IsTrue(sql.Contains("idx_modelwithnamedcompositeindex_name"));
+				Assert.IsTrue(sql.Contains("custom_index_name"));
+				Assert.IsFalse(sql.Contains("uidx_modelwithnamedcompositeindexfields_composite1_composite2"));
+			}
+		}
 	}
 }

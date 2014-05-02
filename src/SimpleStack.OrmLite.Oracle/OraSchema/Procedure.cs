@@ -13,14 +13,14 @@ namespace SimpleStack.OrmLite.Oracle
 		[Alias("PROCEDURE_NAME")]
 		public string ProcedureName { get; set; }
 
-        [Alias("OBJECT_NAME")]
-        public string FunctionName { get; set; }
+		[Alias("OBJECT_NAME")]
+		public string FunctionName { get; set; }
 
 		[Alias("OWNER")]
 		public string Owner { get; set; }
 
-        [Alias("OBJECT_TYPE")]
-        public string ObjectType { get; set; }
+		[Alias("OBJECT_TYPE")]
+		public string ObjectType { get; set; }
 
 		//[Alias("INPUTS")]
 		//public Int16 Inputs { get; set; }
@@ -33,10 +33,9 @@ namespace SimpleStack.OrmLite.Oracle
 		{
 			get
 			{
-                return ProcedureType.Executable;
+				return ProcedureType.Executable;
 				//return Outputs == 0 ? ProcedureType.Executable : ProcedureType.Selectable;
 			}
 		}
 	}
 }
-

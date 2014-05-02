@@ -10,14 +10,14 @@ namespace SimpleStack.OrmLite.Tests
 		[Test]
 		public void SqlJoin_joins_int_ids()
 		{
-			var ids = new List<int> { 1, 2, 3 };
+			var ids = new List<int> {1, 2, 3};
 			Assert.That(ids.SqlJoin(), Is.EqualTo("1,2,3"));
 		}
 
 		[Test]
 		public void SqlJoin_joins_string_ids()
 		{
-			var ids = new List<string> { "1", "2", "3" };
+			var ids = new List<string> {"1", "2", "3"};
 			Assert.That(ids.SqlJoin(), Is.EqualTo("'1','2','3'"));
 		}
 
@@ -29,6 +29,5 @@ namespace SimpleStack.OrmLite.Tests
 
 			Assert.That(sqlFormat, Is.EqualTo("SELECT Id FROM FOO WHERE Bar = 1"));
 		}
-
 	}
 }

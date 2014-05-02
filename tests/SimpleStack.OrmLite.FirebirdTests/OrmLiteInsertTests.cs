@@ -12,11 +12,10 @@ namespace SimpleStack.OrmLite.FirebirdTests
 	public class OrmLiteInsertTests
 		: OrmLiteTestBase
 	{
-		
 		[Test]
 		public void Can_insert_into_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
@@ -29,7 +28,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_insert_and_select_from_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 
@@ -48,7 +47,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_insert_and_select_from_ModelWithFieldsOfNullableTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfNullableTypes>(true);
 
@@ -64,32 +63,33 @@ namespace SimpleStack.OrmLite.FirebirdTests
 			}
 		}
 
-        [Test]
-        public void Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_default_GUID()
-        {
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
-                Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_impl(db);
-        }
+		[Test]
+		public void Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_default_GUID()
+		{
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+				Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_impl(db);
+		}
 
-        [Test]
+		[Test]
 		public void Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_compact_GUID()
-        {
-            Firebird.FirebirdOrmLiteDialectProvider dialect = new Firebird.FirebirdOrmLiteDialectProvider(true);
-            OrmLiteConnectionFactory factory = new OrmLiteConnectionFactory(ConnectionString, dialect);
-            using (var db = factory.CreateDbConnection())
-            {
-                db.Open();
-                Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_impl(db);
-            }
-        }
+		{
+			Firebird.FirebirdOrmLiteDialectProvider dialect = new Firebird.FirebirdOrmLiteDialectProvider(true);
+			OrmLiteConnectionFactory factory = new OrmLiteConnectionFactory(ConnectionString, dialect);
+			using (var db = factory.CreateDbConnection())
+			{
+				db.Open();
+				Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_impl(db);
+			}
+		}
 
-		private void Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_impl(System.Data.IDbConnection db)
+		private void Can_insert_and_select_from_ModelWithFieldsOfDifferentAndNullableTypes_table_impl(
+			System.Data.IDbConnection db)
 		{
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentAndNullableTypes>(true);
 
 				var row = ModelWithFieldsOfDifferentAndNullableTypes.Create(1);
-				
+
 				Console.WriteLine(OrmLiteConfig.DialectProvider.ToInsertRowStatement(null, row));
 				db.Insert(row);
 
@@ -104,7 +104,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_insert_table_with_null_fields()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -120,11 +120,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				ModelWithIdAndName.AssertIsEqual(rows[0], row);
 			}
 		}
-		 
+
 		[Test]
 		public void Can_retrieve_LastInsertId_from_inserted_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 
@@ -144,11 +144,11 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(insertedRow2.Name, Is.EqualTo(row2.Name));
 			}
 		}
-		
+
 		[Test]
 		public void Can_insert_TaskQueue_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<TaskQueue>(true);
 
@@ -166,17 +166,17 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				TaskQueue.AssertIsEqual(rows[0], row);
 			}
 		}
-		 
+
 		[Test]
 		public void Can_insert_table_with_blobs()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
-				var dsl= OrmLiteConfig.DialectProvider.DefaultStringLength;
-				OrmLiteConfig.DialectProvider.DefaultStringLength=1024;
-				
+				var dsl = OrmLiteConfig.DialectProvider.DefaultStringLength;
+				OrmLiteConfig.DialectProvider.DefaultStringLength = 1024;
+
 				db.CreateTable<OrderBlob>(true);
-				OrmLiteConfig.DialectProvider.DefaultStringLength=dsl;
+				OrmLiteConfig.DialectProvider.DefaultStringLength = dsl;
 
 				var row = OrderBlob.Create(1);
 
@@ -199,7 +199,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(newRow.OrderDetails[2].ProductId, Is.EqualTo(row.OrderDetails[2].ProductId));
 			}
 		}
-		
+
 		public class UserAuth
 		{
 			public UserAuth()
@@ -210,6 +210,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 
 			[AutoIncrement]
 			public virtual int Id { get; set; }
+
 			public virtual string UserName { get; set; }
 			public virtual string Email { get; set; }
 			public virtual string PrimaryEmail { get; set; }
@@ -228,11 +229,12 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_insert_table_with_UserAuth()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<UserAuth>(true);
-				
-				var jsv = "{Id:0,UserName:UserName,Email:as@if.com,PrimaryEmail:as@if.com,FirstName:FirstName,LastName:LastName,DisplayName:DisplayName,Salt:WMQi/g==,PasswordHash:oGdE40yKOprIgbXQzEMSYZe3vRCRlKGuqX2i045vx50=,Roles:[],Permissions:[],CreatedDate:2012-03-20T07:53:48.8720739Z,ModifiedDate:2012-03-20T07:53:48.8720739Z}";
+
+				var jsv =
+					"{Id:0,UserName:UserName,Email:as@if.com,PrimaryEmail:as@if.com,FirstName:FirstName,LastName:LastName,DisplayName:DisplayName,Salt:WMQi/g==,PasswordHash:oGdE40yKOprIgbXQzEMSYZe3vRCRlKGuqX2i045vx50=,Roles:[],Permissions:[],CreatedDate:2012-03-20T07:53:48.8720739Z,ModifiedDate:2012-03-20T07:53:48.8720739Z}";
 				var userAuth = jsv.To<UserAuth>();
 
 				db.Insert(userAuth);
@@ -244,8 +246,5 @@ namespace SimpleStack.OrmLite.FirebirdTests
 				Assert.That(rows[0].UserName, Is.EqualTo(userAuth.UserName));
 			}
 		}
-		
-		
 	}
-
 }

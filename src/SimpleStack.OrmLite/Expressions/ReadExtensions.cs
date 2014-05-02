@@ -10,7 +10,7 @@ namespace SimpleStack.OrmLite
 	{
 		public static SqlExpressionVisitor<T> CreateExpression<T>()
 		{
-			return OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();            
+			return OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
 		}
 
 		public static List<T> Select<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
@@ -23,7 +23,8 @@ namespace SimpleStack.OrmLite
 			}
 		}
 
-		public static List<T> Select<T>(this IDbCommand dbCmd, Func<SqlExpressionVisitor<T>, SqlExpressionVisitor<T>> expression)
+		public static List<T> Select<T>(this IDbCommand dbCmd,
+		                                Func<SqlExpressionVisitor<T>, SqlExpressionVisitor<T>> expression)
 		{
 			var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
 			string sql = expression(ev).ToSelectStatement();
@@ -32,7 +33,7 @@ namespace SimpleStack.OrmLite
 				return ConvertToList<T>(reader);
 			}
 		}
-		
+
 		public static List<T> Select<T>(this IDbCommand dbCmd, SqlExpressionVisitor<T> expression)
 		{
 			string sql = expression.ToSelectStatement();
@@ -42,56 +43,56 @@ namespace SimpleStack.OrmLite
 			}
 		}
 
-        public static List<T> SelectParam<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
-        {
-            var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
-            ev.IsParameterized = true;
-            string sql = ev.Where(predicate).ToSelectStatement();
+		public static List<T> SelectParam<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
+		{
+			var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
+			ev.IsParameterized = true;
+			string sql = ev.Where(predicate).ToSelectStatement();
 
-            dbCmd.Parameters.Clear();
-            List<IDataParameter> paramsToInsert = new List<IDataParameter>();
-            foreach (var param in ev.Params)
-            {
-                var cmdParam = dbCmd.CreateParameter();
-                cmdParam.ParameterName = param.Key;
-                cmdParam.Value = param.Value ?? DBNull.Value;
-                paramsToInsert.Add(cmdParam);
-            }
+			dbCmd.Parameters.Clear();
+			List<IDataParameter> paramsToInsert = new List<IDataParameter>();
+			foreach (var param in ev.Params)
+			{
+				var cmdParam = dbCmd.CreateParameter();
+				cmdParam.ParameterName = param.Key;
+				cmdParam.Value = param.Value ?? DBNull.Value;
+				paramsToInsert.Add(cmdParam);
+			}
 
-            using (var reader = dbCmd.ExecReader(sql, paramsToInsert))
-            {
-                return ConvertToList<T>(reader);
-            }
-        }
-		
+			using (var reader = dbCmd.ExecReader(sql, paramsToInsert))
+			{
+				return ConvertToList<T>(reader);
+			}
+		}
+
 		public static T First<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
 		{
 			var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
-			
+
 			return First(dbCmd, ev.Where(predicate).Limit(1));
 		}
-		
-		public static T First<T>(this IDbCommand dbCmd,  SqlExpressionVisitor<T> expression)
+
+		public static T First<T>(this IDbCommand dbCmd, SqlExpressionVisitor<T> expression)
 		{
 			var result = FirstOrDefault(dbCmd, expression);
 			if (Equals(result, default(T)))
 			{
 				throw new ArgumentNullException(string.Format(
-					"{0}: '{1}' does not exist", typeof(T).Name, expression.WhereExpression));
+					"{0}: '{1}' does not exist", typeof (T).Name, expression.WhereExpression));
 			}
 			return result;
 		}
-		
+
 		public static T FirstOrDefault<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
 		{
 			var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
-			
+
 			return FirstOrDefault(dbCmd, ev.Where(predicate).Limit(1));
 		}
 
 		public static T FirstOrDefault<T>(this IDbCommand dbCmd, SqlExpressionVisitor<T> expression)
 		{
-			string sql= expression.ToSelectStatement();
+			string sql = expression.ToSelectStatement();
 			using (var dbReader = dbCmd.ExecReader(sql))
 			{
 				return ConvertTo<T>(dbReader);
@@ -108,13 +109,13 @@ namespace SimpleStack.OrmLite
 			var sql = ev.ToSelectStatement();
 			return dbCmd.GetScalar<TKey>(sql);
 		}
-		
+
 		/// <summary>
 		/// dbCmd.GetScalar&lt;MyClass, DateTime&gt;(MyClass=>Sql.Max(myClass.Timestamp),
 		/// 	MyClass=> MyClass.SomeProp== someValue);
 		/// </summary>
-		public static TKey GetScalar<T,TKey>(this IDbCommand dbCmd,Expression<Func<T, TKey>> field,
-		                                     Expression<Func<T, bool>> predicate)
+		public static TKey GetScalar<T, TKey>(this IDbCommand dbCmd, Expression<Func<T, TKey>> field,
+		                                      Expression<Func<T, bool>> predicate)
 		{
 			var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
 			ev.Select(field).Where(predicate);
@@ -122,29 +123,29 @@ namespace SimpleStack.OrmLite
 			return dbCmd.GetScalar<TKey>(sql);
 		}
 
-        public static long Count<T>(this IDbCommand dbCmd)
-        {
-            SqlExpressionVisitor<T> expression = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
-            string sql = expression.ToCountStatement();
-            return dbCmd.GetScalar<long>(sql);
-        }
+		public static long Count<T>(this IDbCommand dbCmd)
+		{
+			SqlExpressionVisitor<T> expression = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
+			string sql = expression.ToCountStatement();
+			return dbCmd.GetScalar<long>(sql);
+		}
 
-        public static long Count<T>(this IDbCommand dbCmd, SqlExpressionVisitor<T> expression)
-        {
-            string sql = expression.ToCountStatement();
-            return dbCmd.GetScalar<long>(sql);
-        }
+		public static long Count<T>(this IDbCommand dbCmd, SqlExpressionVisitor<T> expression)
+		{
+			string sql = expression.ToCountStatement();
+			return dbCmd.GetScalar<long>(sql);
+		}
 
-        public static long Count<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
-        {
-            var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
-            ev.Where(predicate);
-            string sql = ev.ToCountStatement();
-            return dbCmd.GetScalar<long>(sql);
-        }
-		
+		public static long Count<T>(this IDbCommand dbCmd, Expression<Func<T, bool>> predicate)
+		{
+			var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
+			ev.Where(predicate);
+			string sql = ev.ToCountStatement();
+			return dbCmd.GetScalar<long>(sql);
+		}
+
 		private static T ConvertTo<T>(IDataReader dataReader)
-        {
+		{
 			var fieldDefs = ModelDefinition<T>.Definition.AllFieldDefinitionsArray;
 
 			using (dataReader)
@@ -153,26 +154,26 @@ namespace SimpleStack.OrmLite
 				{
 					var row = OrmLiteUtilExtensions.CreateInstance<T>();
 
-				    var namingStrategy = OrmLiteConfig.DialectProvider.NamingStrategy;
+					var namingStrategy = OrmLiteConfig.DialectProvider.NamingStrategy;
 
-					for (int i = 0; i<dataReader.FieldCount; i++)
+					for (int i = 0; i < dataReader.FieldCount; i++)
 					{
-					    var fieldDef = fieldDefs.FirstOrDefault(
-					        x =>
-					        namingStrategy.GetColumnName(x.FieldName).ToUpper() ==
-					        dataReader.GetName(i).ToUpper());
+						var fieldDef = fieldDefs.FirstOrDefault(
+							x =>
+							namingStrategy.GetColumnName(x.FieldName).ToUpper() ==
+							dataReader.GetName(i).ToUpper());
 
 						if (fieldDef == null) continue;
 						var value = dataReader.GetValue(i);
 						fieldDef.SetValue(row, value);
 					}
-					
+
 					return row;
 				}
 				return default(T);
 			}
 		}
-		
+
 		private static List<T> ConvertToList<T>(IDataReader dataReader)
 		{
 			var fieldDefs = ModelDefinition<T>.Definition.AllFieldDefinitionsArray;
@@ -183,19 +184,19 @@ namespace SimpleStack.OrmLite
 			{
 				while (dataReader.Read())
 				{
-                    var row = OrmLiteUtilExtensions.CreateInstance<T>();
+					var row = OrmLiteUtilExtensions.CreateInstance<T>();
 
-                    var namingStrategy = OrmLiteConfig.DialectProvider.NamingStrategy;
+					var namingStrategy = OrmLiteConfig.DialectProvider.NamingStrategy;
 
-					for (int i = 0; i<dataReader.FieldCount; i++)
+					for (int i = 0; i < dataReader.FieldCount; i++)
 					{
 						FieldDefinition fieldDef;
 						if (!fieldDefCache.TryGetValue(i, out fieldDef))
 						{
-						    fieldDef = fieldDefs.FirstOrDefault(
-						        x =>
-						        namingStrategy.GetColumnName(x.FieldName).ToUpper() ==
-						        dataReader.GetName(i).ToUpper());
+							fieldDef = fieldDefs.FirstOrDefault(
+								x =>
+								namingStrategy.GetColumnName(x.FieldName).ToUpper() ==
+								dataReader.GetName(i).ToUpper());
 							fieldDefCache[i] = fieldDef;
 						}
 
@@ -210,7 +211,7 @@ namespace SimpleStack.OrmLite
 			return to;
 		}
 
-        /*
+		/*
         private static T PopulateWithSqlReader<T>( T objWithProperties, IDataReader dataReader, FieldDefinition[] fieldDefs)
         {
             foreach (var fieldDef in fieldDefs)
@@ -236,8 +237,6 @@ namespace SimpleStack.OrmLite
             return objWithProperties;
         }
         */
-        // First FirstOrDefault  // Use LIMIT to retrive only one row ! someone did it
-
+		// First FirstOrDefault  // Use LIMIT to retrive only one row ! someone did it
 	}
 }
-

@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Northwind.Perf
 {
-
 	public class PerfTestBase
 	{
 		protected int DefaultIterations { get; set; }
@@ -14,7 +13,7 @@ namespace Northwind.Perf
 		public PerfTestBase()
 		{
 			this.DefaultIterations = 10000;
-			this.MultipleIterations = new List<int> { 1000, 10000, 100000, 1000000 };
+			this.MultipleIterations = new List<int> {1000, 10000, 100000, 1000000};
 		}
 
 		protected StringBuilder SbLog = new StringBuilder();
@@ -61,11 +60,11 @@ namespace Northwind.Perf
 			var run1IsSlower = runDiff > 0;
 			var slowerRun = run1IsSlower ? run1Name : run2Name;
 			var fasterRun = run1IsSlower ? run2Name : run1Name;
-			var runDiffTime = run1IsSlower ? runDiff : runDiff * -1;
-			var runDiffAvg = run1IsSlower ? run1 / run2 : run2 / run1;
+			var runDiffTime = run1IsSlower ? runDiff : runDiff*-1;
+			var runDiffAvg = run1IsSlower ? run1/run2 : run2/run1;
 
 			Log("{0} was {1}ms or {2} times slower than {3}",
-				slowerRun, runDiffTime, Math.Round(runDiffAvg, 2), fasterRun);
+			    slowerRun, runDiffTime, Math.Round(runDiffAvg, 2), fasterRun);
 		}
 
 		protected void WarmUp(params Action[] actions)
@@ -91,7 +90,7 @@ namespace Northwind.Perf
 				total += RunAction(action, iteration, actionName ?? "Action");
 			}
 
-			return total / i;
+			return total/i;
 		}
 
 		protected long GetTotalTicksTakenForAllIterations(Action action, string actionName)
@@ -109,7 +108,7 @@ namespace Northwind.Perf
 					Log("{0} times:", iteration);
 					total += RunAction(action, iteration, actionName ?? "Action");
 				}
-				return (long)total;
+				return (long) total;
 			}
 			catch (Exception ex)
 			{
@@ -128,9 +127,10 @@ namespace Northwind.Perf
 		{
 			actionName = actionName ?? action.GetType().Name;
 			var ticksTaken = Measure(action, iterations);
-			var timeSpan = TimeSpan.FromSeconds(ticksTaken * 1d / Stopwatch.Frequency);
+			var timeSpan = TimeSpan.FromSeconds(ticksTaken*1d/Stopwatch.Frequency);
 
-			Log("{0} took {1}ms ({2} ticks), avg: {3} ticks", actionName, timeSpan.TotalMilliseconds, ticksTaken, (ticksTaken / iterations));
+			Log("{0} took {1}ms ({2} ticks), avg: {3} ticks", actionName, timeSpan.TotalMilliseconds, ticksTaken,
+			    (ticksTaken/iterations));
 
 			return ticksTaken;
 		}
@@ -139,8 +139,8 @@ namespace Northwind.Perf
 		{
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
-			GC.Collect(); 
-			
+			GC.Collect();
+
 			var begin = Stopwatch.GetTimestamp();
 
 			for (var i = 0; i < iterations; i++)

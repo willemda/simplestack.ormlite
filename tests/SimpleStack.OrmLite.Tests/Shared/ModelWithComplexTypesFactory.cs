@@ -3,7 +3,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 	public class ModelWithComplexTypesFactory
 		: ModelFactoryBase<ModelWithComplexTypes>
 	{
-		public static ModelWithComplexTypesFactory Instance 
+		public static ModelWithComplexTypesFactory Instance
 			= new ModelWithComplexTypesFactory();
 
 		public override void AssertIsEqual(

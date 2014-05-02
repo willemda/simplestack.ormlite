@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace SimpleStack.OrmLite
 {
 	public interface INamingStrategy

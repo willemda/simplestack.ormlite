@@ -6,10 +6,11 @@ namespace SimpleStack.OrmLite.Tests.Shared
 	public class BuiltInsFactory
 		: ModelFactoryBase<string>
 	{
-		readonly string[] StringValues = new[] {
-			"one", "two", "three", "four", 
-			"five", "six", "seven"
-		};
+		private readonly string[] StringValues = new[]
+			                                         {
+				                                         "one", "two", "three", "four",
+				                                         "five", "six", "seven"
+			                                         };
 
 		public override void AssertIsEqual(string actual, string expected)
 		{
@@ -19,8 +20,8 @@ namespace SimpleStack.OrmLite.Tests.Shared
 		public override string CreateInstance(int i)
 		{
 			return i < StringValues.Length
-				? StringValues[i]
-				: i.ToString();
+				       ? StringValues[i]
+				       : i.ToString();
 		}
 	}
 

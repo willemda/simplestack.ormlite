@@ -3,63 +3,63 @@ using SimpleStack.OrmLite.Tests.Shared;
 
 namespace SimpleStack.OrmLite.Tests
 {
-    public class OrmLiteDropTableWithNamingStrategyTests
-        : OrmLiteTestBase
-    {
-        [Test]
-        public void Can_drop_TableWithNamigStrategy_table_prefix()
-        {
-            OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
-            {
-                TablePrefix = "tab_",
-                ColumnPrefix = "col_"
-            };
+	public class OrmLiteDropTableWithNamingStrategyTests
+		: OrmLiteTestBase
+	{
+		[Test]
+		public void Can_drop_TableWithNamigStrategy_table_prefix()
+		{
+			OrmLiteConfig.DialectProvider.NamingStrategy = new PrefixNamingStrategy
+				                                               {
+					                                               TablePrefix = "tab_",
+					                                               ColumnPrefix = "col_"
+				                                               };
 
-            using (var db = OpenDbConnection())
-            {
-                db.CreateTable<ModelWithOnlyStringFields>(true);
+			using (var db = OpenDbConnection())
+			{
+				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-                db.DropTable<ModelWithOnlyStringFields>();
+				db.DropTable<ModelWithOnlyStringFields>();
 
-                Assert.False(db.TableExists("tab_ModelWithOnlyStringFields"));
-            }
-            
-            OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
-        }
+				Assert.False(db.TableExists("tab_ModelWithOnlyStringFields"));
+			}
 
-        [Test]
-        public void Can_drop_TableWithNamigStrategy_table_lowered()
-        {
-            OrmLiteConfig.DialectProvider.NamingStrategy = new LowercaseNamingStrategy();
+			OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
+		}
 
-            using (var db = OpenDbConnection())
-            {
-                db.CreateTable<ModelWithOnlyStringFields>(true);
+		[Test]
+		public void Can_drop_TableWithNamigStrategy_table_lowered()
+		{
+			OrmLiteConfig.DialectProvider.NamingStrategy = new LowercaseNamingStrategy();
 
-                db.DropTable<ModelWithOnlyStringFields>();
+			using (var db = OpenDbConnection())
+			{
+				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-                Assert.False(db.TableExists("modelwithonlystringfields"));
-            }
+				db.DropTable<ModelWithOnlyStringFields>();
 
-            OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
-        }
+				Assert.False(db.TableExists("modelwithonlystringfields"));
+			}
+
+			OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
+		}
 
 
-        [Test]
-        public void Can_drop_TableWithNamigStrategy_table_nameUnderscoreCompound()
-        {
-            OrmLiteConfig.DialectProvider.NamingStrategy = new UnderscoreSeparatedCompoundNamingStrategy();
+		[Test]
+		public void Can_drop_TableWithNamigStrategy_table_nameUnderscoreCompound()
+		{
+			OrmLiteConfig.DialectProvider.NamingStrategy = new UnderscoreSeparatedCompoundNamingStrategy();
 
-            using (var db = OpenDbConnection())
-            {
-                db.CreateTable<ModelWithOnlyStringFields>(true);
+			using (var db = OpenDbConnection())
+			{
+				db.CreateTable<ModelWithOnlyStringFields>(true);
 
-                db.DropTable<ModelWithOnlyStringFields>();
+				db.DropTable<ModelWithOnlyStringFields>();
 
-                Assert.False(db.TableExists("model_with_only_string_fields"));
-            }
+				Assert.False(db.TableExists("model_with_only_string_fields"));
+			}
 
-            OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
-        }
-    }
+			OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
+		}
+	}
 }

@@ -18,7 +18,7 @@ namespace SimpleStack.OrmLite
 		{
 			return name;
 		}
- 
+
 		public virtual string GetColumnName(string name)
 		{
 			return name;

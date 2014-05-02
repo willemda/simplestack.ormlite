@@ -3,7 +3,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 	public class ModelWithFieldsOfNullableTypesFactory
 		: ModelFactoryBase<ModelWithFieldsOfNullableTypes>
 	{
-		public static ModelWithFieldsOfNullableTypesFactory Instance 
+		public static ModelWithFieldsOfNullableTypesFactory Instance
 			= new ModelWithFieldsOfNullableTypesFactory();
 
 		public override void AssertIsEqual(

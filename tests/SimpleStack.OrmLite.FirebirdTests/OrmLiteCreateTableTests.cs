@@ -6,24 +6,24 @@ using SimpleStack.OrmLite.Firebird;
 namespace SimpleStack.OrmLite.FirebirdTests
 {
 	[TestFixture]
-	public class OrmLiteCreateTableTests 
+	public class OrmLiteCreateTableTests
 		: OrmLiteTestBase
 	{
 		[Test]
 		public void Does_table_Exists()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.DropTable<ModelWithIdOnly>();
 
 				Assert.That(
-					OrmLiteConfig.DialectProvider.DoesTableExist(db, typeof(ModelWithIdOnly).Name),
+					OrmLiteConfig.DialectProvider.DoesTableExist(db, typeof (ModelWithIdOnly).Name),
 					Is.False);
-				
+
 				db.CreateTable<ModelWithIdOnly>(true);
 
 				Assert.That(
-					OrmLiteConfig.DialectProvider.DoesTableExist(db, typeof(ModelWithIdOnly).Name),
+					OrmLiteConfig.DialectProvider.DoesTableExist(db, typeof (ModelWithIdOnly).Name),
 					Is.True);
 			}
 		}
@@ -31,7 +31,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_create_ModelWithIdOnly_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdOnly>(true);
 			}
@@ -40,7 +40,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_create_ModelWithOnlyStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithOnlyStringFields>(true);
 			}
@@ -49,7 +49,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_create_ModelWithLongIdAndStringFields_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithLongIdAndStringFields>(true);
 			}
@@ -58,7 +58,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_create_ModelWithFieldsOfDifferentTypes_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithFieldsOfDifferentTypes>(true);
 			}
@@ -67,7 +67,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_preserve_ModelWithIdOnly_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdOnly>(true);
 
@@ -85,7 +85,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_preserve_ModelWithIdAndName_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdAndName>(true);
 				db.DeleteAll<ModelWithIdAndName>();
@@ -104,7 +104,7 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_overwrite_ModelWithIdOnly_table()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
 				db.CreateTable<ModelWithIdOnly>(true);
 
@@ -122,9 +122,9 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		[Test]
 		public void Can_create_multiple_tables()
 		{
-            using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
+			using (var db = new OrmLiteConnectionFactory(ConnectionString, FirebirdDialect.Provider).Open())
 			{
-				db.CreateTables(true, typeof(ModelWithIdOnly), typeof(ModelWithIdAndName));
+				db.CreateTables(true, typeof (ModelWithIdOnly), typeof (ModelWithIdAndName));
 
 				db.Insert(new ModelWithIdOnly(1));
 				db.Insert(new ModelWithIdOnly(2));
@@ -145,11 +145,10 @@ namespace SimpleStack.OrmLite.FirebirdTests
 		public void Can_create_ModelWithIdAndName_table_with_specified_DefaultStringLength()
 		{
 			OrmLiteConfig.DialectProvider.DefaultStringLength = 255;
-			var createTableSql = OrmLiteConfig.DialectProvider.ToCreateTableStatement(typeof(ModelWithIdAndName));
+			var createTableSql = OrmLiteConfig.DialectProvider.ToCreateTableStatement(typeof (ModelWithIdAndName));
 
 			Console.WriteLine("createTableSql: " + createTableSql);
 			Assert.That(createTableSql.Contains("VARCHAR(255)"), Is.True);
 		}
-
 	}
 }

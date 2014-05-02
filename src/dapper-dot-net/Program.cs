@@ -12,63 +12,62 @@ using SimpleStack.DataAnnotations;
 
 namespace SqlMapper
 {
-    class Post
-    {
-        public int Id { get; set; }
-        public string Text { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime LastChangeDate { get; set; }
-        public int? Counter1 { get; set; }
-        public int? Counter2 { get; set; }
-        public int? Counter3 { get; set; }
-        public int? Counter4 { get; set; }
-        public int? Counter5 { get; set; }
-        public int? Counter6 { get; set; }
-        public int? Counter7 { get; set; }
-        public int? Counter8 { get; set; }
-        public int? Counter9 { get; set; }
+	internal class Post
+	{
+		public int Id { get; set; }
+		public string Text { get; set; }
+		public DateTime CreationDate { get; set; }
+		public DateTime LastChangeDate { get; set; }
+		public int? Counter1 { get; set; }
+		public int? Counter2 { get; set; }
+		public int? Counter3 { get; set; }
+		public int? Counter4 { get; set; }
+		public int? Counter5 { get; set; }
+		public int? Counter6 { get; set; }
+		public int? Counter7 { get; set; }
+		public int? Counter8 { get; set; }
+		public int? Counter9 { get; set; }
+	}
 
-    }
+	internal class Program
+	{
+		public static readonly string connectionString =
+			"Data Source=IO\\SQLEXPRESS;Initial Catalog=tempdb;Integrated Security=True";
 
-    class Program
-    {
-
-		public static readonly string connectionString = "Data Source=IO\\SQLEXPRESS;Initial Catalog=tempdb;Integrated Security=True";
 		//public static readonly string connectionString = "Data Source=.;Initial Catalog=tempdb;Integrated Security=True";
 
-        public static SqlConnection GetOpenConnection()
-        {
-            var connection = new SqlConnection(connectionString);
-            connection.Open();
-            return connection;
-        }
+		public static SqlConnection GetOpenConnection()
+		{
+			var connection = new SqlConnection(connectionString);
+			connection.Open();
+			return connection;
+		}
 
-        static void RunPerformanceTests()
-        {
-            var test = new PerformanceTests();
-            Console.WriteLine("Running 500 itrations that load up a post entity");
-            test.Run(500);
-        }
+		private static void RunPerformanceTests()
+		{
+			var test = new PerformanceTests();
+			Console.WriteLine("Running 500 itrations that load up a post entity");
+			test.Run(500);
+		}
 
-        static void Main(string[] args)
-        {
-
+		private static void Main(string[] args)
+		{
 #if DEBUG
-            RunTests();
+			RunTests();
 #else 
             EnsureDBSetup();
             RunPerformanceTests();
 #endif
 
-            Console.ReadKey();
-        }
+			Console.ReadKey();
+		}
 
-        private static void EnsureDBSetup()
-        {
-            using (var cnn = GetOpenConnection())
-            {
-                var cmd = cnn.CreateCommand();
-                cmd.CommandText = @"
+		private static void EnsureDBSetup()
+		{
+			using (var cnn = GetOpenConnection())
+			{
+				var cmd = cnn.CreateCommand();
+				cmd.CommandText = @"
 if (OBJECT_ID('Posts') is null)
 begin
 	create table Posts
@@ -107,20 +106,21 @@ begin
 	end
 end
 ";
-                cmd.Connection = cnn;
-                cmd.ExecuteNonQuery();
-            }
-        }
+				cmd.Connection = cnn;
+				cmd.ExecuteNonQuery();
+			}
+		}
 
-        private static void RunTests()
-        {
-            var tester = new Tests();
-            foreach (var method in typeof(Tests).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
-            {
-                Console.Write("Running " + method.Name);
-                method.Invoke(tester, null);
-                Console.WriteLine(" - OK!");
-            }
-        }
-    }
+		private static void RunTests()
+		{
+			var tester = new Tests();
+			foreach (
+				var method in typeof (Tests).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+			{
+				Console.Write("Running " + method.Name);
+				method.Invoke(tester, null);
+				Console.WriteLine(" - OK!");
+			}
+		}
+	}
 }

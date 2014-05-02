@@ -11,7 +11,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 	{
 		private readonly Guid userId = Guid.NewGuid();
 
-        protected override void Run(IDbConnection db)
+		protected override void Run(IDbConnection db)
 		{
 			if (this.IsFirstRun)
 			{
@@ -27,7 +27,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 	{
 		private readonly Guid userId = Guid.NewGuid();
 
-        protected override void Run(IDbConnection db)
+		protected override void Run(IDbConnection db)
 		{
 			if (this.IsFirstRun)
 			{
@@ -44,7 +44,7 @@ namespace SimpleStack.OrmLite.TestsPerf.Scenarios.OrmLite
 	{
 		private readonly Guid userId = Guid.NewGuid();
 
-        protected override void Run(IDbConnection db)
+		protected override void Run(IDbConnection db)
 		{
 			if (this.IsFirstRun)
 			{

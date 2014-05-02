@@ -12,7 +12,6 @@ namespace SimpleStack.OrmLite.Tests
 	public class OrmLiteInsertTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_insert_into_ModelWithFieldsOfDifferentTypes_table()
 		{
@@ -108,7 +107,7 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 
 				var row1 = ModelWithIdAndName.Create(5);
 				var row2 = ModelWithIdAndName.Create(6);
@@ -188,6 +187,7 @@ namespace SimpleStack.OrmLite.Tests
 
 			[AutoIncrement]
 			public virtual int Id { get; set; }
+
 			public virtual string UserName { get; set; }
 			public virtual string Email { get; set; }
 			public virtual string PrimaryEmail { get; set; }
@@ -224,7 +224,8 @@ namespace SimpleStack.OrmLite.Tests
 				//    ModifiedDate = DateTime.UtcNow,
 				//};
 
-				var jsv = "{Id:0,UserName:UserName,Email:as@if.com,PrimaryEmail:as@if.com,FirstName:FirstName,LastName:LastName,DisplayName:DisplayName,Salt:WMQi/g==,PasswordHash:oGdE40yKOprIgbXQzEMSYZe3vRCRlKGuqX2i045vx50=,Roles:[],Permissions:[],CreatedDate:2012-03-20T07:53:48.8720739Z,ModifiedDate:2012-03-20T07:53:48.8720739Z}";
+				var jsv =
+					"{Id:0,UserName:UserName,Email:as@if.com,PrimaryEmail:as@if.com,FirstName:FirstName,LastName:LastName,DisplayName:DisplayName,Salt:WMQi/g==,PasswordHash:oGdE40yKOprIgbXQzEMSYZe3vRCRlKGuqX2i045vx50=,Roles:[],Permissions:[],CreatedDate:2012-03-20T07:53:48.8720739Z,ModifiedDate:2012-03-20T07:53:48.8720739Z}";
 				var userAuth = jsv.To<UserAuth>();
 
 				db.Insert(userAuth);
@@ -237,29 +238,29 @@ namespace SimpleStack.OrmLite.Tests
 			}
 		}
 
-        [Test]
-        public void Can_GetLastInsertedId_using_InsertParam()
-        {
-            var testObject = new UserAuth { UserName = "test" };
+		[Test]
+		public void Can_GetLastInsertedId_using_InsertParam()
+		{
+			var testObject = new UserAuth {UserName = "test"};
 
-            //verify that "normal" Insert works as expected
-            using (var con = OpenDbConnection())
-            {
-                con.CreateTable<UserAuth>(true);
+			//verify that "normal" Insert works as expected
+			using (var con = OpenDbConnection())
+			{
+				con.CreateTable<UserAuth>(true);
 
-                con.Insert(testObject);
-                var normalLastInsertedId = con.GetLastInsertId();
-                Assert.Greater(normalLastInsertedId, 0, "normal Insert");
-            }
+				con.Insert(testObject);
+				var normalLastInsertedId = con.GetLastInsertId();
+				Assert.Greater(normalLastInsertedId, 0, "normal Insert");
+			}
 
-            //test with InsertParam
-            using (var con = OpenDbConnection())
-            {
-                con.CreateTable<UserAuth>(true);
+			//test with InsertParam
+			using (var con = OpenDbConnection())
+			{
+				con.CreateTable<UserAuth>(true);
 
-                var lastInsertId = con.InsertParam(testObject, selectIdentity: true);
-                Assert.Greater(lastInsertId, 0, "with InsertParam");
-            }
-        }
-    }
+				var lastInsertId = con.InsertParam(testObject, selectIdentity: true);
+				Assert.Greater(lastInsertId, 0, "with InsertParam");
+			}
+		}
+	}
 }

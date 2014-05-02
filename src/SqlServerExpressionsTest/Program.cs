@@ -4,12 +4,10 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Data;
-
 using SimpleStack.Common.Utils;
 using SimpleStack.DataAnnotations;
 using SimpleStack.Common;
 using System.Reflection;
-
 using SimpleStack.OrmLite;
 using SimpleStack.OrmLite.SqlServer;
 
@@ -18,29 +16,36 @@ namespace SqlServerExpressionsTest
 {
 	public class Author
 	{
-		public Author() { }
+		public Author()
+		{
+		}
+
 		[AutoIncrement]
 		[Alias("AuthorID")]
 		public Int32 Id { get; set; }
+
 		[Index(Unique = true)]
 		[StringLength(40)]
 		public string Name { get; set; }
+
 		public DateTime Birthday { get; set; }
 		public DateTime? LastActivity { get; set; }
 		public Decimal? Earnings { get; set; }
 		public bool Active { get; set; }
+
 		[StringLength(80)]
 		[Alias("JobCity")]
 		public string City { get; set; }
+
 		[StringLength(80)]
 		[Alias("Comment")]
 		public string Comments { get; set; }
+
 		public Int16 Rate { get; set; }
 	}
 
 
-
-	class MainClass
+	internal class MainClass
 	{
 		public static void Main(string[] args)
 		{
@@ -49,11 +54,11 @@ namespace SqlServerExpressionsTest
 			OrmLiteConfig.DialectProvider = SqlServerOrmLiteDialectProvider.Instance;
 			SqlExpressionVisitor<Author> ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<Author>();
 
-            Console.WriteLine("Join Test");
-            //JoinTest.Test(GetFileConnectionString());
+			Console.WriteLine("Join Test");
+			//JoinTest.Test(GetFileConnectionString());
 
-            Console.WriteLine("Ignored Field Select Test");
-            IgnoredFieldSelectTest.Test(GetFileConnectionString());
+			Console.WriteLine("Ignored Field Select Test");
+			IgnoredFieldSelectTest.Test(GetFileConnectionString());
 
 			using (IDbConnection db = GetFileConnectionString().OpenDbConnection())
 			{
@@ -61,22 +66,149 @@ namespace SqlServerExpressionsTest
 				db.CreateTable<Author>();
 				db.DeleteAll<Author>();
 
-				var authors = new List<Author> {
-					new Author { Name = "Demis Bellot", Birthday = DateTime.Today.AddYears(-20), Active = true, Earnings = 99.9m, Comments = "CSharp books", Rate = 10, City = "London" },
-					new Author { Name = "Angel Colmenares", Birthday = DateTime.Today.AddYears(-25), Active = true, Earnings = 50.0m, Comments = "CSharp books", Rate = 5, City = "Bogota" },
-					new Author { Name = "Adam Witco", Birthday = DateTime.Today.AddYears(-20), Active = true, Earnings = 80.0m, Comments = "Math Books", Rate = 9, City = "London" },
-					new Author { Name = "Claudia Espinel", Birthday = DateTime.Today.AddYears(-23), Active = true, Earnings = 60.0m, Comments = "Cooking books", Rate = 10, City = "Bogota" },
-					new Author { Name = "Libardo Pajaro", Birthday = DateTime.Today.AddYears(-25), Active = true, Earnings = 80.0m, Comments = "CSharp books", Rate = 9, City = "Bogota" },
-					new Author { Name = "Jorge Garzon", Birthday = DateTime.Today.AddYears(-28), Active = true, Earnings = 70.0m, Comments = "CSharp books", Rate = 9, City = "Bogota" },
-					new Author { Name = "Alejandro Isaza", Birthday = DateTime.Today.AddYears(-20), Active = true, Earnings = 70.0m, Comments = "Java books", Rate = 0, City = "Bogota" },
-					new Author { Name = "Wilmer Agamez", Birthday = DateTime.Today.AddYears(-20), Active = true, Earnings = 30.0m, Comments = "Java books", Rate = 0, City = "Cartagena" },
-					new Author { Name = "Rodger Contreras", Birthday = DateTime.Today.AddYears(-25), Active = true, Earnings = 90.0m, Comments = "CSharp books", Rate = 8, City = "Cartagena" },
-					new Author { Name = "Chuck Benedict", Birthday = DateTime.Today.AddYears(-22), Active = true, Earnings = 85.5m, Comments = "CSharp books", Rate = 8, City = "London" },
-					new Author { Name = "James Benedict II", Birthday = DateTime.Today.AddYears(-22), Active = true, Earnings = 85.5m, Comments = "Java books", Rate = 5, City = "Berlin" },
-					new Author { Name = "Ethan Brown", Birthday = DateTime.Today.AddYears(-20), Active = true, Earnings = 45.0m, Comments = "CSharp books", Rate = 5, City = "Madrid" },
-					new Author { Name = "Xavi Garzon", Birthday = DateTime.Today.AddYears(-22), Active = true, Earnings = 75.0m, Comments = "CSharp books", Rate = 9, City = "Madrid" },
-					new Author { Name = "Luis garzon", Birthday = DateTime.Today.AddYears(-22), Active = true, Earnings = 85.0m, Comments = "CSharp books", Rate = 10, City = "Mexico" },
-				};
+				var authors = new List<Author>
+					              {
+						              new Author
+							              {
+								              Name = "Demis Bellot",
+								              Birthday = DateTime.Today.AddYears(-20),
+								              Active = true,
+								              Earnings = 99.9m,
+								              Comments = "CSharp books",
+								              Rate = 10,
+								              City = "London"
+							              },
+						              new Author
+							              {
+								              Name = "Angel Colmenares",
+								              Birthday = DateTime.Today.AddYears(-25),
+								              Active = true,
+								              Earnings = 50.0m,
+								              Comments = "CSharp books",
+								              Rate = 5,
+								              City = "Bogota"
+							              },
+						              new Author
+							              {
+								              Name = "Adam Witco",
+								              Birthday = DateTime.Today.AddYears(-20),
+								              Active = true,
+								              Earnings = 80.0m,
+								              Comments = "Math Books",
+								              Rate = 9,
+								              City = "London"
+							              },
+						              new Author
+							              {
+								              Name = "Claudia Espinel",
+								              Birthday = DateTime.Today.AddYears(-23),
+								              Active = true,
+								              Earnings = 60.0m,
+								              Comments = "Cooking books",
+								              Rate = 10,
+								              City = "Bogota"
+							              },
+						              new Author
+							              {
+								              Name = "Libardo Pajaro",
+								              Birthday = DateTime.Today.AddYears(-25),
+								              Active = true,
+								              Earnings = 80.0m,
+								              Comments = "CSharp books",
+								              Rate = 9,
+								              City = "Bogota"
+							              },
+						              new Author
+							              {
+								              Name = "Jorge Garzon",
+								              Birthday = DateTime.Today.AddYears(-28),
+								              Active = true,
+								              Earnings = 70.0m,
+								              Comments = "CSharp books",
+								              Rate = 9,
+								              City = "Bogota"
+							              },
+						              new Author
+							              {
+								              Name = "Alejandro Isaza",
+								              Birthday = DateTime.Today.AddYears(-20),
+								              Active = true,
+								              Earnings = 70.0m,
+								              Comments = "Java books",
+								              Rate = 0,
+								              City = "Bogota"
+							              },
+						              new Author
+							              {
+								              Name = "Wilmer Agamez",
+								              Birthday = DateTime.Today.AddYears(-20),
+								              Active = true,
+								              Earnings = 30.0m,
+								              Comments = "Java books",
+								              Rate = 0,
+								              City = "Cartagena"
+							              },
+						              new Author
+							              {
+								              Name = "Rodger Contreras",
+								              Birthday = DateTime.Today.AddYears(-25),
+								              Active = true,
+								              Earnings = 90.0m,
+								              Comments = "CSharp books",
+								              Rate = 8,
+								              City = "Cartagena"
+							              },
+						              new Author
+							              {
+								              Name = "Chuck Benedict",
+								              Birthday = DateTime.Today.AddYears(-22),
+								              Active = true,
+								              Earnings = 85.5m,
+								              Comments = "CSharp books",
+								              Rate = 8,
+								              City = "London"
+							              },
+						              new Author
+							              {
+								              Name = "James Benedict II",
+								              Birthday = DateTime.Today.AddYears(-22),
+								              Active = true,
+								              Earnings = 85.5m,
+								              Comments = "Java books",
+								              Rate = 5,
+								              City = "Berlin"
+							              },
+						              new Author
+							              {
+								              Name = "Ethan Brown",
+								              Birthday = DateTime.Today.AddYears(-20),
+								              Active = true,
+								              Earnings = 45.0m,
+								              Comments = "CSharp books",
+								              Rate = 5,
+								              City = "Madrid"
+							              },
+						              new Author
+							              {
+								              Name = "Xavi Garzon",
+								              Birthday = DateTime.Today.AddYears(-22),
+								              Active = true,
+								              Earnings = 75.0m,
+								              Comments = "CSharp books",
+								              Rate = 9,
+								              City = "Madrid"
+							              },
+						              new Author
+							              {
+								              Name = "Luis garzon",
+								              Birthday = DateTime.Today.AddYears(-22),
+								              Active = true,
+								              Earnings = 85.0m,
+								              Comments = "CSharp books",
+								              Rate = 10,
+								              City = "Mexico"
+							              },
+					              };
 
 				db.InsertAll(authors);
 
@@ -84,20 +216,23 @@ namespace SqlServerExpressionsTest
 				// lets start!
 				// select authors born 20 year ago
 				int year = DateTime.Today.AddYears(-20).Year;
-				int expected=5;
+				int expected = 5;
 
 				ev.Where(rn => rn.Birthday >= new DateTime(year, 1, 1) && rn.Birthday <= new DateTime(year, 12, 31));
-				List<Author> result=db.Select(ev);
+				List<Author> result = db.Select(ev);
 				Console.WriteLine(ev.WhereExpression);
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, result.Count, expected == result.Count);
-				result = db.Select<Author>(qry => qry.Where(rn => rn.Birthday >= new DateTime(year, 1, 1) && rn.Birthday <= new DateTime(year, 12, 31)));
+				result =
+					db.Select<Author>(
+						qry => qry.Where(rn => rn.Birthday >= new DateTime(year, 1, 1) && rn.Birthday <= new DateTime(year, 12, 31)));
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, result.Count, expected == result.Count);
-				result = db.Select<Author>(rn => rn.Birthday >= new DateTime(year, 1, 1) && rn.Birthday <= new DateTime(year, 12, 31));
+				result =
+					db.Select<Author>(rn => rn.Birthday >= new DateTime(year, 1, 1) && rn.Birthday <= new DateTime(year, 12, 31));
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, result.Count, expected == result.Count);
 
 				// select authors from London, Berlin and Madrid : 6
 				expected = 6;
-				ev.Where(rn => Sql.In(rn.City, new object[] { "London", "Madrid", "Berlin" }));
+				ev.Where(rn => Sql.In(rn.City, new object[] {"London", "Madrid", "Berlin"}));
 				result = db.Select(ev);
 				Console.WriteLine(ev.WhereExpression);
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, result.Count, expected == result.Count);
@@ -106,7 +241,7 @@ namespace SqlServerExpressionsTest
 
 				// select authors from Bogota and Cartagena : 7
 				expected = 7;
-				ev.Where(rn => Sql.In(rn.City, new object[] { "Bogota", "Cartagena" }));
+				ev.Where(rn => Sql.In(rn.City, new object[] {"Bogota", "Cartagena"}));
 				result = db.Select(ev);
 				Console.WriteLine(ev.WhereExpression);
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, result.Count, expected == result.Count);
@@ -178,15 +313,17 @@ namespace SqlServerExpressionsTest
 				// set Active=false where rate =0
 				expected = 2;
 				ev.Where(rn => rn.Rate == 0).Update(rn => rn.Active);
-				var rows = db.UpdateOnly(new Author() { Active = false }, ev);
+				var rows = db.UpdateOnly(new Author() {Active = false}, ev);
 				Console.WriteLine(ev.WhereExpression);
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, rows, expected == rows);
 
 				// insert values  only in Id, Name, Birthday, Rate and Active fields 
 				expected = 4;
-				ev.Insert(rn => new { rn.Id, rn.Name, rn.Birthday, rn.Active, rn.Rate });
-				db.InsertOnly(new Author() { Active = false, Rate = 0, Name = "Victor Grozny", Birthday = DateTime.Today.AddYears(-18) }, ev);
-				db.InsertOnly(new Author() { Active = false, Rate = 0, Name = "Ivan Chorny", Birthday = DateTime.Today.AddYears(-19) }, ev);
+				ev.Insert(rn => new {rn.Id, rn.Name, rn.Birthday, rn.Active, rn.Rate});
+				db.InsertOnly(
+					new Author() {Active = false, Rate = 0, Name = "Victor Grozny", Birthday = DateTime.Today.AddYears(-18)}, ev);
+				db.InsertOnly(
+					new Author() {Active = false, Rate = 0, Name = "Ivan Chorny", Birthday = DateTime.Today.AddYears(-19)}, ev);
 				ev.Where(rn => !rn.Active);
 				result = db.Select(ev);
 				Console.WriteLine(ev.WhereExpression);
@@ -195,7 +332,7 @@ namespace SqlServerExpressionsTest
 				//update comment for City == null 
 				expected = 2;
 				ev.Where(rn => rn.City == null).Update(rn => rn.Comments);
-				rows = db.UpdateOnly(new Author() { Comments = "No comments" }, ev);
+				rows = db.UpdateOnly(new Author() {Comments = "No comments"}, ev);
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, rows, expected == rows);
 
 				// delete where City is null 
@@ -205,16 +342,16 @@ namespace SqlServerExpressionsTest
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, rows, expected == rows);
 
 
-
 				//   lets select  all records ordered by Rate Descending and Name Ascending
 				expected = 14;
-				ev.Where().OrderBy(rn => new { at = Sql.Desc(rn.Rate), rn.Name }); // clear where condition
+				ev.Where().OrderBy(rn => new {at = Sql.Desc(rn.Rate), rn.Name}); // clear where condition
 				result = db.Select(ev);
 				Console.WriteLine(ev.WhereExpression);
 				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", expected, result.Count, expected == result.Count);
 				Console.WriteLine(ev.OrderByExpression);
 				var author = result.FirstOrDefault();
-				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", "Claudia Espinel", author.Name, "Claudia Espinel" == author.Name);
+				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", "Claudia Espinel", author.Name,
+				                  "Claudia Espinel" == author.Name);
 
 				// select  only first 5 rows ....
 
@@ -229,11 +366,12 @@ namespace SqlServerExpressionsTest
 
 				// and finally lets select only Name and City (name will be "UPPERCASED" )
 
-				ev.Select(rn => new { at = Sql.As(rn.Name.ToUpper(), "Name"), rn.City });
+				ev.Select(rn => new {at = Sql.As(rn.Name.ToUpper(), "Name"), rn.City});
 				Console.WriteLine(ev.SelectExpression);
 				result = db.Select(ev);
 				author = result.FirstOrDefault();
-				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", "Claudia Espinel".ToUpper(), author.Name, "Claudia Espinel".ToUpper() == author.Name);
+				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", "Claudia Espinel".ToUpper(), author.Name,
+				                  "Claudia Espinel".ToUpper() == author.Name);
 
 				//paging :
 				//ev.Limit(0, 4);// first page, page size=4;
@@ -282,12 +420,12 @@ namespace SqlServerExpressionsTest
 
 				Console.WriteLine("First author or default by city (multiple matches)");
 				author = db.FirstOrDefault<Author>(a => a.City == "Bogota");
-				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", "Angel Colmenares", author.Name, "Angel Colmenares" == author.Name);
+				Console.WriteLine("Expected:{0} ; Selected:{1}, OK? {2}", "Angel Colmenares", author.Name,
+				                  "Angel Colmenares" == author.Name);
 
 
 				Console.ReadLine();
 				Console.WriteLine("Press Enter to continue");
-
 			}
 
 			Console.WriteLine("This is The End my friend!");
@@ -296,11 +434,10 @@ namespace SqlServerExpressionsTest
 
 		private static string GetFileConnectionString()
 		{
-            var connectionString = "~/test.mdf".MapAbsolutePath();
+			var connectionString = "~/test.mdf".MapAbsolutePath();
 
 
 			return connectionString;
 		}
-
 	}
 }

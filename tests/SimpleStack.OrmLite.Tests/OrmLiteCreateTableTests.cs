@@ -5,7 +5,7 @@ using SimpleStack.OrmLite.Tests.Shared;
 namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture]
-	public class OrmLiteCreateTableTests 
+	public class OrmLiteCreateTableTests
 		: OrmLiteTestBase
 	{
 		[Test]
@@ -16,13 +16,13 @@ namespace SimpleStack.OrmLite.Tests
 				db.DropTable<ModelWithIdOnly>();
 
 				Assert.That(
-                    db.TableExists(typeof(ModelWithIdOnly).Name),
+					db.TableExists(typeof (ModelWithIdOnly).Name),
 					Is.False);
-				
+
 				db.CreateTable<ModelWithIdOnly>(true);
 
 				Assert.That(
-                    db.TableExists(typeof(ModelWithIdOnly).Name),
+					db.TableExists(typeof (ModelWithIdOnly).Name),
 					Is.True);
 			}
 		}
@@ -122,7 +122,7 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-				db.CreateTables(true, typeof(ModelWithIdOnly), typeof(ModelWithIdAndName));
+				db.CreateTables(true, typeof (ModelWithIdOnly), typeof (ModelWithIdAndName));
 
 				db.Insert(new ModelWithIdOnly(1));
 				db.Insert(new ModelWithIdOnly(2));
@@ -142,11 +142,10 @@ namespace SimpleStack.OrmLite.Tests
 		public void Can_create_ModelWithIdAndName_table_with_specified_DefaultStringLength()
 		{
 			OrmLiteConfig.DialectProvider.DefaultStringLength = 255;
-			var createTableSql =  OrmLiteConfig.DialectProvider.ToCreateTableStatement(typeof(ModelWithIdAndName));
+			var createTableSql = OrmLiteConfig.DialectProvider.ToCreateTableStatement(typeof (ModelWithIdAndName));
 
 			Console.WriteLine("createTableSql: " + createTableSql);
 			Assert.That(createTableSql.Contains("VARCHAR(255)"), Is.True);
 		}
-
 	}
 }

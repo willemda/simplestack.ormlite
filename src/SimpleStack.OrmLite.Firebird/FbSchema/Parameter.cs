@@ -38,19 +38,12 @@ namespace SimpleStack.OrmLite.Firebird
 		public int Scale { get; set; }
 
 		[Ignore]
-		public bool Nullable
-		{
-			get;
-			set;
-		}
+		public bool Nullable { get; set; }
 
 		[Ignore]
 		public ParameterDirection Direction
 		{
-			get
-			{
-				return PType == 0 ? ParameterDirection.Input : ParameterDirection.Ouput;
-			}
+			get { return PType == 0 ? ParameterDirection.Input : ParameterDirection.Ouput; }
 		}
 
 		[Ignore]
@@ -63,40 +56,40 @@ namespace SimpleStack.OrmLite.Firebird
 				{
 					case "BIGINT":
 					case "INT64":
-						t = Nullable ? typeof(Int64?) : typeof(Int64);
+						t = Nullable ? typeof (Int64?) : typeof (Int64);
 						break;
 
 					case "BLOB":
-						t = Nullable ? typeof(Byte?[]) : typeof(Byte[]);
+						t = Nullable ? typeof (Byte?[]) : typeof (Byte[]);
 						break;
 
 					case "DOUBLE PRECISION":
-						t = Nullable ? typeof(Double?) : typeof(Double);
+						t = Nullable ? typeof (Double?) : typeof (Double);
 						break;
 
 					case "FLOAT":
-						t = Nullable ? typeof(float?) : typeof(float);
+						t = Nullable ? typeof (float?) : typeof (float);
 						break;
 
 					case "DECIMAL":
 					case "NUMERIC":
-						t = Nullable ? typeof(Decimal?) : typeof(Decimal);
+						t = Nullable ? typeof (Decimal?) : typeof (Decimal);
 						break;
 
 					case "SMALLINT":
 					case "SHORT":
-						t = Nullable ? typeof(Int16?) : typeof(Int16);
+						t = Nullable ? typeof (Int16?) : typeof (Int16);
 						break;
 
 					case "DATE":
 					case "TIME":
 					case "TIMESTAMP":
-						t = Nullable ? typeof(DateTime?) : typeof(DateTime);
+						t = Nullable ? typeof (DateTime?) : typeof (DateTime);
 						break;
 
 					case "INTEGER":
 					case "LONG":
-						t = Nullable ? typeof(Int32?) : typeof(Int32);
+						t = Nullable ? typeof (Int32?) : typeof (Int32);
 						break;
 
 
@@ -104,22 +97,20 @@ namespace SimpleStack.OrmLite.Firebird
 					case "CHAR":
 					case "VARYING":
 					case "TEXT":
-						t = typeof(string);
+						t = typeof (string);
 						break;
 
 					case "GUID":
-						t = Nullable ? typeof(Guid?) : typeof(Guid);
+						t = Nullable ? typeof (Guid?) : typeof (Guid);
 						break;
 
 					default:
-						t = typeof(string);
+						t = typeof (string);
 						break;
 				}
 
 				return t;
 			}
 		}
-
 	}
 }
-

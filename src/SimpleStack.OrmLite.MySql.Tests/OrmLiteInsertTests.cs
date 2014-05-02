@@ -1,4 +1,5 @@
 //using Northwind.Common.DataModel;
+
 using NUnit.Framework;
 //using SimpleStack.Common.Tests.Models;
 using SimpleStack.DataAnnotations;
@@ -9,7 +10,6 @@ namespace SimpleStack.OrmLite.MySql.Tests
 	public class OrmLiteInsertTests
 		: OrmLiteTestBase
 	{
-
 		//[Test]
 		//public void Can_insert_into_ModelWithFieldsOfDifferentTypes_table()
 		//{
@@ -107,8 +107,8 @@ namespace SimpleStack.OrmLite.MySql.Tests
 			{
 				db.CreateTable<ModelWithIdAndName1>(true);
 
-                var row1 = new ModelWithIdAndName1() { Name = "A", Id = 4 };
-                var row2 = new ModelWithIdAndName1() { Name = "B", Id = 5 };
+				var row1 = new ModelWithIdAndName1() {Name = "A", Id = 4};
+				var row2 = new ModelWithIdAndName1() {Name = "B", Id = 5};
 
 				db.Insert(row1);
 				var row1LastInsertId = db.GetLastInsertId();
@@ -116,8 +116,8 @@ namespace SimpleStack.OrmLite.MySql.Tests
 				db.Insert(row2);
 				var row2LastInsertId = db.GetLastInsertId();
 
-                var insertedRow1 = db.GetById<ModelWithIdAndName1>(row1LastInsertId);
-                var insertedRow2 = db.GetById<ModelWithIdAndName1>(row2LastInsertId);
+				var insertedRow1 = db.GetById<ModelWithIdAndName1>(row1LastInsertId);
+				var insertedRow2 = db.GetById<ModelWithIdAndName1>(row2LastInsertId);
 
 				Assert.That(insertedRow1.Name, Is.EqualTo(row1.Name));
 				Assert.That(insertedRow2.Name, Is.EqualTo(row2.Name));
@@ -175,14 +175,13 @@ namespace SimpleStack.OrmLite.MySql.Tests
 		//		Assert.That(newRow.OrderDetails[2].ProductId, Is.EqualTo(row.OrderDetails[2].ProductId));
 		//	}
 		//}
-
 	}
 
-    class ModelWithIdAndName1
-    {
-        [AutoIncrement]
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+	internal class ModelWithIdAndName1
+	{
+		[AutoIncrement]
+		public int Id { get; set; }
 
+		public string Name { get; set; }
+	}
 }

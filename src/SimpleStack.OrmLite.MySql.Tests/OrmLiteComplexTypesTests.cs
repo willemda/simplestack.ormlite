@@ -59,7 +59,7 @@ namespace SimpleStack.OrmLite.MySql.Tests
 			{
 				db.CreateTable<SampleOrderLine>(true);
 
-				var orderIds = new[] { 1, 2, 3, 4, 5 }.ToList();
+				var orderIds = new[] {1, 2, 3, 4, 5}.ToList();
 
 				orderIds.ForEach(x => db.Insert(
 					SampleOrderLine.Create(Guid.NewGuid(), x, 1)));

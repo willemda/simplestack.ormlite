@@ -11,15 +11,14 @@ namespace SimpleStack.OrmLite.Tests
 	public class OrmLiteSelectTests
 		: OrmLiteTestBase
 	{
-
 		[Test]
 		public void Can_GetById_int_from_ModelWithFieldsOfDifferentTypes_table()
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
+				db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -34,9 +33,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -51,9 +50,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
+				db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -69,9 +68,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -87,9 +86,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -113,7 +112,7 @@ namespace SimpleStack.OrmLite.Tests
 
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 
 				n.Times(x => db.Insert(ModelWithIdAndName.Create(x)));
 
@@ -128,9 +127,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -149,9 +148,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithOnlyStringFields>();
+				db.DropAndCreateTable<ModelWithOnlyStringFields>();
 
-				var rowIds = new List<string>(new[] { "id-1", "id-2", "id-3" });
+				var rowIds = new List<string>(new[] {"id-1", "id-2", "id-3"});
 
 				rowIds.ForEach(x => db.Insert(ModelWithOnlyStringFields.Create(x)));
 
@@ -179,7 +178,7 @@ namespace SimpleStack.OrmLite.Tests
 
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 
 				n.Times(x => db.Insert(ModelWithIdAndName.Create(x)));
 
@@ -196,7 +195,7 @@ namespace SimpleStack.OrmLite.Tests
 
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 
 				n.Times(x => db.Insert(ModelWithIdAndName.Create(x)));
 
@@ -213,13 +212,14 @@ namespace SimpleStack.OrmLite.Tests
 
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 
-				n.Times(x => {
-					var row = ModelWithIdAndName.Create(x);
-					row.Name = x % 2 == 0 ? "OddGroup" : "EvenGroup";
-					db.Insert(row);
-				});
+				n.Times(x =>
+					        {
+						        var row = ModelWithIdAndName.Create(x);
+						        row.Name = x%2 == 0 ? "OddGroup" : "EvenGroup";
+						        db.Insert(row);
+					        });
 
 				var lookup = db.GetLookup<string, int>("SELECT Name, Id FROM ModelWithIdAndName");
 
@@ -253,9 +253,9 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
+				db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
@@ -271,13 +271,13 @@ namespace SimpleStack.OrmLite.Tests
 		{
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
+				db.DropAndCreateTable<ModelWithFieldsOfDifferentTypes>();
 
-				var rowIds = new List<int>(new[] { 1, 2, 3 });
+				var rowIds = new List<int>(new[] {1, 2, 3});
 
 				rowIds.ForEach(x => db.Insert(ModelWithFieldsOfDifferentTypes.Create(x)));
 
-				var rows = db.Select<ModelWithIdAndName>(typeof(ModelWithFieldsOfDifferentTypes));
+				var rows = db.Select<ModelWithIdAndName>(typeof (ModelWithFieldsOfDifferentTypes));
 				var dbRowIds = rows.ConvertAll(x => x.Id);
 
 				Assert.That(dbRowIds, Is.EquivalentTo(rowIds));
@@ -292,7 +292,7 @@ namespace SimpleStack.OrmLite.Tests
 
 			using (var db = OpenDbConnection())
 			{
-                db.DropAndCreateTable<ModelWithIdAndName>();
+				db.DropAndCreateTable<ModelWithIdAndName>();
 
 				n.Times(x => db.Insert(ModelWithIdAndName.Create(x)));
 
@@ -335,6 +335,5 @@ namespace SimpleStack.OrmLite.Tests
 				Assert.That(rows[0].Flag);
 			}
 		}
-
 	}
 }

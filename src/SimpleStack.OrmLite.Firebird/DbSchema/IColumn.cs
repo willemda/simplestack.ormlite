@@ -35,4 +35,3 @@ namespace SimpleStack.OrmLite.Firebird.DbSchema
 		Type NetType { get; }
 	}
 }
-

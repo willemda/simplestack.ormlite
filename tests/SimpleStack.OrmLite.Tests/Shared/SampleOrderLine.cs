@@ -10,10 +10,7 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public string OrderUrn
 		{
-			get
-			{
-				return CreateUrn(this.UserId, this.OrderId, this.OrderLineId);
-			}
+			get { return CreateUrn(this.UserId, this.OrderId, this.OrderLineId); }
 		}
 
 		public long OrderId { get; set; }
@@ -84,46 +81,22 @@ namespace SimpleStack.OrmLite.Tests.Shared
 			set { this.MflowUrn = value; }
 		}
 
-		public string TrackUrn
-		{
-			get;
-			set;
-		}
+		public string TrackUrn { get; set; }
 
-		public string Title
-		{
-			get;
-			set;
-		}
+		public string Title { get; set; }
 
-		public string ArtistUrn
-		{
-			get;
-			set;
-		}
+		public string ArtistUrn { get; set; }
 
-		public string ArtistName
-		{
-			get;
-			set;
-		}
+		public string ArtistName { get; set; }
 
-		public string AlbumUrn
-		{
-			get;
-			set;
-		}
+		public string AlbumUrn { get; set; }
 
-		public string AlbumName
-		{
-			get;
-			set;
-		}
+		public string AlbumName { get; set; }
 
 		public static string CreateUrn(Guid userId, long orderId, long orderLineId)
 		{
 			return string.Format("urn:orderline:{0}/{1}/{2}",
-								 userId.ToString("N"), orderId, orderLineId);
+			                     userId.ToString("N"), orderId, orderLineId);
 		}
 
 		public static SampleOrderLine Create(Guid userId)
@@ -133,17 +106,17 @@ namespace SimpleStack.OrmLite.Tests.Shared
 
 		public static SampleOrderLine Create(Guid userId, int orderId, int orderLineId)
 		{
-			return new SampleOrderLine {
-				Id = CreateUrn(userId, orderId, orderLineId),
-				CreatedDate = DateTime.Now,
-				OrderId = orderId,
-				OrderLineId = orderLineId,
-				AlbumName = "AlbumName",
-				CashMixValueIncVat = 0.79m / 1.15m,
-				TransactionValueExVat = 0.79m,
-				ContentUrn = "urn:content:" + Guid.NewGuid().ToString("N"),
-			};
+			return new SampleOrderLine
+				       {
+					       Id = CreateUrn(userId, orderId, orderLineId),
+					       CreatedDate = DateTime.Now,
+					       OrderId = orderId,
+					       OrderLineId = orderLineId,
+					       AlbumName = "AlbumName",
+					       CashMixValueIncVat = 0.79m/1.15m,
+					       TransactionValueExVat = 0.79m,
+					       ContentUrn = "urn:content:" + Guid.NewGuid().ToString("N"),
+				       };
 		}
-
 	}
 }
