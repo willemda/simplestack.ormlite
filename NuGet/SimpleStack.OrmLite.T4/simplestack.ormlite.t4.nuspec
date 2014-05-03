@@ -3,7 +3,7 @@
 	<metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 		<id>SimpleStack.OrmLite.T4</id>
 		<title>OrmLite.T4 - T4 schema-generation templates for OrmLite</title>
-		<version>3.9.59</version>
+		<version>1.0.0</version>
 		<authors>Demis Bellot</authors>
 		<owners>Demis Bellot</owners>
 		<description>
