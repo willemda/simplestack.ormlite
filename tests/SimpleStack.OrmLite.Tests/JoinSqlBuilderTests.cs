@@ -1,12 +1,14 @@
 using NUnit.Framework;
 using System;
 using SimpleStack.DataAnnotations;
+using SimpleStack.OrmLite.Sqlite;
 
 namespace SimpleStack.OrmLite.Tests
 {
 	[TestFixture()]
-	public class JoinSqlBuilderTests
+	public class JoinSqlBuilderTests : OrmLiteTestBase
 	{
+
 		[Alias("Users")]
 		public class WithAliasUser
 		{
@@ -52,6 +54,29 @@ namespace SimpleStack.OrmLite.Tests
 			public string Country { get; set; }
 		}
 
+		[Test()]
+		public void SelectCountDistinctTest()
+		{
+			var joinQuery =
+				new JoinSqlBuilder<User, User>().LeftJoin<User, Address>(x => x.Id, x => x.UserId)
+				                                .SelectCountDistinct<User>(x => x.Id).ToSql();
+			var expected =
+				"SELECT  COUNT(DISTINCT \"User\".\"Id\")  \nFROM \"User\" \n LEFT OUTER JOIN  \"Address\" ON \"User\".\"Id\" = \"Address\".\"UserId\"  \n";
+
+			Assert.AreEqual(expected, joinQuery);
+		}
+
+		[Test()]
+		public void SelectCountTest()
+		{
+			var joinQuery =
+				new JoinSqlBuilder<User, User>().LeftJoin<User, Address>(x => x.Id, x => x.UserId)
+																				.SelectCount<User>(x => x.Id).ToSql();
+			var expected =
+				"SELECT  COUNT(\"User\".\"Id\")  \nFROM \"User\" \n LEFT OUTER JOIN  \"Address\" ON \"User\".\"Id\" = \"Address\".\"UserId\"  \n";
+
+			Assert.AreEqual(expected, joinQuery);
+		}
 
 		[Test()]
 		public void FieldNameLeftJoinTest()

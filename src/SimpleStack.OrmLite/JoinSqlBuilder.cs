@@ -182,6 +182,11 @@ namespace SimpleStack.OrmLite
 			return SelectGenericAggregate<T>(selectColumn, "COUNT");
 		}
 
+		public JoinSqlBuilder<TNewPoco, TBasePoco> SelectCountDistinct<T>(Expression<Func<T, object>> selectColumn)
+		{
+			return SelectGenericAggregate<T>(selectColumn, "COUNT", true);
+		}
+
 		public JoinSqlBuilder<TNewPoco, TBasePoco> SelectAverage<T>(Expression<Func<T, object>> selectColumn)
 		{
 			return SelectGenericAggregate<T>(selectColumn, "AVG");
@@ -193,7 +198,7 @@ namespace SimpleStack.OrmLite
 		}
 
 		private JoinSqlBuilder<TNewPoco, TBasePoco> SelectGenericAggregate<T>(Expression<Func<T, object>> selectColumn,
-		                                                                      string functionName)
+		                                                                      string functionName, bool distinct = false)
 		{
 			Type associatedType = this.PreviousAssociatedType(typeof (T), typeof (T));
 			if (associatedType == null)
@@ -209,7 +214,7 @@ namespace SimpleStack.OrmLite
 			{
 				throw new Exception("Expression should select only one Column ");
 			}
-			this.columnList.Add(string.Format(" {0}({1}) ", functionName.ToUpper(), columns[0]));
+			this.columnList.Add(string.Format(" {0}({1}{2}) ", functionName.ToUpper(), distinct ? "DISTINCT " : string.Empty,columns[0]));
 			return this;
 		}
 
@@ -275,7 +280,6 @@ namespace SimpleStack.OrmLite
 			orderByList.Clear();
 			return this;
 		}
-
 
 		public JoinSqlBuilder<TNewPoco, TBasePoco> OrderBy<T>(Expression<Func<T, object>> sourceColumn)
 		{
